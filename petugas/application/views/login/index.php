@@ -34,7 +34,7 @@
 		      			<label class="text-normal text-dark">Email</label> 
 		      			<!-- <input type="email" name="email" class="form-control" placeholder="Email" > -->
 		      			<?=form_input('email', '', array('class' => 'form-control', 'placeholder' => 'Email', 'id' => 'input-email'));?>
-		      			<div id="error">cek</div>
+		      			<div id="error"></div>
 		      		</div>
 
 		      		<div class="form-group">
@@ -72,13 +72,13 @@
 		            success: function(data){
 		                if (data.success == true) {
 		                	$('#info').append('<div class="alert alert-success"> Selamat datang '+ data.nama + '</div>');
-				            $('.form-group').removeClass('error')
-				                            .removeClass('has-success');
-				            $('.text-danger').remove();
-				            !e.preventDefault();
-				            setTimeout(function() {
-					            window.location.href="<?=base_url()?>/login";
-					          }, 2000);
+				              $('.form-group').removeClass('error')
+				                              .removeClass('has-success');
+				              $('.text-danger').remove();
+				              !e.preventDefault();
+                      setTimeout(function() {
+                        window.location.href="<?=base_url()?>login/sukses";
+                      }, 2000);
 
 		                }else if (data.error == true) {
 			                $.each(data.error_msg, function(key, value) {
@@ -90,7 +90,6 @@
 			           	}	
 		            }
 		        });
-		        
 		    });
 
 		    $('#form input').on('keyup', function () { 
