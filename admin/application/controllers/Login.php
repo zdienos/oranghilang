@@ -40,7 +40,8 @@ class Login extends CI_Controller {
 						'name'=>$data2->name,
 						'email'=>$data2->email,
 						'password'=>$data2->password,
-						'id'=>$data2->id,						
+						'id'=>$data2->id,
+						'user_grup'=>$data2->nama_grup		
 					);					
 					$data['success'] = true;
 					$data['nama'] = $data2->name;
