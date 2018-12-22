@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 		if (!$this->session->userdata('login')) {
 			redirect('login','refresh');
 		}else{
-			$this->load->view('home/index');
+			print_r($this->session->userdata());
 		}
 	}
 	

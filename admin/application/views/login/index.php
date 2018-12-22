@@ -28,7 +28,8 @@
 	      	</div>
 		    <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style="min-width:320px">
 		    	<h4 class="fw-300 c-grey-900 mB-40">Login</h4>
-		      	<?= form_open('index.php/login/proses', array('id' => 'form', 'role' => 'form','enctype'=>'multipart/from-data'));?>
+		    	<div id="info"></div>
+		      	<?= form_open('login/validate', array('id' => 'form', 'role' => 'form','enctype'=>'multipart/from-data'));?>
 		      		<div class="form-group">
 		      			<label class="text-normal text-dark">Email</label> 
 		      			<!-- <input type="email" name="email" class="form-control" placeholder="Email" > -->
@@ -60,27 +61,42 @@
 	  	$(document).ready(function() {
 		    $('#error').html(" ");
 
-		    $('#button-submit').on('click', function (e) {
-		        e.preventDefault();
-
+		    $('#form').submit(function(e){
+		    	e.preventDefault();
+		    	var fa = $(this);
 		        $.ajax({
 		            type: "POST",
-		            url: "<?=base_url('index.php/login/validate');?>", 
+		            url: fa.attr('action'), 
 		            data: $("#form").serialize(),
 		            dataType: "json",  
 		            success: function(data){
-		                $.each(data, function(key, value) {
-		                    $('#input-' + key).addClass('is-invalid');
+		                if (data.success == true) {
+		                	$('#info').append('<div class="alert alert-success"> Selamat datang '+ data.nama + '</div>');
+				            $('.form-group').removeClass('error')
+				                            .removeClass('has-success');
+				            $('.text-danger').remove();
+				            !e.preventDefault();
+				            setTimeout(function() {
+					            window.location.href="<?=base_url()?>index.php/login";
+					          }, 2000);
 
-		                    $('#input-' + key).parents('.form-group').find('#error').html(value);
-		                });
+		                }else if (data.error == true) {
+			                $.each(data.error_msg, function(key, value) {
+			                    $('#input-' + key).addClass('is-invalid');
+			                    $('#input-' + key).parents('.form-group').find('#error').html(value);
+			                });
+			            }else if(data.wrong == true){
+			            	$('#info').html(data.wrong_msg);			            	
+			           	}	
 		            }
 		        });
+		        
 		    });
 
 		    $('#form input').on('keyup', function () { 
 		        $(this).removeClass('is-invalid').addClass('is-valid');
 		        $(this).parents('.form-group').find('#error').html(" ");
+		        $('#info').html(" ");			  
 		    });
 		});	
 	  </script>	  

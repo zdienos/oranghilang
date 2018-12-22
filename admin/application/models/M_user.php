@@ -26,10 +26,9 @@ class M_user extends CI_Model {
         ];
     }
 
-    public function getUser($username)
+    public function get_login()
     {
-    	return $this->db->where('username',$username)
-    			->get($_table)->row();
+        return $this->db->get_where('user',array('email' => $this->input->post('email'),'password' => md5($this->input->post('password'))));
     }
 }
 
