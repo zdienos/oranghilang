@@ -77,7 +77,7 @@
 				            $('.text-danger').remove();
 				            !e.preventDefault();
 				            setTimeout(function() {
-					            window.location.href="<?=base_url()?>index.php/login";
+					            window.location.href="<?=base_url()?>/login";
 					          }, 2000);
 
 		                }else if (data.error == true) {
