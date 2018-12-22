@@ -1,13 +1,12 @@
 <div class="container-fluid">
-  <h4 class="c-grey-900 mT-10 mB-30">Basic Tables</h4>
+  <h4 class="c-grey-900 mT-10 mB-30">Daftar Bencana</h4>
   <div class="row">
     <div class="col-md-12">
       <div class="bgc-white bd bdrs-3 p-20 mB-20">
         <center>
-          <?= form_open('bencana/add', array('id' => 'form-add', 'role' => 'form','enctype'=>'multipart/from-data'));?>
-            <a a href="javascript:;" onclick="document.getElementById('form-add').submit();" class="btn cur-p btn-primary">Tambah Data</a>
-          <?=form_close()?>
+          <a a href="<?= base_url('bencana/add')?>"  class="btn cur-p btn-primary">Tambah Data</a>
         </center>
+        <br>
         <table class="table table-stripped" id="bencana" class="display" style="width:100%">
         <thead>
           <tr>
@@ -43,11 +42,5 @@
   </div>
 </div>
 <script>
-  $(document).ready(function() {
-    $('#bencana').DataTable( {
-        "processing": true,
-        "serverSide": true,
-        "ajax": "localhost/stiki/admin/bencana/dataTableServerRender"
-    } );
-} );
+
 </script>
