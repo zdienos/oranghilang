@@ -52,20 +52,26 @@ class Login extends CI_Controller {
 	        }
 
 	        echo json_encode($data);
+	    }else{
+	    	echo "method not allowed";
 	    }
 	}
 
 	public function logout()
 	{
-		$array = array(
-						'login' => FALSE,
-						'name'=>'',
-						'email'=>'',
-						'password'=>'',
-						'id'=>'',						
-					);
-					$this->session->set_userdata( $array );	
-					redirect('login','refresh');
+		if ($this->input->server('REQUEST_METHOD') == 'POST'){
+			$array = array(
+				'login' => FALSE,
+				'name'=>'',
+				'email'=>'',
+				'password'=>'',
+				'id'=>'',						
+			);
+			$this->session->set_userdata( $array );	
+			redirect('login','refresh');
+		} else{
+			echo "method not allowed";
+		}
 	}
 	public function haha()
 	{
