@@ -75,9 +75,6 @@ class Bencana extends CI_Controller {
       'villages'=>'Kelurahan/Desa',
     );
     $data['jenis_bencana'] = $this->bencana->getJenisBencanaAlam();
-    $data['regencies'] = $this->bencana->getRegencies();
-    $data['districts'] = $this->bencana->getDistricts();
-    $data['villages'] = $this->bencana->getVillages();
     $data['provinces'] = $this->bencana->getProvinces();
     $this->load->view('layout/home', $data);
   }
@@ -90,7 +87,7 @@ class Bencana extends CI_Controller {
       if (!$this->form_validation->run()) {
         $data['error'] = true;
         $data['error_msg'] = array(               
-          'id_jenis_bencana_alam' => form_error('id_jenis_bencana_alam' ),
+          'jenis_bencana_alam' => form_error('jenis_bencana_alam'),
           'id_provinces' => form_error('id_provinces'),
           'id_regencies' => form_error('id_regencies'),
           'id_districts' => form_error('id_districts'),
@@ -101,7 +98,7 @@ class Bencana extends CI_Controller {
         );
       }else{                    
           if ($this->bencana->mAddBencana(
-          $this->input->post('id_jenis_bencana_alam'),
+          $this->input->post('jenis_bencana_alam'),
           $this->input->post('id_provinces'),
           $this->input->post('id_regencies'),
           $this->input->post('id_districts'),
@@ -116,24 +113,6 @@ class Bencana extends CI_Controller {
       echo json_encode($data);
     }
   }
-    public function addBencana(){
-      if ($this->input->server('REQUEST_METHOD') == 'POST'){
-        if ($this->bencana->mAddBencana(
-          $this->input->post('id_jenis_bencana_alam'),
-          $this->input->post('id_provinces'),
-          $this->input->post('id_regencies'),
-          $this->input->post('id_districts'),
-          $this->input->post('id_villages'),
-          $this->input->post('nama_bencana_alam'),
-          $this->input->post('tgl_waktu'),
-          $this->input->post('keterangan')
-        )) {
-          redirect('bencana','refresh');
-          $this->session->set_flashdata('name', 'value');
-        }
-
-      }
-    }
 
     public function getregencies($id){
       $regency = $this->bencana->getRegenciesById($id);

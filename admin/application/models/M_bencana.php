@@ -15,26 +15,22 @@ class M_bencana extends CI_Model {
 
     public function rules()
     {
-        return [           
-            ['field' => 'id_jenis_bencana_alam',
-            'label' => 'Jenis Bencana Alam',
+        return [
+            ['field' => 'id_provinces',
+            'label' => 'Provinsi',
             'rules' => 'required'],
-            
-            // ['field' => 'id_provinces',
-            // 'label' => 'Provinsi',
-            // 'rules' => 'required'],
 
-            // ['field' => 'id_regencies',
-            // 'label' => 'Kota/Kabupaten',
-            // 'rules' => 'required'],
+            ['field' => 'id_regencies',
+            'label' => 'Kota/Kabupaten',
+            'rules' => 'required'],
 
-            // ['field' => 'id_districts',
-            // 'label' => 'Kecamatan',
-            // 'rules' => 'required'],
+            ['field' => 'id_districts',
+            'label' => 'Kecamatan',
+            'rules' => 'required'],
 
-            // ['field' => 'id_villages',
-            // 'label' => 'Desa',
-            // 'rules' => 'required'],
+            ['field' => 'id_villages',
+            'label' => 'Desa',
+            'rules' => 'required'],
 
             ['field' => 'nama_bencana_alam',
             'label' => 'Nama Bencana Alam',
@@ -46,7 +42,11 @@ class M_bencana extends CI_Model {
 
             ['field' => 'keterangan',
             'label' => 'Keterangan',
-            'rules' => ''],             
+            'rules' => 'required'], 
+            
+            ['field' => 'jenis_bencana_alam',
+            'label' => 'Jenis Bencana Alam',
+            'rules' => 'required']
         ];
     }
 
@@ -61,22 +61,8 @@ class M_bencana extends CI_Model {
                       ->result();
     }
 
-    public function getIdBencana(){
-      return $this->db->select('id,nama_bencana_alam')->get('bencana_alam')->result();
-    }
-    public function getRegencies(){
-      return $this->db->select('id,name_regencies')->limit(20)->get('regencies')->result();
-    }
-
-    public function getDistricts(){
-      return $this->db->select('id,name_disctricts')->limit(20)->get('districts')->result();
-    }
-    public function getVillages(){
-      return $this->db->select('id,name_villages')->limit(20)->get('villages')->result();
-    }
-
     public function getJenisBencanaAlam(){
-      return $this->db->select('id,nama_jenis_bencana_alam')->limit(20)->get('jenis_bencana_alam')->result();
+      return $this->db->select('id,nama_jenis_bencana_alam')->get('jenis_bencana_alam')->result();
     }
 
     public function getProvinces(){

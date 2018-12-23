@@ -33,5 +33,18 @@ $(document).ready(function() {
 		$(this).removeClass('is-invalid').addClass('is-valid');
 		$(this).parents('.form-group').find('#error').html(" ");
 		$('#info').html(" ");			  
-	});
+  });
+
+  $('#form-add input').on('change', function () { 
+		$(this).removeClass('is-invalid').addClass('is-valid');
+		$(this).parents('.form-group').find('#error').html(" ");
+		$('#info').html(" ");			  
+  });
+  
+  $('#form-add select').on('change', function () { 
+		$(this).removeClass('is-invalid').addClass('is-valid');
+		$(this).parents('.form-group').find('#error').html(" ");
+		$('#info').html(" ");			  
+  });
+  
 });	

@@ -10,7 +10,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Nama Lengkap</label>
               <div class="col-sm-9">
-                <?=form_input('nama_lengkap', '', array('class' => 'form-control', 'placeholder' => 'Nama Lengkap'));?>
+                <?=form_input('nama_lengkap', '', array('class' => 'form-control', 'placeholder' => 'Nama Lengkap', 'id' => 'input-nama_lengkap'));?>
               </div>
             </div>
             <div class="form-group row">
@@ -130,7 +130,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Status</label>
               <div class="col-sm-9">
-                <select name="id_bencana_alam" class="form-control" id="input-id_bencana_alam">
+                <select name="id_status_org_hilang" class="form-control" id="input-id_status_org_hilang">
                   <option value="" style="display:none;" selected>Pilih Status</option>
                   <?php foreach($statusorg as $status){?>
                     <option value="<?= $status->id ?>"><?= $status->nama_status_org ?></option>

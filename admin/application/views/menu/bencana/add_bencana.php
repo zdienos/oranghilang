@@ -10,8 +10,8 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['jenis_bencana']?></label>
               <div class="col-sm-9">
-                <select name="id_jenis_bencana_alam" class="form-control" id="input-id_jenis_bencana_alam">
-                <option  style="display:none;" selected>Pilih Jenis Bencana Alam</option>
+                <select class="form-control" id="input-jenis_bencana_alam" name="jenis_bencana_alam">
+                <option value="" style="display:none;" selected>Pilih Jenis Bencana</option>
                 <?php foreach($jenis_bencana as $bencana){ ?>
                   <option value="<?= $bencana->id ?>"><?= $bencana->nama_jenis_bencana_alam ?></option>    
                 <?php } ?>
@@ -60,7 +60,6 @@
               <div class="col-sm-9">
                 <select name="id_regencies" class="form-control" id="input-id_regencies">
                   <option value="" style="display:none;" selected>Pilih Kota/Kabupaten</option>
-                
                 </select>
                 <div id="error" class="invalid-feedback"></div>
               </div>
@@ -105,8 +104,6 @@
 
     $("#input-id_provinces").change(function(){
       $("#input-id_regencies").prop('disabled',false);
-      $("#input-id_districts").prop('disabled',true);
-      $("#input-id_villages").prop('disabled',true);
       var id_province = $('#input-id_provinces').find(":selected").val();
      
       $.ajax({
@@ -129,8 +126,6 @@
 
     $("#input-id_regencies").change(function(){ 
       $("#input-id_districts").prop('disabled',false);
-      $("#input-id_regencies").prop('disabled',true);
-      $("#input-id_villages").prop('disabled',true);
       var id_regencie = $('#input-id_regencies').find(":selected").val();      
       $.ajax({
         type: "POST",
@@ -152,8 +147,7 @@
 
     $("#input-id_districts").change(function(){ 
       $("#input-id_villages").prop('disabled',false);
-      $("#input-id_regencies").prop('disabled',true);
-      $("#input-id_districts").prop('disabled',true);
+
       var id_district = $('#input-id_districts').find(":selected").val();
       $.ajax({
         type: "POST",

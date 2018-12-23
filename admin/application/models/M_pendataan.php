@@ -25,16 +25,16 @@ class M_pendataan extends CI_Model {
 
       ['field' => 'id_kategori_umur',
        'label' => 'Kategori Umur',
-       'rules' => 'trim|required'],
+       'rules' => 'required'],
             
       [
         'field' => 'nama_pelapor',
         'label' => 'Nama Pelapor',
         'rules' => 'trim|required'],
 
-        ['field' => 'id_bencana_alam',
+      ['field' => 'id_bencana_alam',
        'label' => 'Bencana Alam',
-       'rules' => 'trim|required'],
+       'rules' => 'required'],
             
       ['field' => 'id_hubungan_pelapor',
        'label' => 'Hubungan Pelapor',

@@ -41,13 +41,13 @@ class Pendataan extends CI_Controller {
       if (!$this->form_validation->run()) {
         $data['error'] = true;
         $data['error_msg'] = array(               
-          'nama_lengkap' => form_error('nama_lengkap' ),
-          'id_jenis_kelamin' => 'Jenis Kelamin harus diisi',
-          'id_kategori_umur' => 'Kategori Umur harus diisi',
-          'nama_pelapor' => 'Nama Pelapor harus diisi',
-          'id_bencana_alam' => 'Bencana Alam harus diisi',
-          'id_hubungan_pelapor' => 'Hubungan Pelapor harus diisi',
-          'id_status_org_hilang' => 'Status harus diisi',
+          'nama_lengkap' => form_error('nama_lengkap'),
+          'id_jenis_kelamin' => form_error('id_jenis_kelamin'),
+          'id_kategori_umur' => form_error('id_kategori_umur'),
+          'nama_pelapor' => form_error('nama_pelapor'),
+          'id_bencana_alam' => form_error('id_bencana_alam'),
+          'id_hubungan_pelapor' => form_error('id_hubungan_pelapor'),
+          'id_status_org_hilang' => form_error('id_status_org_hilang'),
           'tgl_laporan' => form_error('tgl_laporan'),
         );
       }else{                    
