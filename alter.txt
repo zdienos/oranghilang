@@ -1,1 +1,6 @@
 INSERT INTO `user` (`id`, `id_user_grup`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES ('2', '2', 'Petugas', 'petugas@petugas.com', 'afb91ef692fd08c445e8cb1bab2ccf9c', '', CURRENT_TIMESTAMP, '0000-00-00 00:00:00.000000');
+ALTER TABLE `bencana_alam` ADD INDEX( `id_provinces`, `id_regencies`, `id_districts`, `id_villages`);
+ALTER TABLE `bencana_alam` CHANGE `id_provinces` `id_provinces` CHAR(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE `bencana_alam` CHANGE `id_regencies` `id_regencies` CHAR(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE `bencana_alam` CHANGE `id_districts` `id_districts` CHAR(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE `bencana_alam` CHANGE `id_villages` `id_villages` CHAR(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
