@@ -17,7 +17,7 @@ class Bencana extends CI_Controller {
           redirect('error/error_403','refresh');
           break;
         case 'petugas':
-          $data['view'] = 'menu/bencana';
+          $data['view'] = 'menu/bencana/bencana';
           $data['bencana'] = $this->bencana->getBencana();
           $this->load->view('layout/home', $data);
           break;
@@ -59,7 +59,7 @@ class Bencana extends CI_Controller {
   }
 
   public function add(){
-    $data['view'] = 'menu/add_bencana';
+    $data['view'] = 'menu/bencana/add_bencana';
     $data['jenis_bencana'] = $this->bencana->getJenisBencanaAlam();
     $data['regencies'] = $this->bencana->getRegencies();
     $data['districts'] = $this->bencana->getDistricts();

@@ -12,8 +12,9 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		if (!$this->session->userdata('login')) {			
-			$this->load->view('login/index');
+		if (!$this->session->userdata('login')) {	
+      $data['path'] = 'assets/validate.js';		
+			$this->load->view('login/index',$data);
 		}else{
 			redirect('home','refresh');
 		}
