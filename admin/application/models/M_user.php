@@ -30,6 +30,10 @@ class M_user extends CI_Model {
     {
         return $this->db->join('user_grup','user.id_user_grup=user_grup.id')->get_where('user',array('email' => $this->input->post('email'),'password' => md5($this->input->post('password'))));
     }
+
+    public function getEmail($email){
+      return $this->db->where('email',$email)->select('email')->get('user')->num_rows();
+    }
 }
 
 /* End of file M_user.php */

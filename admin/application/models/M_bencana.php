@@ -36,6 +36,40 @@ class M_bencana extends CI_Model {
                       ->get('bencana_alam')
                       ->result();
     }
+
+    public function getRegencies(){
+      return $this->db->select('id,name_regencies')->limit(20)->get('regencies')->result();
+    }
+
+    public function getDistricts(){
+      return $this->db->select('id,name_disctricts')->limit(20)->get('districts')->result();
+    }
+    public function getVillages(){
+      return $this->db->select('id,name_villages')->limit(20)->get('villages')->result();
+    }
+
+    public function getJenisBencanaAlam(){
+      return $this->db->select('id,nama_jenis_bencana_alam')->limit(20)->get('jenis_bencana_alam')->result();
+    }
+
+    public function getProvinces(){
+      return $this->db->select('id,name_provinces')->limit(20)->get('provinces')->result();
+    }
+
+    public function mAddBencana($jenis_bencana,$provices,$regency,$district,$villages,$nama_bencana,$date,$keterangan){
+      $array = array(
+        'id' => '',
+        'id_jenis_bencana_alam' => $jenis_bencana,
+        'id_provinces' => $provices,
+        'id_regencies' => $regency,
+        'id_districts' => $district,
+        'id_villages' => $villages,
+        'nama_bencana_alam' => $nama_bencana,
+        'tgl_waktu' => $date,
+        'keterangan' => $keterangan
+      );  
+      return $this->db->insert('bencana_alam',$array);
+    }
 }
 
 /* End of file M_user.php */
