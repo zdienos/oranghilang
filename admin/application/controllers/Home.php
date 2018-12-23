@@ -10,6 +10,7 @@ class Home extends CI_Controller {
 		if (!$this->session->userdata('login')) {
 			redirect('error/error_401','refresh');
 		}else{						
+			$data['js'] = 'assets/coba';
 			$data['view'] = 'home/index';
 			$this->load->view('layout/home', $data);
 		}

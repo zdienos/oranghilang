@@ -54,6 +54,7 @@
 		      	<?= form_close()?>
 		      </div>
 	  </div>
+	  <script>var base_url = '<?= base_url() ?>';</script>
 	  <script type="text/javascript" src="<?=base_url('assets/')?>vendor.js"></script>
 	  <script type="text/javascript" src="<?=base_url('assets/')?>bundle.js"></script>
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

@@ -58,8 +58,18 @@ class Bencana extends CI_Controller {
   );
   }
 
-  public function add(){
-    $data['view'] = 'menu/bencana/add_bencana';
+  public function add(){    
+    $data['view'] = 'menu/add_bencana';
+    $data['label'] = array(
+      'jenis_bencana'=>'Jenis Bencana',
+      'nama_bencana'=>'Nama Bencana',
+      'tgl_bencana'=>'Tanggal Bencana',
+      'keterangan'=>'Keterangan',
+      'provinces' =>'Provinsi',
+      'regencies'=>'Kota/Kabupaten',
+      'districts'=>'Kecamatan',
+      'villages'=>'Kelurahan/Desa',
+    );
     $data['jenis_bencana'] = $this->bencana->getJenisBencanaAlam();
     $data['regencies'] = $this->bencana->getRegencies();
     $data['districts'] = $this->bencana->getDistricts();
@@ -69,7 +79,22 @@ class Bencana extends CI_Controller {
   }
 
   public function addBencana(){
-    echo $this->bencana->mAddBencana($this->input->post('id_jenis_bencana_alam'),$this->input->post('id_provinces'),$this->input->post('id_regencies'),$this->input->post('id_districts'),$this->input->post('id_villages'),$this->input->post('nama_bencana_alam'),$this->input->post('tgl_waktu'),$this->input->post('keterangan'));
+    if ($this->input->server('REQUEST_METHOD') == 'POST'){
+      if ($this->bencana->mAddBencana(
+        $this->input->post('id_jenis_bencana_alam'),
+        $this->input->post('id_provinces'),
+        $this->input->post('id_regencies'),
+        $this->input->post('id_districts'),
+        $this->input->post('id_villages'),
+        $this->input->post('nama_bencana_alam'),
+        $this->input->post('tgl_waktu'),
+        $this->input->post('keterangan')
+      )) {
+        redirect('bencana','refresh');
+        $this->session->set_flashdata('name', 'value');
+      }
+      
+    }
   }
 }
 
