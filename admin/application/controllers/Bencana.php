@@ -21,9 +21,12 @@ class Bencana extends CI_Controller {
           $data['bencana'] = $this->bencana->getBencana();
           $this->load->view('layout/home', $data);
           break;
+        case 'writer':
+          redirect('error/error_403','refresh');
+          break;
       }
     }else{
-      redirect('login');
+      redirect('error/error_401','refresh');
     }
   }
   

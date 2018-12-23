@@ -6,17 +6,17 @@ class User extends CI_Controller {
 	public function index()
 	{
 		if (!$this->session->userdata('login')) {
-			redirect('login','refresh');
+			redirect('error/error_401','refresh');
 		}else{
 			switch ($this->session->userdata('user_grup')) {
 				case 'admin':
 					echo "admin";
 					break;
 				case 'petugas':					
-					echo "petugas";
+					redirect('error/error_403','refresh');
 					break;
 				case 'writer':
-					echo "writer";
+					redirect('error/error_403','refresh');
 					break;
 			}
 		}

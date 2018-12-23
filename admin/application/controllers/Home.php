@@ -8,7 +8,7 @@ class Home extends CI_Controller {
 	public function index()
 	{		
 		if (!$this->session->userdata('login')) {
-			redirect('login','refresh');
+			redirect('error/error_401','refresh');
 		}else{						
 			$data['view'] = 'home/index';
 			$this->load->view('layout/home', $data);
