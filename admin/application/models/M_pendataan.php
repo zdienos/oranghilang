@@ -15,18 +15,40 @@ class M_pendataan extends CI_Model {
 
   public function rules(){
     return [           
-      ['field' => 'email',
-       'label' => 'Email',
-       'rules' => 'trim|required|valid_email'],
+      ['field' => 'nama_lengkap',
+       'label' => 'Nama Lengkap',
+       'rules' => 'trim|required|min_length[4]'],
+                        
+      ['field' => 'id_jenis_kelamin',
+       'label' => 'Jenis Kelamin',
+       'rules' => 'trim|required'],
+
+      ['field' => 'id_kategori_umur',
+       'label' => 'Kategori Umur',
+       'rules' => 'trim|required'],
             
-      ['field' => 'password',
-       'label' => 'Password',
-       'rules' => 'required|min_length[5]'],
+      [
+        'field' => 'nama_pelapor',
+        'label' => 'Nama Pelapor',
+        'rules' => 'trim|required'],
+
+        ['field' => 'id_bencana_alam',
+       'label' => 'Bencana Alam',
+       'rules' => 'trim|required'],
+            
+      ['field' => 'id_hubungan_pelapor',
+       'label' => 'Hubungan Pelapor',
+       'rules' => 'trim|required'],
 
       [
-        'field' => 'asdas',
-        'label' => 'asda',
-        'rules' => 'reasdas'],
+        'field' => 'id_status_org_hilang',
+        'label' => 'Status',
+        'rules' => 'trim|required'],
+
+      ['field' => 'tgl_laporan',
+       'label' => 'Tanggal Laporan',
+       'rules' => 'trim|required'],
+            
       ];
   }
 
@@ -44,6 +66,10 @@ class M_pendataan extends CI_Model {
   
   public function getHubunganPelapor(){
     return $this->db->select('id,nama_hubungan_pelapor')->get('hubungan_pelapor')->result();
+  }
+
+  public function getStatus(){
+    return $this->db->select('id,nama_status_org')->get('status_org_hilang')->result();
   }
 
   public function mAddOrangHilang($nama_lengkap,$nama_panggilan,$alamat,$umur,$id_jenis_kelamin,$marga_suku,$warna_kulit,$baju_terakhir,$celana_terakhir,$id_kategori_umur,$foto,$lokasi_terakhir,$lat_lokasi,$lon_lokasi,$nama_ayah,$nama_ibu,$keterangan_lainnya,$nama_pelapor,$no_hp_pelapor,$id_bencana_alam,$id_hubungan_pelapor,$id_status_org_hilang,$tgl_laporan){
