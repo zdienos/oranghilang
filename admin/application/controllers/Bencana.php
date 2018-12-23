@@ -59,7 +59,7 @@ class Bencana extends CI_Controller {
   }
 
   public function add(){    
-    $data['view'] = 'menu/add_bencana';
+    $data['view'] = 'menu/bencana/add_bencana';
     $data['label'] = array(
       'jenis_bencana'=>'Jenis Bencana',
       'nama_bencana'=>'Nama Bencana',
@@ -75,6 +75,7 @@ class Bencana extends CI_Controller {
     $data['districts'] = $this->bencana->getDistricts();
     $data['villages'] = $this->bencana->getVillages();
     $data['provinces'] = $this->bencana->getProvinces();
+    $data['js'] = 'js.js';
     $this->load->view('layout/home', $data);
   }
 

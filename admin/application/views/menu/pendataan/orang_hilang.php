@@ -4,7 +4,7 @@
     <div class="col-md-12">
       <div class="bgc-white bd bdrs-3 p-20 mB-20">
         <center>
-          <a a href="<?= base_url('bencana/add')?>"  class="btn cur-p btn-primary">Tambah Data</a>
+          <a a href="<?= base_url('pendataan/add')?>"  class="btn cur-p btn-primary">Tambah Data</a>
         </center>
         <br>
         <table class="table table-stripped" id="bencana" class="display" style="width:100%">

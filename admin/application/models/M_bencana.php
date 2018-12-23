@@ -37,6 +37,9 @@ class M_bencana extends CI_Model {
                       ->result();
     }
 
+    public function getIdBencana(){
+      return $this->db->select('id,nama_bencana_alam')->get('bencana_alam')->result();
+    }
     public function getRegencies(){
       return $this->db->select('id,name_regencies')->limit(20)->get('regencies')->result();
     }
