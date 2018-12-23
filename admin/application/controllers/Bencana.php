@@ -12,9 +12,16 @@ class Bencana extends CI_Controller {
 	public function index()
 	{		
 		if($this->session->userdata('login')){
-      $data['view'] = 'menu/bencana';
-      $data['bencana'] = $this->bencana->getBencana();
-      $this->load->view('layout/home', $data);
+      switch($this->session->userdata('user_grup')){
+        case 'admin':
+          redirect('error/error_403','refresh');
+          break;
+        case 'petugas':
+          $data['view'] = 'menu/bencana';
+          $data['bencana'] = $this->bencana->getBencana();
+          $this->load->view('layout/home', $data);
+          break;
+      }
     }else{
       redirect('login');
     }

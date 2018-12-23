@@ -9,17 +9,9 @@ class Home extends CI_Controller {
 	{		
 		if (!$this->session->userdata('login')) {
 			redirect('login','refresh');
-		}else{			
-			switch($this->session->userdata('user_grup')){
-        case 'admin':
-          $data['view']='home/index';			
-          $this->load->view('layout/home', $data);
-          break;
-        case 'petugas':
-          $data['view']='home/index';			
-          $this->load->view('layout/home', $data);
-          break;
-      }
+		}else{						
+			$data['view'] = 'home/index';
+			$this->load->view('layout/home', $data);
 		}
 	}
 	
