@@ -134,6 +134,27 @@ class Bencana extends CI_Controller {
 
       }
     }
+
+    public function getregencies($id){
+      $regency = $this->bencana->getRegenciesById($id);
+      foreach($regency as $data){
+        echo '<option value="'.$data->id.'">'.$data->name_regencies.'</option>';
+      }
+    }
+
+    public function getdistricts($id){
+      $districts = $this->bencana->getDistrcitsByRegencyId($id);
+      foreach($districts as $data){
+        echo '<option value="'.$data->id.'">'.$data->name_disctricts.'</option>';
+      }
+    }
+
+    public function getvillages($id){
+      $villages = $this->bencana->getVillagesByDistrictsId($id);
+      foreach($villages as $data){
+        echo '<option value="'.$data->id.'">'.$data->name_villages.'</option>';
+      }
+    }
   }
 
   /* End of file Home.php */

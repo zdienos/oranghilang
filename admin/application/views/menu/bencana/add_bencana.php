@@ -60,9 +60,7 @@
               <div class="col-sm-9">
                 <select name="id_regencies" class="form-control" id="input-id_regencies">
                   <option value="" style="display:none;" selected>Pilih Kota/Kabupaten</option>
-                <?php foreach($regencies as $regenciess){ ?>
-                  <option value="<?= $regenciess->id ?>"><?= $regenciess->name_regencies ?></option>    
-                <?php } ?>
+                
                 </select>
                 <div id="error" class="invalid-feedback"></div>
               </div>
@@ -72,9 +70,7 @@
               <div class="col-sm-9">
                 <select name="id_districts" class="form-control" id="input-id_districts">
                   <option value="" style="display:none;" selected>Pilih Kecamatan</option>
-                <?php foreach($districts as $districtss){ ?>
-                  <option value="<?= $districtss->id ?>"><?= $districtss->name_disctricts ?></option>    
-                <?php } ?>
+                
                 </select>
                 <div id="error" class="invalid-feedback"></div>
               </div>
@@ -84,9 +80,7 @@
               <div class="col-sm-9">
                 <select name="id_villages" class="form-control" id="input-id_villages">
                   <option value="" style="display:none;" selected>Pilih Desa</option>
-                <?php foreach($villages as $villagess){ ?>
-                  <option value="<?= $villagess->id ?>"><?= $villagess->name_villages ?></option>    
-                <?php } ?>
+                
                 </select>
                 <div id="error" class="invalid-feedback"></div>
               </div>
@@ -99,3 +93,85 @@
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+    var base_url = 'http://localhost:80/stiki/admin/bencana/'
+
+    $("#loading").hide();
+    $("#input-id_regencies").prop('disabled',true);
+    $("#input-id_districts").prop('disabled',true);
+    $("#input-id_villages").prop('disabled',true);
+
+    $("#input-id_provinces").change(function(){
+      $("#input-id_regencies").prop('disabled',false);
+      $("#input-id_districts").prop('disabled',true);
+      $("#input-id_villages").prop('disabled',true);
+      var id_province = $('#input-id_provinces').find(":selected").val();
+     
+      $.ajax({
+        type: "POST",
+        url: base_url + "getregencies/"+id_province,
+        dataType: "html",  
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ 
+          $("#input-id_regencies").html(response).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { 
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); 
+        }
+      });
+    });
+
+    $("#input-id_regencies").change(function(){ 
+      $("#input-id_districts").prop('disabled',false);
+      $("#input-id_regencies").prop('disabled',true);
+      $("#input-id_villages").prop('disabled',true);
+      var id_regencie = $('#input-id_regencies').find(":selected").val();      
+      $.ajax({
+        type: "POST",
+        url: base_url + "getdistricts/"+id_regencie,
+        dataType: "html",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ 
+          $("#input-id_districts").html(response).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { 
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+        }
+      });
+    });
+
+    $("#input-id_districts").change(function(){ 
+      $("#input-id_villages").prop('disabled',false);
+      $("#input-id_regencies").prop('disabled',true);
+      $("#input-id_districts").prop('disabled',true);
+      var id_district = $('#input-id_districts').find(":selected").val();
+      $.ajax({
+        type: "POST",
+        url: base_url + "getvillages/"+id_district,
+        dataType: "html",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ 
+          $("#input-id_villages").html(response).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+        }
+      });
+    });
+
+  });
+  </script>

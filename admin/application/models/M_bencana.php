@@ -80,7 +80,7 @@ class M_bencana extends CI_Model {
     }
 
     public function getProvinces(){
-      return $this->db->select('id,name_provinces')->limit(20)->get('provinces')->result();
+      return $this->db->select('id,name_provinces')->get('provinces')->result();
     }
 
     public function mAddBencana($jenis_bencana,$provices,$regency,$district,$villages,$nama_bencana,$date,$keterangan){
@@ -96,6 +96,18 @@ class M_bencana extends CI_Model {
         'keterangan' => $keterangan
       );  
       return $this->db->insert('bencana_alam',$array);
+    }
+
+    public function getRegenciesById($id){
+      return $this->db->where('province_id',$id)->select('id,name_regencies')->get('regencies')->result();
+    }
+
+    public function getDistrcitsByRegencyId($id){
+      return $this->db->where('regency_id',$id)->select('id,name_disctricts')->get('districts')->result();
+    }
+
+    public function getVillagesByDistrictsId($id){
+      return $this->db->where('district_id',$id)->select('id,name_villages')->get('villages')->result();
     }
 }
 
