@@ -21,7 +21,7 @@
                </div>
                <ul class="sidebar-menu scrollable pos-r">
                   <?php if ($this->session->userdata('user_grup') == 'petugas'): ?>
-                    <li class="nav-item mT-30"><a class="sidebar-link" href="<?=base_url()?>"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Orang Hilang</span></a></li>
+                    <li class="nav-item mT-30"><a class="sidebar-link" href="<?=base_url('pendataan')?>"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Orang Hilang</span></a></li>
                     <li class="nav-item"><a class="sidebar-link" href="<?=base_url('bencana')?>"><span class="icon-holder"><i class="c-brown-500 ti-agenda"></i> </span><span class="title">Bencana</span></a></li>
                     
                   <?php endif ?>

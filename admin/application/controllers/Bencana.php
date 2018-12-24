@@ -16,6 +16,7 @@ class Bencana extends CI_Controller {
     if($this->session->userdata('login')){
       switch($this->session->userdata('user_grup')){
         case 'admin':
+<<<<<<< HEAD
         redirect('error/error_403','refresh');
         break;
         case 'petugas':        
@@ -24,6 +25,15 @@ class Bencana extends CI_Controller {
         $data['js_validation'] = 'bencana-form';
         $this->load->view('layout/home', $data);
         break;
+=======
+          redirect('error/error_403','refresh');
+          break;
+        case 'petugas':
+          $data['view'] = 'menu/bencana/bencana';
+          $data['bencana'] = $this->bencana->getBencana();
+          $this->load->view('layout/home', $data);
+          break;
+>>>>>>> ef079906614b9d4fb2da6f415b8e1f2a18ff053c
         case 'writer':
         redirect('error/error_403','refresh');
         break;
@@ -62,12 +72,20 @@ class Bencana extends CI_Controller {
   }
 
   public function add(){    
+<<<<<<< HEAD
     $data['js_validation'] = 'bencana-form';
     $data['view'] = 'menu/add_bencana';
     $data['label'] = array( 
       'jenis_bencana'=>'Jenis Bencana Alam',
       'nama_bencana'=>'Nama Bencana Alam',
       'tgl_waktu'=>'Tanggal Bencana Alam',
+=======
+    $data['view'] = 'menu/bencana/add_bencana';
+    $data['label'] = array(
+      'jenis_bencana'=>'Jenis Bencana',
+      'nama_bencana'=>'Nama Bencana',
+      'tgl_bencana'=>'Tanggal Bencana',
+>>>>>>> ef079906614b9d4fb2da6f415b8e1f2a18ff053c
       'keterangan'=>'Keterangan',
       'provinces' =>'Provinsi',
       'regencies'=>'Kota/Kabupaten',
@@ -79,6 +97,7 @@ class Bencana extends CI_Controller {
     $data['districts'] = $this->bencana->getDistricts();
     $data['villages'] = $this->bencana->getVillages();
     $data['provinces'] = $this->bencana->getProvinces();
+    $data['js'] = 'js.js';
     $this->load->view('layout/home', $data);
   }
 
