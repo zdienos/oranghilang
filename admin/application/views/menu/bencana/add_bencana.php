@@ -92,7 +92,7 @@
     </div>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="<?= base_url('assets/js/jquery-2.1.4.min.js')?>"></script>
 <script>
   $(document).ready(function(){
     var base_url = 'http://localhost:80/stiki/admin/bencana/'
@@ -101,11 +101,12 @@
     $("#input-id_regencies").prop('disabled',true);
     $("#input-id_districts").prop('disabled',true);
     $("#input-id_villages").prop('disabled',true);
-
+    
     $("#input-id_provinces").change(function(){
       $("#input-id_regencies").prop('disabled',false);
+      $("#input-id_districts").prop('disabled',false);
+      $("#input-id_villages").prop('disabled',false);
       var id_province = $('#input-id_provinces').find(":selected").val();
-     
       $.ajax({
         type: "POST",
         url: base_url + "getregencies/"+id_province,
@@ -117,6 +118,41 @@
         },
         success: function(response){ 
           $("#input-id_regencies").html(response).show();
+          var id_regencie = $('#input-id_regencies').find(":selected").val();
+          $.ajax({
+            type: "POST",
+            url: base_url + "getdistricts/"+id_regencie,
+            dataType: "html",
+            beforeSend: function(e) {
+              if(e && e.overrideMimeType) {
+                e.overrideMimeType("application/json;charset=UTF-8");
+              }
+            },
+            success: function(response){ 
+              $("#input-id_districts").html(response).show();
+                var id_district = $('#input-id_districts').find(":selected").val();
+          
+                $.ajax({
+                  type: "POST",
+                  url: base_url + "getvillages/"+id_district,
+                  dataType: "html",
+                  beforeSend: function(e) {
+                    if(e && e.overrideMimeType) {
+                      e.overrideMimeType("application/json;charset=UTF-8");
+                    }
+                  },
+                  success: function(response){ 
+                    $("#input-id_villages").html(response).show();
+                  },
+                  error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                  }
+                });
+            },
+            error: function (xhr, ajaxOptions, thrownError) { 
+              alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+          });
         },
         error: function (xhr, ajaxOptions, thrownError) { 
           alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); 
@@ -126,7 +162,8 @@
 
     $("#input-id_regencies").change(function(){ 
       $("#input-id_districts").prop('disabled',false);
-      var id_regencie = $('#input-id_regencies').find(":selected").val();      
+      var id_regencie = $('#input-id_regencies').find(":selected").val();
+           
       $.ajax({
         type: "POST",
         url: base_url + "getdistricts/"+id_regencie,
@@ -138,6 +175,24 @@
         },
         success: function(response){ 
           $("#input-id_districts").html(response).show();
+            var id_district = $('#input-id_districts').find(":selected").val();
+            
+            $.ajax({
+              type: "POST",
+              url: base_url + "getvillages/"+id_district,
+              dataType: "html",
+              beforeSend: function(e) {
+                if(e && e.overrideMimeType) {
+                    e.overrideMimeType("application/json;charset=UTF-8");
+                }
+              },
+              success: function(response){ 
+                $("#input-id_villages").html(response).show();
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+              }
+            });
         },
         error: function (xhr, ajaxOptions, thrownError) { 
           alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
@@ -147,8 +202,8 @@
 
     $("#input-id_districts").change(function(){ 
       $("#input-id_villages").prop('disabled',false);
-
       var id_district = $('#input-id_districts').find(":selected").val();
+      
       $.ajax({
         type: "POST",
         url: base_url + "getvillages/"+id_district,
