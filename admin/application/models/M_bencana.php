@@ -16,13 +16,37 @@ class M_bencana extends CI_Model {
     public function rules()
     {
         return [           
-            ['field' => 'email',
-            'label' => 'Email',
-            'rules' => 'trim|required|valid_email'],
+            ['field' => 'id_jenis_bencana_alam',
+            'label' => 'Jenis Bencana Alam',
+            'rules' => 'required'],
             
-            ['field' => 'password',
-            'label' => 'Password',
-            'rules' => 'required|min_length[5]']
+            // ['field' => 'id_provinces',
+            // 'label' => 'Provinsi',
+            // 'rules' => 'required'],
+
+            // ['field' => 'id_regencies',
+            // 'label' => 'Kota/Kabupaten',
+            // 'rules' => 'required'],
+
+            // ['field' => 'id_districts',
+            // 'label' => 'Kecamatan',
+            // 'rules' => 'required'],
+
+            // ['field' => 'id_villages',
+            // 'label' => 'Desa',
+            // 'rules' => 'required'],
+
+            ['field' => 'nama_bencana_alam',
+            'label' => 'Nama Bencana Alam',
+            'rules' => 'trim|required'],
+
+            ['field' => 'tgl_waktu',
+            'label' => 'Tanggal Bencana Alam',
+            'rules' => 'required'],
+
+            ['field' => 'keterangan',
+            'label' => 'Keterangan',
+            'rules' => ''],             
         ];
     }
 

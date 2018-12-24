@@ -8,9 +8,9 @@ class Home extends CI_Controller {
 	public function index()
 	{		
 		if (!$this->session->userdata('login')) {
-			redirect('error/error_401','refresh');
-		}else{						
-			$data['js'] = 'assets/coba';
+			redirect('login','refresh');
+		}else{									
+			$data['js_validation'] = 'bencana-form';
 			$data['view'] = 'home/index';
 			$this->load->view('layout/home', $data);
 		}

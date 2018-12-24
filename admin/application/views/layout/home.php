@@ -60,8 +60,9 @@
       </div>
       <script>var base_url = '<?= base_url() ?>';</script>
       <script type="text/javascript" src="<?=base_url('assets/vendor.js')?>"></script><script type="text/javascript" src="<?=base_url('assets/bundle.js')?>"></script>
-      <?php if ($js): ?>
-         <script type="text/javascript" src="<?=base_url($js);?>.js"></script>
+      <?php $js_validation = null ?: $js_validation?>
+      <?php if ($js_validation): ?>
+         <script type="text/javascript" src="<?php echo base_url('assets/js/validation/');echo $js_validation?>.js"></script>
       <?php endif ?>
 
    </body>

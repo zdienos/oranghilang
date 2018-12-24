@@ -8,6 +8,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->model('m_user','user');
 		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
 	}
 
 	public function index()
@@ -28,8 +29,8 @@ class Login extends CI_Controller {
 	    if (!$this->form_validation->run()) {
         $data['error'] = true;
         $data['error_msg'] = array(               
-          'email' => form_error('email', '<p class="mt-3 text-danger">', '</p>'),
-          'password' => form_error('password', '<p class="mt-3 text-danger">', '</p>'),                
+          'email' => form_error('email'),
+          'password' => form_error('password'),                
         );
 	    }else{	        	
 	     	if($this->user->getEmail($this->input->post('email')) == 0){

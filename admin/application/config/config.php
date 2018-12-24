@@ -517,6 +517,7 @@ $config['application_name'] = 'Web Application';
 $config['form_post'] = "method='post' enctype='multipart/form-data'";
 
 $config['msg_error']= array(
+	'check_default', 'You need to select something other than the default',
 	'required'=>'{field} harus diisi',
 	'min_length'=>'{field} minimal 5 karakter',
 	'valid_email'=>'Masukkan email yang valid',

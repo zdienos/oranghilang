@@ -34,14 +34,14 @@
 		      			<label class="text-normal text-dark">Email</label> 
 		      			<!-- <input type="email" name="email" class="form-control" placeholder="Email" > -->
 		      			<?=form_input('email', '', array('class' => 'form-control', 'placeholder' => 'Email', 'id' => 'input-email'));?>
-		      			<div id="error">cek</div>
+		      			<div id="error" class="invalid-feedback"></div>
 		      		</div>
 
 		      		<div class="form-group">
 		      			<label class="text-normal text-dark">Password</label>
 		      			<!-- <input type="password" name="password" class="form-control" placeholder="Password" required> -->
 		      			<?= form_password('password', '', array('class' => 'form-control', 'placeholder' => 'Password', 'id' => 'input-password'));?>
-		      			<div id="error"></div>
+		      			<div id="error" class="invalid-feedback"></div>
 		      		</div>
 
 		      		<div class="form-group">
@@ -82,7 +82,7 @@
 					          }, 2000);
 
 		                }else if (data.error == true) {
-			                $.each(data.error_msg, function(key, value) {
+			                $.each(data.error_msg, function(key, value) {			                	
 			                    $('#input-' + key).addClass('is-invalid');
 			                    $('#input-' + key).parents('.form-group').find('#error').html(value);
 			                });

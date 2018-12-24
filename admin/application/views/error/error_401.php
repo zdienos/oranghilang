@@ -21,6 +21,7 @@
 	    </p>
 	</div>
 	</div>
+	<script>var base_url = '<?= base_url() ?>';</script>
 	<script type="text/javascript" src="<?=base_url()?>assets/vendor.js"></script><script type="text/javascript" src="<?=base_url()?>assets/bundle.js"></script>
 </body>
 </html>
