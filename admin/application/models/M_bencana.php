@@ -42,7 +42,7 @@ class M_bencana extends CI_Model {
 
             ['field' => 'keterangan',
             'label' => 'Keterangan',
-            'rules' => 'required'], 
+            'rules' => ''], 
             
             ['field' => 'jenis_bencana_alam',
             'label' => 'Jenis Bencana Alam',
@@ -94,6 +94,9 @@ class M_bencana extends CI_Model {
 
     public function getVillagesByDistrictsId($id){
       return $this->db->where('district_id',$id)->select('id,name_villages')->get('villages')->result();
+    }
+    public function getIdBencana(){
+      return $this->db->select('id,nama_bencana_alam')->get('bencana_alam')->result();
     }
 }
 

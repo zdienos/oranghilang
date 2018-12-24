@@ -11,24 +11,28 @@
               <label class="col-sm-3 col-form-label">Nama Lengkap</label>
               <div class="col-sm-9">
                 <?=form_input('nama_lengkap', '', array('class' => 'form-control', 'placeholder' => 'Nama Lengkap', 'id' => 'input-nama_lengkap'));?>
+                <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Nama Panggilan</label>
               <div class="col-sm-9">
-                <?=form_input('nama_panggilan', '', array('class' => 'form-control', 'placeholder' => 'Nama Panggilan'));?>
+                <?=form_input('nama_panggilan', '', array('id'=>'input-nama_panggilan','class' => 'form-control', 'placeholder' => 'Nama Panggilan'));?>
+                <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Alamat</label>
               <div class="col-sm-9">
-                <textarea class="form-control" name="alamat" placeholder="Alamat"></textarea>
+                <textarea id="input-alamat" class="form-control" name="alamat" placeholder="Alamat"></textarea>
+                <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Umur</label>
               <div class="col-sm-9">
-                <?=form_input('umur', '', array('class' => 'form-control', 'placeholder' => 'Umur'));?>
+                <?=form_input('umur', '', array('id'=>'input-umur','class' => 'form-control', 'placeholder' => 'Umur'));?>
+                <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
@@ -46,25 +50,27 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Marga Suku</label>
               <div class="col-sm-9">
-                <?=form_input('marga_suku', '', array('class' => 'form-control', 'placeholder' => 'Marga Suku'));?>
+                <?=form_input('marga_suku', '', array('id'=>'input-marga_suku','class' => 'form-control', 'placeholder' => 'Marga Suku'));?>
+                <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Warna Kulit</label>
               <div class="col-sm-9">
-                <?=form_input('warna_kulit', '', array('class' => 'form-control', 'placeholder' => 'Warna Kulit'));?>
+                <?=form_input('warna_kulit', '', array('id'=>'input-warna_kulit','class' => 'form-control', 'placeholder' => 'Warna Kulit'));?>
+                <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Baju Terakhir</label>
               <div class="col-sm-9">
-                <?=form_input('baju_terakhir', '', array('class' => 'form-control', 'placeholder' => 'Baju Terakhir'));?>
+                <?=form_input('baju_terakhir', '', array('id'=>'input-baju_terakhir','class' => 'form-control', 'placeholder' => 'Baju Terakhir'));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Celana Terakhir</label>
               <div class="col-sm-9">
-                <?=form_input('celana_terakhir', '', array('class' => 'form-control', 'placeholder' => 'Celana Terakhir'));?>
+                <?=form_input('celana_terakhir', '', array('id'=>'input-celana_terakhir','class' => 'form-control', 'placeholder' => 'Celana Terakhir'));?>
               </div>
             </div>
             <div class="form-group row">
@@ -82,37 +88,37 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Foto</label>
               <div class="col-sm-9">
-                <input type="text" name="foto" class="form-control">
+                <input type="text" name="foto" class="form-control" id="input-foto">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Lokasi Terakhir</label>
               <div class="col-sm-9">
-                <?=form_input('lokasi_terakhir', '', array('class' => 'form-control', 'placeholder' => 'Lokasi Terakhir'));?>
+                <?=form_input('lokasi_terakhir', '', array('id'=>'input-lokasi_terakhir','class' => 'form-control', 'placeholder' => 'Lokasi Terakhir'));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Latitude Lokasi</label>
               <div class="col-sm-9">
-                <?=form_input('lat_lokasi', '', array('class' => 'form-control', 'placeholder' => 'Latitude Lokasi'));?>
+                <?=form_input('lat_lokasi', '', array('id'=>'input-lat_lokasi','class' => 'form-control', 'placeholder' => 'Latitude Lokasi'));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Longitude Lokasi</label>
               <div class="col-sm-9">
-                <?=form_input('lon_lokasi', '', array('class' => 'form-control', 'placeholder' => 'Longitude Lokasi'));?>
+                <?=form_input('lon_lokasi', '', array('id'=>'input-lon_lokasi','class' => 'form-control', 'placeholder' => 'Longitude Lokasi'));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Nama Ayah</label>
               <div class="col-sm-9">
-                <?=form_input('nama_ayah', '', array('class' => 'form-control', 'placeholder' => 'Nama Ayah'));?>
+                <?=form_input('nama_ayah', '', array('id'=>'input-nama_ayah','class' => 'form-control', 'placeholder' => 'Nama Ayah'));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Nama Ibu</label>
               <div class="col-sm-9">
-                <?=form_input('nama_ibu', '', array('class' => 'form-control', 'placeholder' => 'Nama Ibu'));?>
+                <?=form_input('nama_ibu', '', array('id'=>'input-nama_ibu','class' => 'form-control', 'placeholder' => 'Nama Ibu'));?>
               </div>
             </div>
             <div class="form-group row">
@@ -142,7 +148,8 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Keterangan Lainnya</label>
               <div class="col-sm-9">
-                <textarea class="form-control" name="keterangan_lainnya" placeholder="Keterangan Lainnya"></textarea>
+                <textarea id="input-keterangan_lainnya" class="form-control" name="keterangan_lainnya" placeholder="Keterangan Lainnya"></textarea>
+                <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
@@ -158,14 +165,15 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Nama Pelapor</label>
               <div class="col-sm-9">
-                <?=form_input('nama_pelapor', '', array('class' => 'form-control', 'placeholder' => 'Nama Pelapor', 'id' => 'input-nama_pelapor'));?>
+                <?=form_input('nama_pelapor', '', array('id'=>'input-no_hp_pelapor','class' => 'form-control', 'placeholder' => 'Nama Pelapor', 'id' => 'input-nama_pelapor'));?>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">No. HP Pelapor</label>
               <div class="col-sm-9">
-                <?=form_input('no_hp_pelapor', '', array('class' => 'form-control', 'placeholder' => 'No. HP Pelapor'));?>
+                <?=form_input('no_hp_pelapor', '', array('id'=>'input-no_hp_pelapor','class' => 'form-control', 'placeholder' => 'No. HP Pelapor'));?>
+                <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
