@@ -136,7 +136,8 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['id_status_org_hilang']?></label>
               <div class="col-sm-9">
-                <select name="id_status_org_hilang" class="form-control" id="input-id_status_org_hilang" disabled>                  
+                <select name="id_status_org_hilang" class="form-control" id="input-id_status_org_hilang">
+                <option value="" style="display:none;" selected><?=$label['id_status_org_hilang']?></option>                  
                   <?php foreach($statusorg as $status){?>
                     <option value="<?= $status->id ?>"><?= $status->nama_status_org ?></option>
                   <?php } ?>

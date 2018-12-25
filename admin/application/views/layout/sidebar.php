@@ -47,13 +47,13 @@
                 <a class="sidebar-link" href="<?= base_url('pendataan')?>">Proses Pencarian</a>
               </li>
               <li>
-                <a class="sidebar-link" href="datatable.html">Ditemukan (Meninggal)</a>
+                <a class="sidebar-link" href="<?= base_url('pendataan/ditemukanhidup')?>">Ditemukan (Hidup)</a>
               </li>
               <li>
-                <a class="sidebar-link" href="datatable.html">Ditemukan (Hidup)</a>
+                <a class="sidebar-link" href="<?= base_url('pendataan/ditemukanmeninggal')?>">Ditemukan (Meninggal)</a>
               </li>
               <li>
-                <a class="sidebar-link" href="datatable.html">Tidak Ditemukan</a>
+                <a class="sidebar-link" href="<?= base_url('pendataan/tidakditemukan')?>">Tidak Ditemukan</a>
               </li>
             </ul>
          </li>
