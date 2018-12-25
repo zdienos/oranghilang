@@ -62,6 +62,10 @@
       <?php if ($js_validation): ?>
          <script type="text/javascript" src="<?php echo base_url('assets/js/validation/');echo $js_validation?>.js"></script>
       <?php endif ?>
-
+      
+      <?php echo isset($dropdown) ? '' : $dropdown = false; ?>
+      <?php if ($dropdown): ?>
+         <script type="text/javascript" src="<?php echo base_url('assets/js/');echo $dropdown?>.js"></script>
+      <?php endif ?>
    </body>
 </html>

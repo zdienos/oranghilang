@@ -62,6 +62,7 @@ public function add(){
   $data['label'] = $this->bencana->label();
   $data['jenis_bencana'] = $this->bencana->getJenisBencanaAlam();
   $data['provinces'] = $this->bencana->getProvinces();
+  $data['dropdown'] = 'dropdown-bencana';
   $this->load->view('layout/home', $data);
 }
 
