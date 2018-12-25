@@ -82,7 +82,7 @@ $(document).ready(function(){
           
           $.ajax({
             type: "POST",
-            url: base_url + "getvillages/"+id_district,
+            url: base_urls + "getvillages/"+id_district,
             dataType: "html",
             beforeSend: function(e) {
               if(e && e.overrideMimeType) {
@@ -109,7 +109,7 @@ $(document).ready(function(){
     
     $.ajax({
       type: "POST",
-      url: base_url + "getvillages/"+id_district,
+      url: base_urls + "getvillages/"+id_district,
       dataType: "html",
       beforeSend: function(e) {
         if(e && e.overrideMimeType) {
