@@ -17,6 +17,7 @@ class Bencana extends CI_Controller {
       if ($this->session->userdata('user_grup') == 'admin' || $this->session->userdata('user_grup') == 'petugas') {
         $data['view'] = 'menu/bencana/bencana';
         $data['bencana'] = $this->bencana->getBencana();
+        print_r($this->bencana->getBencana());exit;
         $data['js_validation'] = 'bencana-form';
         $this->load->view('layout/home', $data);
       }else{
