@@ -9,7 +9,8 @@ class Home extends CI_Controller {
 	{		
 		if (!$this->session->userdata('login')) {
 			redirect('login','refresh');
-		}else{									
+		}else{					
+			$data['active'] = 'blue';
 			$data['js_validation'] = 'bencana-form';
 			$data['view'] = 'home/index';
 			$this->load->view('layout/home', $data);

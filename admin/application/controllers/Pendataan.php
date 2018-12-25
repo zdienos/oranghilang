@@ -14,13 +14,20 @@ class Pendataan extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('user_grup') == 'petugas'){
+    if ($this->session->userdata('login')) {
+      if($this->session->userdata('user_grup') == 'petugas' || $this->session->userdata('user_grup') == 'admin'){
+      $data['active'] = 'blue';
+      $data['js_validation']='';
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang();
       $this->load->view('layout/home',$data);
+      }else{
+        redirect('error/error_403','refresh');
+      }
     }else{
-      echo 'nottt';
+      redirect('error/error_401','refresh');
     }
+		
   }
   
   public function add(){
