@@ -94,6 +94,10 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(2);
       $data['captoranghilang'] = 'Data Orang Hilang Ditemukan Hidup';
+      $data['jenkel'] = array(
+        'Laki-Laki' => 'L',
+        'Perempuan' => 'P'
+      );
       $this->load->view('layout/home',$data);
       }else{
         redirect('error/error_403','refresh');
@@ -111,6 +115,10 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(3);
       $data['captoranghilang'] = 'Data Orang Hilang Ditemukan Meninggal';
+      $data['jenkel'] = array(
+        'Laki-Laki' => 'L',
+        'Perempuan' => 'P'
+      );
       $this->load->view('layout/home',$data);
       }else{
         redirect('error/error_403','refresh');
@@ -128,6 +136,10 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(4);
       $data['captoranghilang'] = 'Data Orang Hilang Tidak Ditemukan';
+      $data['jenkel'] = array(
+        'Laki-Laki' => 'L',
+        'Perempuan' => 'P'
+      );
       $this->load->view('layout/home',$data);
       }else{
         redirect('error/error_403','refresh');

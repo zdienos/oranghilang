@@ -158,9 +158,9 @@ class M_pendataan extends CI_Model {
           'keterangan_lainnya' => $keterangan_lainnya,
           'nama_pelapor' => $nama_pelapor,
           'no_hp_pelapor' => $no_hp_pelapor,
-          'id_bencana_alam' => 1,
+          'id_bencana_alam' => $id_bencana_alam,
           'id_hubungan_pelapor' => $id_hubungan_pelapor,
-          'id_status_org_hilang' => 1,          
+          'id_status_org_hilang' => $id_status_org_hilang,          
         );
         return $this->db->insert('orang_hilang',$array);
       }
