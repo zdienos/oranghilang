@@ -25,6 +25,7 @@ class Pendataan extends CI_Controller {
   
   public function add(){
     $data['view'] = 'menu/pendataan/add_orang_hilang';
+    $data['label'] = $this->pendataan->label();
     $data['gender'] =$this->pendataan->getGender();
     $data['kategoriumur'] =$this->pendataan->getKategoriUmur();
     $data['hubunganpelapor'] =$this->pendataan->getHubunganPelapor();
@@ -40,31 +41,7 @@ class Pendataan extends CI_Controller {
       $this->form_validation->set_message($this->config->item('msg_error'));      
       if (!$this->form_validation->run()) {
         $data['error'] = true;
-        $data['error_msg'] = array(               
-          'nama_lengkap' => form_error('nama_lengkap'),
-          'nama_panggilan' => form_error('nama_panggilan'),
-          'alamat' => form_error('alamat'),
-          'umur' => form_error('umur'),          
-          'id_jenis_kelamin' => form_error('id_jenis_kelamin'),
-          'marga_suku' => form_error('marga_suku'),
-          'warna_kulit' => form_error('warna_kulit'),
-          'celana_terakhir' => form_error('celana_terakhir
-            '),
-          'id_kategori_umur' => form_error('id_kategori_umur'),
-          'foto' => form_error('foto'),
-          'lokasi_terakhir' => form_error('lokasi_terakhir'),
-          'lat_lokasi' => form_error('lat_lokasi'),
-          'lon_lokasi' => form_error('lon_lokasi'),
-          'nama_ayah' => form_error('nama_ayah'),
-          'nama_ibu' => form_error('nama_ibu'),
-          'keterangan_lainnya' => form_error('keterangan_lainnya'),
-          'nama_pelapor' => form_error('nama_pelapor'),
-          'no_hp_pelapor' => form_error('no_hp_pelapor'),
-          'id_bencana_alam' => form_error('id_bencana_alam'),
-          'id_hubungan_pelapor' => form_error('id_hubungan_pelapor'),
-          'id_status_org_hilang' => form_error('id_status_org_hilang'),
-          'tgl_laporan' => form_error('tgl_laporan'),
-        );
+        $data['error_msg'] = $this->pendataan->error_msg();
       }else{                    
         if($this->pendataan->mAddOrangHilang(
           $this->input->post('nama_lengkap'),
@@ -88,8 +65,7 @@ class Pendataan extends CI_Controller {
           $this->input->post('no_hp_pelapor'),
           $this->input->post('id_bencana_alam'),
           $this->input->post('id_hubungan_pelapor'),
-          $this->input->post('id_status_org_hilang'),
-          $this->input->post('tgl_laporan')
+          $this->input->post('id_status_org_hilang')          
         )){
           $data['success']=true;
         }        

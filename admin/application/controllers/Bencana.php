@@ -64,16 +64,7 @@ class Bencana extends CI_Controller {
   public function add(){    
     $data['js_validation'] = 'bencana-form';
     $data['view'] = 'menu/bencana/add_bencana';
-    $data['label'] = array( 
-      'jenis_bencana'=>'Jenis Bencana Alam',
-      'nama_bencana'=>'Nama Bencana Alam',
-      'tgl_waktu'=>'Tanggal Bencana Alam',
-      'keterangan'=>'Keterangan',
-      'provinces' =>'Provinsi',
-      'regencies'=>'Kota/Kabupaten',
-      'districts'=>'Kecamatan',
-      'villages'=>'Kelurahan/Desa',
-    );
+    $data['label'] = $this->bencana->label();
     $data['jenis_bencana'] = $this->bencana->getJenisBencanaAlam();
     $data['provinces'] = $this->bencana->getProvinces();
     $this->load->view('layout/home', $data);
@@ -86,16 +77,7 @@ class Bencana extends CI_Controller {
       $this->form_validation->set_message($this->config->item('msg_error'));      
       if (!$this->form_validation->run()) {
         $data['error'] = true;
-        $data['error_msg'] = array(               
-          'jenis_bencana_alam' => form_error('jenis_bencana_alam'),
-          'id_provinces' => form_error('id_provinces'),
-          'id_regencies' => form_error('id_regencies'),
-          'id_districts' => form_error('id_districts'),
-          'id_villages' => form_error('id_villages' ),
-          'nama_bencana_alam' => form_error('nama_bencana_alam'),
-          'tgl_waktu' => form_error('tgl_waktu' ),
-          'keterangan' => form_error('keterangan'),
-        );
+        $data['error_msg'] = $this->bencana->error_msg();
       }else{                    
           if ($this->bencana->mAddBencana(
           $this->input->post('jenis_bencana_alam'),
