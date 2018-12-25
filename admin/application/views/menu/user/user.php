@@ -10,13 +10,26 @@
         </center>
         <table class="table table-stripped" id="user" class="display" style="width:100%">
         <thead>
-          <tr>       
+          <tr>   
+            <th>No</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>User Grup</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tfoot>
-          <?php foreach($user as $data){ ?>
+          <?php $i=0; foreach($user as $data){ $i++;?>
             <tr>
-              <td>1</td>
+              <td><?=$i?></td>              
+              <td><?=$data->name?></td>
+              <td><?=$data->email?></td>
+              <td><?=$data->nama_grup?></td>
+              <td>
+                <button class="btn cur-p btn-success"><span class="ti-eye"></span></button>
+                <button class="btn cur-p btn-primary"><span class="ti-pencil"></span></button>
+                <button class="btn cur-p btn-danger"><span class="ti-trash"></span></button>
+              </td>
             </tr>
           <?php } ?>
           </tfoot>

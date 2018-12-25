@@ -31,6 +31,16 @@
                <span class="title">Dashboard</span>
             </a>
          </li>
+         <?php if ($this->session->userdata('user_grup')=='admin'): ?>
+         <li class="nav-item">            
+            <a class="sidebar-link" href="<?=base_url('user')?>">
+               <span class="icon-holder">               
+                     <i class="c-<?=($hal=='user')?'blue':'brown'?>-500 ti-user"></i>
+               </span>
+               <span class="title">User</span>
+            </a>
+         </li>
+         <?php endif ?>
          <?php if ($this->session->userdata('user_grup') == 'petugas' || $this->session->userdata('user_grup') == 'admin'): ?>
          <li class="nav-item">
             <a class="sidebar-link" href="<?=base_url('pendataan')?>">
