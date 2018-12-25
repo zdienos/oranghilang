@@ -42,12 +42,30 @@
          </li>
          <?php endif ?>
          <?php if ($this->session->userdata('user_grup') == 'petugas' || $this->session->userdata('user_grup') == 'admin'): ?>
-         <li class="nav-item">
-            <a class="sidebar-link" href="<?=base_url('pendataan')?>">
-               <span class="icon-holder">
-                  <i class="c-<?=($hal=='pendataan')?'blue':'brown'?>-500 ti-home"></i>
-               </span><span class="title">Orang Hilang</span>
+         <li class="nav-item dropdown">
+            <a class="dropdown-toggle" href="javascript:void(0);">
+              <span class="icon-holder">
+                <i class="c-<?=($hal=='pendataan')?'blue':'brown'?>-500 ti-home"></i>
+              </span>
+              <span class="title">Orang Hilang</span>
+              <span class="arrow">
+                <i class="ti-angle-right"></i>
+              </span>
             </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="sidebar-link" href="<?= base_url('pendataan')?>">Proses Pencarian</a>
+              </li>
+              <li>
+                <a class="sidebar-link" href="<?= base_url('pendataan/ditemukanhidup')?>">Ditemukan (Hidup)</a>
+              </li>
+              <li>
+                <a class="sidebar-link" href="<?= base_url('pendataan/ditemukanmeninggal')?>">Ditemukan (Meninggal)</a>
+              </li>
+              <li>
+                <a class="sidebar-link" href="<?= base_url('pendataan/tidakditemukan')?>">Tidak Ditemukan</a>
+              </li>
+            </ul>
          </li>
          <li class="nav-item">
             <a class="sidebar-link" href="<?=base_url('bencana')?>">

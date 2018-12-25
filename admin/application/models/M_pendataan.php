@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_pendataan extends CI_Model {
 
-	private $_table = "bencana_alam";
+	private $_table = "orang_hilang";
 
 	public $id;
 	public $name;
@@ -47,7 +47,7 @@ class M_pendataan extends CI_Model {
         [
           'field' => 'id_status_org_hilang',
           'label' => 'Status',
-          'rules' => ''],
+          'rules' => 'required'],
 
         ];
       }
@@ -109,8 +109,15 @@ class M_pendataan extends CI_Model {
           'id_status_org_hilang' => form_error('id_status_org_hilang'),          
         );
       }
-      public function getOrangHilang(){
-        return $this->db->get('orang_hilang')->result();
+
+      public function getOrangHilang($id_status){
+        return $this->db->select('orang_hilang.id,nama_bencana_alam,lokasi_terakhir,nama_lengkap,nama_panggilan,nama_jenis_kelamin,umur,alamat,nama_status_org,keterangan_lainnya')
+                        ->where('id_status_org_hilang',$id_status)
+                        ->join('status_org_hilang','status_org_hilang.id=orang_hilang.id_status_org_hilang')
+                        ->join('bencana_alam','bencana_alam.id=orang_hilang.id_bencana_alam')
+                        ->join('jenis_kelamin','jenis_kelamin.id=orang_hilang.id_jenis_kelamin')
+                        ->get('orang_hilang')
+                        ->result();
       }
 
       public function getGender(){
@@ -158,6 +165,9 @@ class M_pendataan extends CI_Model {
         return $this->db->insert('orang_hilang',$array);
       }
 
+      public function deleteOrangHilang(){
+
+      }
     }
 
     /* End of file M_user.php */

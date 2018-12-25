@@ -19,7 +19,12 @@ class Pendataan extends CI_Controller {
       $data['active'] = 'blue';
       $data['js_validation']='';
       $data['view'] = 'menu/pendataan/orang_hilang';
-      $data['oranghilang'] = $this->pendataan->getOrangHilang();
+      $data['oranghilang'] = $this->pendataan->getOrangHilang(1);
+      $data['captoranghilang'] = 'Data Orang Hilang Proses Pencarian';
+      $data['jenkel'] = array(
+        'Laki-Laki' => 'L',
+        'Perempuan' => 'P'
+      );
       $this->load->view('layout/home',$data);
       }else{
         redirect('error/error_403','refresh');
@@ -81,12 +86,56 @@ class Pendataan extends CI_Controller {
     }
   }
 
-  public function addOrangHilang(){
-    if ($this->input->server('REQUEST_METHOD') == 'POST'){
-      
+  public function ditemukanhidup(){
+    if ($this->session->userdata('login')) {
+      if($this->session->userdata('user_grup') == 'petugas' || $this->session->userdata('user_grup') == 'admin'){
+      $data['active'] = 'blue';
+      $data['js_validation']='';
+      $data['view'] = 'menu/pendataan/orang_hilang';
+      $data['oranghilang'] = $this->pendataan->getOrangHilang(2);
+      $data['captoranghilang'] = 'Data Orang Hilang Ditemukan Hidup';
+      $this->load->view('layout/home',$data);
+      }else{
+        redirect('error/error_403','refresh');
+      }
+    }else{
+      redirect('error/error_401','refresh');
     }
   }
 
+  public function ditemukanmeninggal(){
+    if ($this->session->userdata('login')) {
+      if($this->session->userdata('user_grup') == 'petugas' || $this->session->userdata('user_grup') == 'admin'){
+      $data['active'] = 'blue';
+      $data['js_validation']='';
+      $data['view'] = 'menu/pendataan/orang_hilang';
+      $data['oranghilang'] = $this->pendataan->getOrangHilang(3);
+      $data['captoranghilang'] = 'Data Orang Hilang Ditemukan Meninggal';
+      $this->load->view('layout/home',$data);
+      }else{
+        redirect('error/error_403','refresh');
+      }
+    }else{
+      redirect('error/error_401','refresh');
+    }
+  }
+
+  public function tidakditemukan(){
+    if ($this->session->userdata('login')) {
+      if($this->session->userdata('user_grup') == 'petugas' || $this->session->userdata('user_grup') == 'admin'){
+      $data['active'] = 'blue';
+      $data['js_validation']='';
+      $data['view'] = 'menu/pendataan/orang_hilang';
+      $data['oranghilang'] = $this->pendataan->getOrangHilang(4);
+      $data['captoranghilang'] = 'Data Orang Hilang Tidak Ditemukan';
+      $this->load->view('layout/home',$data);
+      }else{
+        redirect('error/error_403','refresh');
+      }
+    }else{
+      redirect('error/error_401','refresh');
+    }
+  }
 }
 
 /* End of file Pendataan.php */
