@@ -37,13 +37,13 @@
                   </button>
                 <?=form_close()?>
 
-                <?= form_open('pendataan/getedit/'.$data->id);?>
+                <?= form_open('pendataan/edit/'.$data->id);?>
                   <button type="submit" class="btn cur-p btn-primary">
                     <span class="ti-pencil"></span>
                   </button>
                 <?=form_close()?>
                 
-                <?= form_open('pendataan/edit/'.$data->id);?>
+                <?= form_open('pendataan/delete/'.$data->id);?>
                   <button type="submit" class="btn cur-p btn-danger" onclick="return confirm('Are you sure to delete this item ?')">
                     <span class="ti-trash"></span>
                   </button>
