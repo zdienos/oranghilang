@@ -120,6 +120,52 @@ class M_pendataan extends CI_Model {
                         ->result();
       }
 
+      public function getSelectedJenkel($id){
+        return $this->db->where('id',$id)->get('jenis_kelamin')->row();
+      }
+
+      public function getNotSelectedJenkel($id){
+        return $this->db->where('id !=',$id)->get('jenis_kelamin')->result();
+      }
+
+      public function getSelectedKategoriUmur($id){
+        return $this->db->where('id',$id)->get('kategori_umur')->row();
+      }
+
+      public function getNotSelectedKategoriUmur($id){
+        return $this->db->where('id !=',$id)->get('kategori_umur')->result();
+      }
+
+      public function getSelectedHubunganPelapor($id){
+        return $this->db->where('id',$id)->get('hubungan_pelapor')->row();
+      }
+
+      public function getNotSelectedHubunganPelapor($id){
+        return $this->db->where('id !=',$id)->get('hubungan_pelapor')->result();
+      }
+
+      public function getSelectedBencanaAlam($id){
+        return $this->db->where('id',$id)->select('id,nama_bencana_alam')->get('bencana_alam')->row();
+      }
+
+      public function getNotSelectedBencanaAlam($id){
+        return $this->db->where('id !=',$id)->select('id,nama_bencana_alam')->get('bencana_alam')->result();
+      }
+
+      public function getSelectedStatus($id){
+        return $this->db->where('id',$id)->get('status_org_hilang')->row();
+      }
+
+      public function getNotSelectedStatus($id){
+        return $this->db->where('id !=',$id)->get('status_org_hilang')->result();
+      }
+
+      public function getOrangHilangById($id){
+        return $this->db->where('id',$id)
+                        ->get('orang_hilang')
+                        ->row();
+      }
+
       public function getGender(){
         return $this->db->get('jenis_kelamin')->result();
       }
@@ -165,8 +211,39 @@ class M_pendataan extends CI_Model {
         return $this->db->insert('orang_hilang',$array);
       }
 
-      public function deleteOrangHilang(){
+      public function mEditOrangHilang($id,$nama_lengkap,$nama_panggilan,$alamat,$umur,$id_jenis_kelamin,$marga_suku,$warna_kulit,$baju_terakhir,$celana_terakhir,$id_kategori_umur,$foto,$lokasi_terakhir,$lat_lokasi,$lon_lokasi,$nama_ayah,$nama_ibu,$keterangan_lainnya,$nama_pelapor,$no_hp_pelapor,$id_bencana_alam,$id_hubungan_pelapor,$id_status_org_hilang){
+        $array = array(
+          'nama_lengkap' => $nama_lengkap,
+          'nama_panggilan' => $nama_panggilan,
+          'alamat' => $alamat,
+          'umur' => $umur,
+          'id_jenis_kelamin' => $id_jenis_kelamin,
+          'marga_suku' => $marga_suku,
+          'warna_kulit' => $warna_kulit,
+          'baju_terakhir' => $baju_terakhir,
+          'celana_terakhir' => $celana_terakhir,
+          'id_kategori_umur' => $id_kategori_umur,
+          'foto' => $foto,
+          'lokasi_terakhir' => $lokasi_terakhir,
+          'lat_lokasi' => $lat_lokasi,
+          'lon_lokasi' => $lon_lokasi,
+          'nama_ayah' => $nama_ayah,
+          'nama_ibu' => $nama_ibu,
+          'keterangan_lainnya' => $keterangan_lainnya,
+          'nama_pelapor' => $nama_pelapor,
+          'no_hp_pelapor' => $no_hp_pelapor,
+          'id_bencana_alam' => $id_bencana_alam,
+          'id_hubungan_pelapor' => $id_hubungan_pelapor,
+          'id_status_org_hilang' => $id_status_org_hilang,          
+        );
+        return $this->db->where('id',$id)->update('orang_hilang',$array);
+      }
 
+      public function deleteOrangHilang($id){
+        $array = array(
+          'id' => $id
+        );
+        return $this->db->delete('orang_hilang',$array);
       }
     }
 

@@ -31,15 +31,24 @@
               <td><?= $data->alamat ?></td>
               <td><?= $data->nama_status_org ?></td>
               <td>
-                <button class="btn cur-p btn-success">
-                  <span class="ti-eye"></span>
-                </button>
-                <button class="btn cur-p btn-primary">
-                  <span class="ti-pencil"></span>
-                </button>
-                <button class="btn cur-p btn-danger">
-                  <span class="ti-trash"></span>
-                </button>
+                <?= form_open('pendataan/getedit');?>
+                  <button type="submit" class="btn cur-p btn-success">
+                    <span class="ti-eye"></span>
+                  </button>
+                <?=form_close()?>
+
+                <?= form_open('pendataan/getedit/'.$data->id);?>
+                  <button type="submit" class="btn cur-p btn-primary">
+                    <span class="ti-pencil"></span>
+                  </button>
+                <?=form_close()?>
+                
+                <?= form_open('pendataan/edit/'.$data->id);?>
+                  <button type="submit" class="btn cur-p btn-danger" onclick="return confirm('Are you sure to delete this item ?')">
+                    <span class="ti-trash"></span>
+                  </button>
+                <?=form_close()?>
+          
               </td>
             </tr>
           <?php } ?>

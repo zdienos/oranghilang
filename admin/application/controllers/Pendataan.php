@@ -148,6 +148,59 @@ class Pendataan extends CI_Controller {
       redirect('error/error_401','refresh');
     }
   }
+
+  public function edit($id){
+    $oranghilang = $this->pendataan->getOrangHilangById($id);
+    $data['edit'] = $oranghilang;
+    $data['jenkel'] = $oranghilang->id_jenis_kelamin;
+    $data['label'] = $this->pendataan->label();
+    $data['js_validation']='';
+    $data['selectedjenkel'] = $this->pendataan->getSelectedJenkel($oranghilang->id_jenis_kelamin);
+    $data['notselectedjenkel'] = $this->pendataan->getNotSelectedJenkel($oranghilang->id_jenis_kelamin);
+    $data['selectedkategoriumur'] = $this->pendataan->getSelectedKategoriUmur($oranghilang->id_kategori_umur);
+    $data['notselectedkategoriumur'] = $this->pendataan->getNotSelectedKategoriUmur($oranghilang->id_kategori_umur);
+    $data['selectedhubunganpelapor'] = $this->pendataan->getSelectedHubunganPelapor($oranghilang->id_hubungan_pelapor);
+    $data['notselectedhubunganpelapor'] = $this->pendataan->getNotSelectedHubunganPelapor($oranghilang->id_hubungan_pelapor);
+    $data['selectedbencanaalam'] = $this->pendataan->getSelectedBencanaAlam($oranghilang->id_bencana_alam);
+    $data['notselectedbencanaalam'] = $this->pendataan->getNotSelectedBencanaAlam($oranghilang->id_bencana_alam);
+    $data['selectedstatus'] = $this->pendataan->getSelectedStatus($oranghilang->id_status_org_hilang);
+    $data['notselectedstatus'] = $this->pendataan->getNotSelectedStatus($oranghilang->id_status_org_hilang);
+    
+    $data['view'] = 'menu/pendataan/edit_orang_hilang';
+    $this->load->view('layout/home',$data);
+  }
+
+  public function editt(){
+    if($this->input->server('REQUEST_METHOD') == 'POST'){
+      echo json_encode($this->pendataan->mEditOrangHilang(
+        $this->input->post('id'),
+        $this->input->post('nama_lengkap'),
+          $this->input->post('nama_panggilan'),
+          $this->input->post('alamat'),
+          $this->input->post('umur'),
+          $this->input->post('id_jenis_kelamin'),
+          $this->input->post('marga_suku'),
+          $this->input->post('warna_kulit'),
+          $this->input->post('baju_terakhir'),
+          $this->input->post('celana_terakhir'),
+          $this->input->post('id_kategori_umur'),
+          $this->input->post('foto'),
+          $this->input->post('lokasi_terakhir'),
+          $this->input->post('lat_lokasi'),
+          $this->input->post('lon_lokasi'),
+          $this->input->post('nama_ayah'),
+          $this->input->post('nama_ibu'),
+          $this->input->post('keterangan_lainnya'),
+          $this->input->post('nama_pelapor'),
+          $this->input->post('no_hp_pelapor'),
+          $this->input->post('id_bencana_alam'),
+          $this->input->post('id_hubungan_pelapor'),
+          $this->input->post('id_status_org_hilang')
+      ));
+    }else{
+      echo 'Method not allowed!';
+    }
+  }
 }
 
 /* End of file Pendataan.php */
