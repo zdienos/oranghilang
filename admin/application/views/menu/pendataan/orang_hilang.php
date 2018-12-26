@@ -31,7 +31,7 @@
               <td><?= $data->alamat ?></td>
               <td><?= $data->nama_status_org ?></td>
               <td>
-                <?= form_open('pendataan/getedit');?>
+                <?= form_open('pendataan/detail/'.$data->id);?>
                   <button type="submit" class="btn cur-p btn-success">
                     <span class="ti-eye"></span>
                   </button>

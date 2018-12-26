@@ -3,46 +3,43 @@
   <div class="row">
     <div class="col-md-12">
       <div class="bgc-white bd bdrs-3 p-20 mB-20">      
-      <?= form_open('pendataan/editt', array('id' => 'form-add', 'role' => 'form','enctype'=>'multipart/from-data'));?>
+      <?= form_open('pendataan/validate', array('id' => 'form-add', 'role' => 'form','enctype'=>'multipart/from-data'));?>
         <div class="row">
           <div class="col-md-6">
             <h4>Data Orang Hilang</h4><br>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['nama_lengkap']?></label>
               <div class="col-sm-9">
-                <?=form_input('nama_lengkap', $edit->nama_lengkap, array('class' => 'form-control', 'placeholder' => $label['nama_lengkap'], 'id' => 'input-nama_lengkap'));?>
+                <?=form_input('nama_lengkap', $detail->nama_lengkap, array('class' => 'form-control', 'placeholder' => $label['nama_lengkap'], 'id' => 'input-nama_lengkap', 'readonly' => true));?>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['nama_panggilan']?></label>
               <div class="col-sm-9">
-                <?=form_input('nama_panggilan', $edit->nama_panggilan, array('id'=>'input-nama_panggilan','class' => 'form-control', 'placeholder' => $label['nama_panggilan']));?>
+                <?=form_input('nama_panggilan', $detail->nama_panggilan, array('id'=>'input-nama_panggilan','class' => 'form-control', 'placeholder' => $label['nama_panggilan'], 'readonly' => true));?>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['alamat']?></label>
               <div class="col-sm-9">
-                <textarea id="input-alamat" class="form-control" name="alamat" placeholder="<?=$label['alamat']?>"><?= $edit->alamat ?></textarea>
+                <textarea id="input-alamat" class="form-control" name="alamat" placeholder="<?=$label['alamat']?>" readonly="readonly"><?= $detail->alamat ?></textarea>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['umur']?></label>
               <div class="col-sm-9">
-                <?=form_input('umur', $edit->umur, array('id'=>'input-umur','class' => 'form-control', 'placeholder' => $label['umur']));?>
+                <?=form_input('umur', $detail->umur, array('id'=>'input-umur','class' => 'form-control', 'placeholder' => $label['umur'], 'readonly' => true));?>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['id_jenis_kelamin']?></label>
               <div class="col-sm-9">
-                  <select class="form-control" name="id_jenis_kelamin" id="input-id_jenis_kelamin">
-                    <option value="<?= $selectedjenkel->id ?>" selected><?= $selectedjenkel->nama_jenis_kelamin ?></option>
-                    <?php foreach($notselectedjenkel as $nsj){?>
-                      <option value="<?= $nsj->id ?>"><?= $nsj->nama_jenis_kelamin ?></option>
-                    <?php } ?>
+                  <select class="form-control" name="id_jenis_kelamin" id="input-id_jenis_kelamin" disabled>
+                    <option><?= $detail->nama_jenis_kelamin ?></option>
                   </select>
                 <div id="error" class="invalid-feedback"></div>
               </div>
@@ -50,37 +47,34 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['marga_suku']?></label>
               <div class="col-sm-9">
-                <?=form_input('marga_suku', $edit->marga_suku, array('id'=>'input-marga_suku','class' => 'form-control', 'placeholder' => $label['marga_suku']));?>
+                <?=form_input('marga_suku', $detail->marga_suku, array('id'=>'input-marga_suku','class' => 'form-control', 'placeholder' => $label['marga_suku'], 'readonly' => true));?>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['warna_kulit']?></label>
               <div class="col-sm-9">
-                <?=form_input('warna_kulit', $edit->warna_kulit, array('id'=>'input-warna_kulit','class' => 'form-control', 'placeholder' => $label['warna_kulit']));?>
+                <?=form_input('warna_kulit', $detail->warna_kulit, array('id'=>'input-warna_kulit','class' => 'form-control', 'placeholder' => $label['warna_kulit'], 'readonly' => true));?>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['baju_terakhir']?></label>
               <div class="col-sm-9">
-                <?=form_input('baju_terakhir', $edit->baju_terakhir, array('id'=>'input-baju_terakhir','class' => 'form-control', 'placeholder' => $label['baju_terakhir']));?>
+                <?=form_input('baju_terakhir', $detail->baju_terakhir, array('id'=>'input-baju_terakhir','class' => 'form-control', 'placeholder' => $label['baju_terakhir'], 'readonly' => true));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['celana_terakhir']?></label>
               <div class="col-sm-9">
-                <?=form_input('celana_terakhir', $edit->celana_terakhir, array('id'=>'input-celana_terakhir','class' => 'form-control', 'placeholder' => $label['celana_terakhir']));?>
+                <?=form_input('celana_terakhir', $detail->celana_terakhir, array('id'=>'input-celana_terakhir','class' => 'form-control', 'placeholder' => $label['celana_terakhir'], 'readonly' => true));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['id_kategori_umur']?></label>
               <div class="col-sm-9">
-                <select class="form-control" name="id_kategori_umur" id="input-id_kategori_umur">
-                  <option value="<?= $selectedkategoriumur->id ?>" selected><?= $selectedkategoriumur->nama_kategori_umur ?></option>
-                  <?php foreach($notselectedkategoriumur as $nsku){?>
-                    <option value="<?= $nsku->id ?>"><?= $nsku->nama_kategori_umur ?></option>
-                  <?php } ?>
+                <select class="form-control" name="id_kategori_umur" id="input-id_kategori_umur" disabled>
+                  <option><?= $detail->nama_kategori_umur ?></option>
                 </select>
                 <div id="error" class="invalid-feedback"></div>
               </div>
@@ -94,41 +88,38 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['lokasi_terakhir']?></label>
               <div class="col-sm-9">
-                <?=form_input('lokasi_terakhir', $edit->lokasi_terakhir, array('id'=>'input-lokasi_terakhir','class' => 'form-control', 'placeholder' => $label['lokasi_terakhir']));?>
+                <?=form_input('lokasi_terakhir', $detail->lokasi_terakhir, array('id'=>'input-lokasi_terakhir','class' => 'form-control', 'placeholder' => $label['lokasi_terakhir'], 'readonly' => true));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['lat_lokasi']?></label>
               <div class="col-sm-9">
-                <?=form_input('lat_lokasi', $edit->lat_lokasi, array('id'=>'input-lat_lokasi','class' => 'form-control', 'placeholder' => $label['lat_lokasi']));?>
+                <?=form_input('lat_lokasi', $detail->lat_lokasi, array('id'=>'input-lat_lokasi','class' => 'form-control', 'placeholder' => $label['lat_lokasi'], 'readonly' => true));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['lon_lokasi']?></label>
               <div class="col-sm-9">
-                <?=form_input('lon_lokasi', $edit->lon_lokasi, array('id'=>'input-lon_lokasi','class' => 'form-control', 'placeholder' =>$label['lon_lokasi']));?>
+                <?=form_input('lon_lokasi', $detail->lon_lokasi, array('id'=>'input-lon_lokasi','class' => 'form-control', 'placeholder' =>$label['lon_lokasi'], 'readonly' => true));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['nama_ayah']?></label>
               <div class="col-sm-9">
-                <?=form_input('nama_ayah', $edit->nama_ayah, array('id'=>'input-nama_ayah','class' => 'form-control', 'placeholder' => $label['nama_ayah']));?>
+                <?=form_input('nama_ayah', $detail->nama_ayah, array('id'=>'input-nama_ayah','class' => 'form-control', 'placeholder' => $label['nama_ayah'], 'readonly' => true));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['nama_ibu']?></label>
               <div class="col-sm-9">
-                <?=form_input('nama_ibu', $edit->nama_ibu, array('id'=>'input-nama_ibu','class' => 'form-control', 'placeholder' => $label['nama_ibu']));?>
+                <?=form_input('nama_ibu', $detail->nama_ibu, array('id'=>'input-nama_ibu','class' => 'form-control', 'placeholder' => $label['nama_ibu'], 'readonly' => true));?>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['id_bencana_alam']?></label>
               <div class="col-sm-9">
-                <select name="id_bencana_alam" class="form-control" id="input-id_bencana_alam">
-                  <option value="<?= $selectedbencanaalam->id ?>" style="display:none;" selected><?= $selectedbencanaalam->nama_bencana_alam ?></option>
-                  <?php foreach($notselectedbencanaalam as $nsba){?>
-                    <option value="<?= $nsba->id ?>"><?= $nsba->nama_bencana_alam ?></option>
-                  <?php } ?>
+                <select name="id_bencana_alam" class="form-control" id="input-id_bencana_alam" disabled>
+                  <option><?= $detail->nama_bencana_alam ?></option>
                 <select>
                 <div id="error" class="invalid-feedback"></div>
               </div>
@@ -136,11 +127,8 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['id_status_org_hilang']?></label>
               <div class="col-sm-9">
-                <select name="id_status_org_hilang" class="form-control" id="input-id_status_org_hilang">
-                <option value="<?= $selectedstatus->id ?>" selected><?= $selectedstatus->nama_status_org ?></option>                  
-                  <?php foreach($notselectedstatus as $nss){?>
-                    <option value="<?= $nss->id ?>"><?= $nss->nama_status_org ?></option>
-                  <?php } ?>
+                <select name="id_status_org_hilang" class="form-control" id="input-id_status_org_hilang" disabled>
+                <option><?= $detail->nama_status_org ?></option>                  
                 <select>
                 <div id="error" class="invalid-feedback"></div>
               </div>
@@ -148,7 +136,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['keterangan_lainnya']?></label>
               <div class="col-sm-9">
-                <textarea id="input-keterangan_lainnya" class="form-control" name="keterangan_lainnya" placeholder="<?=$label['keterangan_lainnya']?>"><?= $edit->keterangan_lainnya ?></textarea>
+                <textarea id="input-keterangan_lainnya" class="form-control" name="keterangan_lainnya" placeholder="<?= $detail->keterangan_lainnya ?>" readonly="readonly"></textarea>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>            
@@ -158,32 +146,28 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['nama_pelapor']?></label>
               <div class="col-sm-9">
-                <?=form_input('nama_pelapor', $edit->nama_pelapor, array('id'=>'input-nama_pelapor','class' => 'form-control', 'placeholder' => $label['nama_pelapor']));?>
+                <?=form_input('nama_pelapor', $detail->nama_pelapor, array('class' => 'form-control', 'placeholder' => $label['id_bencana_alam'], 'id' => 'input-nama_pelapor', 'readonly' => true));?>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['no_hp_pelapor']?></label>
               <div class="col-sm-9">
-                <?=form_input('no_hp_pelapor', $edit->no_hp_pelapor, array('id'=>'input-no_hp_pelapor','class' => 'form-control', 'placeholder' => $label['no_hp_pelapor']));?>
+                <?=form_input('no_hp_pelapor', $detail->no_hp_pelapor, array('id'=>'input-no_hp_pelapor','class' => 'form-control', 'placeholder' => $label['no_hp_pelapor'], 'readonly' => true));?>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['id_hubungan_pelapor']?></label>
               <div class="col-sm-9">
-                <select class="form-control" name="id_hubungan_pelapor" id="input-id_hubungan_pelapor">
-                  <option value="<?= $selectedhubunganpelapor->id ?>" selected><?= $selectedhubunganpelapor->nama_hubungan_pelapor ?></option>
-                  <?php foreach($notselectedhubunganpelapor as $nshp){?>
-                    <option value="<?= $nshp->id ?>"><?= $nshp->nama_hubungan_pelapor ?></option>
-                  <?php } ?>
+                <select class="form-control" name="id_hubungan_pelapor" id="input-id_hubungan_pelapor" disabled>
+                  <option><?= $detail->nama_hubungan_pelapor ?>r</option>
                 </select>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
           </div>
         </div>
-        <button type="submit" id="button-submit" class="btn cur-p btn-primary">Update Data</button>
       <?=form_close()?>
       </div>
     </div>

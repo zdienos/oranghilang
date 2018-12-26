@@ -149,13 +149,23 @@ class Pendataan extends CI_Controller {
     }
   }
 
+  public function detail($id){
+    if($this->input->server('REQUEST_METHOD') == 'POST'){
+      $data['detail'] = $this->pendataan->getDetailOrangHilang($id);
+      $data['label'] = $this->pendataan->label();
+      $data['js_validation']='';      
+      $data['view'] = 'menu/pendataan/detail';
+      $this->load->view('layout/home',$data);
+    }
+  }
+
   public function edit($id){
     if($this->input->server('REQUEST_METHOD') == "POST"){
       $oranghilang = $this->pendataan->getOrangHilangById($id);
       $data['edit'] = $oranghilang;
       $data['jenkel'] = $oranghilang->id_jenis_kelamin;
       $data['label'] = $this->pendataan->label();
-      $data['js_validation']='orang-hilang';
+      $data['js_validation']='';
       $data['selectedjenkel'] = $this->pendataan->getSelectedJenkel($oranghilang->id_jenis_kelamin);
       $data['notselectedjenkel'] = $this->pendataan->getNotSelectedJenkel($oranghilang->id_jenis_kelamin);
       $data['selectedkategoriumur'] = $this->pendataan->getSelectedKategoriUmur($oranghilang->id_kategori_umur);
@@ -176,13 +186,7 @@ class Pendataan extends CI_Controller {
 
   public function editt(){
     if($this->input->server('REQUEST_METHOD') == 'POST'){
-       $this->form_validation->set_rules($this->pendataan->rules());        
-      $this->form_validation->set_message($this->config->item('msg_error'));      
-      if (!$this->form_validation->run()) {
-        $data['error'] = true;
-        $data['error_msg'] = $this->pendataan->error_msg();
-      }else{     
-        if ($this->pendataan->mEditOrangHilang(
+      echo json_encode($this->pendataan->mEditOrangHilang(
         $this->input->post('id'),
         $this->input->post('nama_lengkap'),
           $this->input->post('nama_panggilan'),
@@ -206,15 +210,10 @@ class Pendataan extends CI_Controller {
           $this->input->post('id_bencana_alam'),
           $this->input->post('id_hubungan_pelapor'),
           $this->input->post('id_status_org_hilang')
-      )
-        ) {
-          $data['success']=true;
-        }
-      }
+      ));
     }else{
       echo 'Method not allowed!';
     }
-    echo json_encode($data);
   }
 
   public function delete($id){
