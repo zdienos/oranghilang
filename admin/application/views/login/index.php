@@ -59,6 +59,7 @@
 	  <script type="text/javascript" src="<?=base_url('assets/')?>bundle.js"></script>
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	  <script type="text/javascript">
+	  	var base_url = "<?=base_url()?>";
     $(document).ready(function() {
 		    $('#error').html(" ");
 
@@ -78,7 +79,7 @@
 				            $('.text-danger').remove();
 				            !e.preventDefault();
 				            setTimeout(function() {
-					            window.location.href="http://localhost/stiki/admin/login";
+					            window.location.href=base_url;
 					          }, 2000);
 
 		                }else if (data.error == true) {

@@ -74,8 +74,18 @@
                </span>
                <span class="title">Bencana</span>
             </a>
+         </li>         
+         <?php endif ?>         
+         <?php if ($this->session->userdata('user_grup')=='writer' || $this->session->userdata('user_grup')=='admin'): ?>
+           <li class="nav-item">
+            <a class="sidebar-link" href="<?=base_url('berita')?>">
+               <span class="icon-holder">
+                  <i class="c-<?=($hal=='berita')?'blue':'brown'?>-500 ti-write"></i>
+               </span>
+               <span class="title">Berita</span>
+            </a>
          </li>
-         <?php endif ?>                 
+         <?php endif ?>
    </ul>
 </div>
 </div>

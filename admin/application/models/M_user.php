@@ -82,6 +82,11 @@ class M_user extends CI_Model {
             ->select('user.id,name,email,password,user_grup.nama_grup')
             ->get('user')
             ->result();
+    }    
+
+    public function getIdByEmail($email)
+    {
+        return $this->db->where('email',$email)->select('id')->get('user')->row();
     }
 
     public function getUserGrup()
