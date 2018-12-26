@@ -49,6 +49,19 @@ class M_bencana extends CI_Model {
       'rules' => 'required']
     ];
   }
+
+  public function rules_edit()
+  {
+    return [
+      ['field' => 'nama_bencana_alam',
+      'label' => 'Nama Bencana Alam',
+      'rules' => 'trim|required'],
+
+      ['field' => 'keterangan',
+      'label' => 'Keterangan',
+      'rules' => 'required'], 
+    ];
+  }
   
   public function label()
   {
@@ -78,15 +91,34 @@ class M_bencana extends CI_Model {
     );
   }
 
+  public function error_msg_edit(){
+    return array(               
+      'nama_bencana_alam' => form_error('nama_bencana_alam'),
+      'keterangan' => form_error('keterangan'),
+    );
+  }
+
   public function getBencana(){
     return $this->db->join('jenis_bencana_alam','bencana_alam.id_jenis_bencana_alam=jenis_bencana_alam.id')
-    ->join('provinces','bencana_alam.id_provinces=provinces.id')
-    ->join('regencies','bencana_alam.id_regencies=regencies.id')
-    ->join('districts','bencana_alam.id_districts=districts.id')
-    ->join('villages','bencana_alam.id_villages=villages.id')
-    ->select('bencana_alam.id,jenis_bencana_alam.nama_jenis_bencana_alam,provinces.name_provinces,regencies.name_regencies,districts.name_disctricts,villages.name_villages,nama_bencana_alam,tgl_waktu,keterangan')
-    ->get('bencana_alam')
-    ->result();
+                    ->join('provinces','bencana_alam.id_provinces=provinces.id')
+                    ->join('regencies','bencana_alam.id_regencies=regencies.id')
+                    ->join('districts','bencana_alam.id_districts=districts.id')
+                    ->join('villages','bencana_alam.id_villages=villages.id')
+                    ->select('bencana_alam.id,jenis_bencana_alam.nama_jenis_bencana_alam,provinces.name_provinces,regencies.name_regencies,districts.name_disctricts,villages.name_villages,nama_bencana_alam,tgl_waktu,keterangan')
+                    ->get('bencana_alam')
+                    ->result();
+  }
+
+  public function getBencanaById($id){
+    return $this->db->select('bencana_alam.id AS bid,jenis_bencana_alam.id AS jbaaid,nama_jenis_bencana_alam,nama_bencana_alam,tgl_waktu,keterangan,provinces.id AS proid,name_provinces,villages.id AS vid, name_villages,regencies.id AS rid,name_regencies,districts.id AS did,name_disctricts')
+                    ->where('bencana_alam.id',$id)
+                    ->join('provinces','bencana_alam.id_provinces=provinces.id')
+                    ->join('regencies','bencana_alam.id_regencies=regencies.id')
+                    ->join('districts','bencana_alam.id_districts=districts.id')
+                    ->join('villages','bencana_alam.id_villages=villages.id')
+                    ->join('jenis_bencana_alam','jenis_bencana_alam.id=bencana_alam.id_jenis_bencana_alam')
+                    ->get('bencana_alam')
+                    ->row();
   }
 
   public function getJenisBencanaAlam(){
@@ -125,6 +157,32 @@ class M_bencana extends CI_Model {
   }
   public function getIdBencana(){
     return $this->db->select('id,nama_bencana_alam')->get('bencana_alam')->result();
+  }
+
+  public function getNotSelectedProvince($id){
+    return $this->db->where('id !=',$id)->get('provinces')->result();
+  }
+
+  public function getNotSelectedJenisBencana($id){
+    return $this->db->where('id !=',$id)->get('jenis_bencana_alam')->result();
+  }
+
+  public function updateBencana($id,$jenis_bencana_alam,$nama_bencana_alam,$tgl_waktu,$keterangan,$id_provinces,$id_regencies,$id_districts,$id_villages){
+    $array = array(
+      'id_jenis_bencana_alam' => $jenis_bencana_alam,
+      'id_provinces' => $id_provinces,
+      'id_regencies' => $id_regencies,
+      'id_districts' => $id_districts,
+      'id_villages' => $id_villages,
+      'nama_bencana_alam' => $nama_bencana_alam,
+      'tgl_waktu' => $tgl_waktu,
+      'keterangan' => $keterangan
+    );
+    return $this->db->where('id',$id)->update('bencana_alam',$array);
+  }
+
+  public function deleteBencana($id){
+    return $this->db->delete('bencana_alam',array('id' => $id));
   }
 }
 

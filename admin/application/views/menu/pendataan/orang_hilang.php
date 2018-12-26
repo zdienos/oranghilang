@@ -43,7 +43,7 @@
                   </button>
                 <?=form_close()?>
                 
-                <?= form_open('pendataan/delete/'.$data->id);?>
+                <?= form_open('pendataan/delete/'.$data->id.'/'.$this->uri->segment(2));?>
                   <button type="submit" class="btn cur-p btn-danger" onclick="return confirm('Are you sure to delete this item ?')">
                     <span class="ti-trash"></span>
                   </button>

@@ -216,9 +216,10 @@ class Pendataan extends CI_Controller {
     }
   }
 
-  public function delete($id){
+  public function delete($id,$redirect){
     if($this->input->server('REQUEST_METHOD') == 'POST'){
-      echo json_encode($this->pendataan->deleteOrangHilang($id));
+      $this->pendataan->deleteOrangHilang($id);
+      redirect('pendataan/'.$redirect,'refresh');
     }else{
       echo 'Method not allowed!';
     }

@@ -19,6 +19,7 @@
             <th>Nama Bencana</th>
             <th>Tanggal</th>
             <th>Keterangan</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tfoot>
@@ -33,6 +34,26 @@
               <td><?= $data->nama_bencana_alam ?></td>
               <td><?= $data->tgl_waktu ?></td>
               <td><?= $data->keterangan ?></td>
+              <td>
+                <?= form_open('bencana/detail/'.$data->id);?>
+                  <button type="submit" class="btn cur-p btn-success">
+                    <span class="ti-eye"></span>
+                  </button>
+                <?=form_close()?>
+
+                <?= form_open('bencana/edit/'.$data->id);?>
+                  <button type="submit" class="btn cur-p btn-primary">
+                    <span class="ti-pencil"></span>
+                  </button>
+                <?=form_close()?>
+                
+                <?= form_open('bencana/delete/'.$data->id);?>
+                  <button type="submit" class="btn cur-p btn-danger" onclick="return confirm('Are you sure to delete this item ?')">
+                    <span class="ti-trash"></span>
+                  </button>
+                <?=form_close()?>
+          
+              </td>
             </tr>
           <?php } ?>
           </tfoot>

@@ -92,6 +92,73 @@ public function validate()
   }
 }
 
+public function detail($id){
+  if($this->input->server('REQUEST_METHOD') == 'POST'){
+    $bencana = $this->bencana->getBencanaById($id);
+    $data['js_validation'] = 'bencana-form';
+    $data['view'] = 'menu/bencana/detail';
+    $data['label'] = $this->bencana->label();
+    $data['detail'] = $bencana;
+    $data['notselectedprovince'] = $this->bencana->getNotSelectedProvince($bencana->proid);
+    $data['jenisbencana'] = $this->bencana->getJenisBencanaAlam();
+    $data['notselectedjenisbencana'] = $this->bencana->getNotSelectedJenisBencana($bencana->jbaaid);
+    $data['dropdown'] = 'dropdown-bencana';
+    $this->load->view('layout/home', $data);
+  }else{
+    echo 'method not allowed';
+  }
+}
+
+public function edit($id){
+  if($this->input->server('REQUEST_METHOD') == 'POST'){
+    $data['js_validation'] = 'bencana-form';
+    $bencana = $this->bencana->getBencanaById($id);
+    $data['view'] = 'menu/bencana/edit';
+    $data['label'] = $this->bencana->label();
+    $data['detail'] = $bencana;
+    $data['notselectedprovince'] = $this->bencana->getNotSelectedProvince($bencana->proid);
+    $data['jenisbencana'] = $this->bencana->getJenisBencanaAlam();
+    $data['notselectedjenisbencana'] = $this->bencana->getNotSelectedJenisBencana($bencana->jbaaid);
+    $data['dropdown'] = 'validation/dropdown-bencana-edit';
+    $this->load->view('layout/home', $data);
+  }else{
+    echo 'method not allowed';
+  }
+}
+
+public function update($id){
+  if ($this->input->server('REQUEST_METHOD') == 'POST'){      
+    $this->form_validation->set_rules($this->bencana->rules_edit());        
+    $this->form_validation->set_message($this->config->item('msg_error'));      
+    if (!$this->form_validation->run()) {
+      $data['error'] = true;
+      $data['error_msg'] = $this->bencana->error_msg_edit();
+    }else{                    
+      if($this->bencana->updateBencana(
+        $id,
+        $this->input->post('jenis_bencana_alam'),
+        $this->input->post('nama_bencana_alam'),
+        $this->input->post('tgl_waktu'),
+        $this->input->post('keterangan'),
+        $this->input->post('id_provinces'),
+        $this->input->post('id_regencies'),
+        $this->input->post('id_districts'),
+        $this->input->post('id_villages')
+      )){
+        $data['success']=true;
+      }
+    }
+    echo json_encode($data);
+  }
+}
+
+public function delete($id){
+  if($this->input->server('REQUEST_METHOD') == 'POST'){
+    $this->bencana->deleteBencana($id);
+    redirect('bencana','refresh');
+  }
+}
+
 public function getregencies($id){
   $regency = $this->bencana->getRegenciesById($id);
   foreach($regency as $data){
