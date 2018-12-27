@@ -17,7 +17,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['isi']?></label>
               <div class="col-sm-9">
-                <?=$this->ckeditor->editor('isi',@$default_value);?>                
+                <textarea name="isi" id="isi" cols="5" rows="5"></textarea>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>

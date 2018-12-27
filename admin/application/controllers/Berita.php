@@ -30,12 +30,10 @@ class Berita extends CI_Controller {
 	}
 
 	public function add()
-	{
-		$path = base_url().'assets/ckfinder';
-	  	$width='850px';
-	  	$this->editor($path, $width);
+	{		
 		$data['js_validation'] = 'berita-form';
 		$data['view'] = 'menu/berita/add_berita';
+		$data['editor'] = 'berita-editor';
 		$data['label'] = $this->berita->label();		
 		$this->load->view('layout/home', $data);
 	}
@@ -61,18 +59,25 @@ class Berita extends CI_Controller {
 	    echo json_encode($data);
 	  }
 	}
-	function editor($path,$width) {
-          //Loading Library For Ckeditor
-           $this->load->library('ckeditor');
-           $this->load->library('ckfinder');
-           //configure base path of ckeditor folder
-            $this->ckeditor->basePath = base_url().'assets/ckeditor/';
-            $this->ckeditor-> config['toolbar'] = 'Full';
-            $this->ckeditor->config['language'] = 'en';
-            $this->ckeditor-> config['width'] = $width;
-            //configure ckfinder with ckeditor config
-            $this->ckfinder->SetupCKEditor($this->ckeditor,$path);
-            }
+	public function save()
+	  {
+	         if(isset($_FILES["file"]["name"]))  
+	     {  
+	          $config['upload_path'] = './assets/content_upload/';  
+	          $config['allowed_types'] = 'jpg|jpeg|png|gif';  
+	          $this->load->library('upload', $config);  
+	          if(!$this->upload->do_upload('file'))  
+	          {  
+	               echo $this->upload->display_errors();  
+	          }  
+	          else  
+	          {  
+	               $data = $this->upload->data();                 
+	                echo base_url().'assets/content_upload/'.$_FILES['file']['name'];                                     
+	          }  
+	     } 
+
+	  }
 }
 
 /* End of file Login.php */
