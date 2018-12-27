@@ -109,7 +109,16 @@ class M_bencana extends CI_Model {
                             ->join('villages','bencana_alam.id_villages=villages.id')
                             ->join('jenis_bencana_alam','bencana_alam.id_jenis_bencana_alam=jenis_bencana_alam.id')
                             ->from('bencana_alam')
-                            ->add_column('aksi','<a href="bencana/detail/$1" class="btn cur-p btn-success ti-eye"></a> | <a href="bencana/edit/$1" class="btn cur-p btn-primary ti-pencil"></a> | <a href="bencana/delete/$1" class="btn cur-p btn-danger ti-trash" onclick="return confirm(Are you sure to delete this item ?)"></a>',
+                            ->add_column('aksi','
+                              <form action="'.base_url('bencana/detail/$1').'" method="post">
+                                <button type="submit" class="btn cur-p btn-success ti-eye"></button>
+                              </form>
+                              <form action="'.base_url('bencana/edit/$1').'" method="post">
+                                <button type="submit" class="btn cur-p btn-primary ti-pencil"></button>
+                              </form>
+                              <form action="'.base_url('bencana/delete/$1').'" method="post">
+                              <button type="submit" class="btn cur-p btn-danger ti-trash" onclick="return confirm(Are you sure to delete this item ?)"></button>
+                              </form>',
                               'ID')
                             ->generate();
   }
