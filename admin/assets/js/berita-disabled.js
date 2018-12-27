@@ -1,0 +1,1 @@
+$('#isi').summernote('disable');

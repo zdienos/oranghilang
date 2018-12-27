@@ -80,7 +80,8 @@ class Berita extends CI_Controller {
 
 	public function detail($id){
 		if($this->input->server('REQUEST_METHOD') == 'POST'){
-			$berita = $this->berita->getBerita($id);
+			$berita = $this->berita->getBeritaById($id);
+			$data['editor'] = 'berita-disabled';			
 			$data['view'] = 'menu/berita/detail';
 			$data['label'] = $this->berita->label();
 			$data['detail'] = $berita;	   	    
@@ -90,9 +91,45 @@ class Berita extends CI_Controller {
 		}
 	}
 
+	public function edit($id){
+	  if($this->input->server('REQUEST_METHOD') == 'POST'){	    
+	    $berita = $this->berita->getBeritaById($id);
+	    $data['js_validation'] = 'berita-form';
+	    $data['editor'] = 'berita-editor';
+	    $data['view'] = 'menu/berita/edit';
+	    $data['label'] = $this->berita->label();	    
+	    $data['detail'] = $berita;
+	    $this->load->view('layout/home', $data);
+	  }else{
+	    echo 'method not allowed';
+	  }
+	}
+
+	public function update($id){
+	  if ($this->input->server('REQUEST_METHOD') == 'POST'){      
+	    $this->form_validation->set_rules($this->berita->rulesFormEdit());        
+	    $this->form_validation->set_message($this->config->item('msg_error'));      
+	    if (!$this->form_validation->run()) {
+	      $data['error'] = true;
+	      $data['error_msg'] = $this->berita->error_msgEdit();
+	    }else{
+	    	if ($this->berita->updateBerita(
+	    		$this->input->post('id_user'),
+	    		$this->input->post('id_berita'),
+	    		$this->input->post('judul_berita'),
+	    		$this->input->post('isi'),
+	    		$this->input->post('status')
+	    	)) {
+	    		$data['success']=true;
+	    	}	        
+	    }
+	    echo json_encode($data);
+	  }
+	}
+
 	public function delete($id){
 	  if($this->input->server('REQUEST_METHOD') == 'POST'){
-	    $this->user->deleteBerita($id);
+	    $this->berita->deleteBerita($id);
 	    redirect('berita','refresh');
 	  }else{
 	  	echo 'method not allowed';

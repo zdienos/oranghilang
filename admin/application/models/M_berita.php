@@ -18,11 +18,31 @@ class M_berita extends CI_Model {
         ];
     }   
 
+    public function rulesFormEdit()
+    {
+        return [           
+            ['field' => 'judul_berita',
+            'label' => 'Judul Berita',
+            'rules' => 'trim|required'],
+            
+            ['field' => 'isi',
+            'label' => 'Isi Berita',
+            'rules' => 'required'],
+
+            ['field' => 'status',
+            'label' => 'Status Berita',
+            'rules' => 'required'],
+        ];
+    }   
+
     public function label()
     {
        return array(
+            'id_user' =>'Nama User',
+            'date' =>'Tanggal',
             'judul_berita' => 'Judul Berita',
-            'isi' => 'Isi Berita'
+            'isi' => 'Isi Berita',
+            'status' => 'Status'
        );
     }
 
@@ -34,10 +54,19 @@ class M_berita extends CI_Model {
        );
     }
 
+    public function error_msgEdit()
+    {
+       return array(
+            'judul_berita' => form_error('judul_berita'),
+            'isi' => form_error('isi'),            
+            'status' => form_error('status')
+       );
+    }
+
     public function getBerita()
     {
         return $this->db->join('user', 'berita.id_user=user.id')
-                ->select('id,judul_berita, isi, user.name, date, status')
+                ->select('id_berita,judul_berita, isi, user.name, date, status')
                 ->get('berita')->result();
     }
 
@@ -53,13 +82,27 @@ class M_berita extends CI_Model {
         return $this->db->insert('berita', $object);
     }
 
-    public function getBeritaById($id)
+     public function getBeritaById($id)
     {
-        return $this->db->join('user', 'user.id=berita.id_user');
+        return $this->db->join('user', 'berita.id_user=user.id')
+                ->select('id_berita,judul_berita, isi,,user.id, user.name, date, status')
+                ->where('id_berita',$id)
+                ->get('berita')->row();
     }
 
     public function deleteBerita($id){
-        return $this->db->delete('berita',array('id' => $id));
+        return $this->db->delete('berita',array('id_berita' => $id));
+    }
+
+    public function updateBerita($id_user,$id_berita,$judul_berita,$isi,$status)
+    {
+        $object = array(            
+            'judul_berita' => $judul_berita,
+            'isi' => $isi,
+            'id_user'=>$id_user,
+            'status'=>$status    
+        );
+        return $this->db->where('id_berita',$id_berita)->update('berita',$object);
     }
 }
 
