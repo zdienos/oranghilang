@@ -52,6 +52,15 @@ class M_berita extends CI_Model {
         );
         return $this->db->insert('berita', $object);
     }
+
+    public function getBeritaById($id)
+    {
+        return $this->db->join('user', 'user.id=berita.id_user');
+    }
+
+    public function deleteBerita($id){
+        return $this->db->delete('berita',array('id' => $id));
+    }
 }
 
 /* End of file M_user.php */

@@ -14,18 +14,18 @@ class Berita extends CI_Controller {
 	public function index()
 	{
 		if($this->session->userdata('login')){
-		      if ($this->session->userdata('user_grup') == 'admin' || $this->session->userdata('user_grup') == 'writer') {
-		        $data['view'] = 'menu/berita/berita';
-		        $data['berita'] = $this->berita->getBerita();		        
-		        $data['js_validation'] = 'berita-form';
-		        $data['status'] = array(
-			        0 => 'Unpublished',
-			        1 => 'Published'
-			    );
-		        $this->load->view('layout/home', $data);
-		      }else{
-		       redirect('error/error_403','refresh');
-		     }
+			if ($this->session->userdata('user_grup') == 'admin' || $this->session->userdata('user_grup') == 'writer') {
+				$data['view'] = 'menu/berita/berita';
+				$data['berita'] = $this->berita->getBerita();		        
+				$data['js_validation'] = 'berita-form';
+				$data['status'] = array(
+					0 => 'Unpublished',
+					1 => 'Published'
+				);
+				$this->load->view('layout/home', $data);
+			}else{
+				redirect('error/error_403','refresh');
+			}
 		}
 	}
 
@@ -40,44 +40,64 @@ class Berita extends CI_Controller {
 
 	public function validate()
 	{
-	  if ($this->input->server('REQUEST_METHOD') == 'POST'){      
-	    $this->form_validation->set_rules($this->berita->rules());        
-	    $this->form_validation->set_message($this->config->item('msg_error'));      
-	    if (!$this->form_validation->run()) {
-	      $data['error'] = true;
-	      $data['error_msg'] = $this->berita->error_msg();
-	    }else{                    
-	      if ($this->berita->mAddBerita(
-	        $this->input->post('judul_berita'),
-	        $this->input->post('isi')
-	      )) {
-	        $data['success']=true;
-	      }else{
-	      	exit();
-	      }        
-	    }
-	    echo json_encode($data);
-	  }
+		if ($this->input->server('REQUEST_METHOD') == 'POST'){      
+			$this->form_validation->set_rules($this->berita->rules());        
+			$this->form_validation->set_message($this->config->item('msg_error'));      
+			if (!$this->form_validation->run()) {
+				$data['error'] = true;
+				$data['error_msg'] = $this->berita->error_msg();
+			}else{                    
+				if ($this->berita->mAddBerita(
+					$this->input->post('judul_berita'),
+					$this->input->post('isi')
+				)) {
+					$data['success']=true;
+				}else{
+					exit();
+				}        
+			}
+			echo json_encode($data);
+		}
 	}
 	public function save()
-	  {
-	         if(isset($_FILES["file"]["name"]))  
-	     {  
-	          $config['upload_path'] = './assets/content_upload/';  
-	          $config['allowed_types'] = 'jpg|jpeg|png|gif';  
-	          $this->load->library('upload', $config);  
-	          if(!$this->upload->do_upload('file'))  
-	          {  
-	               echo $this->upload->display_errors();  
-	          }  
-	          else  
-	          {  
-	               $data = $this->upload->data();                 
-	                echo base_url().'assets/content_upload/'.$_FILES['file']['name'];                                     
-	          }  
-	     } 
+	{
+		if(isset($_FILES["file"]["name"]))  
+		{  
+			$config['upload_path'] = './assets/content_upload/';  
+			$config['allowed_types'] = 'jpg|jpeg|png|gif';  
+			$this->load->library('upload', $config);  
+			if(!$this->upload->do_upload('file'))  
+			{  
+				echo $this->upload->display_errors();  
+			}  
+			else  
+			{  
+				$data = $this->upload->data();                 
+				echo base_url().'assets/content_upload/'.$_FILES['file']['name'];                                     
+			}  
+		} 
+	}
 
+	public function detail($id){
+		if($this->input->server('REQUEST_METHOD') == 'POST'){
+			$berita = $this->berita->getBerita($id);
+			$data['view'] = 'menu/berita/detail';
+			$data['label'] = $this->berita->label();
+			$data['detail'] = $berita;	   	    
+			$this->load->view('layout/home', $data);
+		}else{
+			echo 'method not allowed';
+		}
+	}
+
+	public function delete($id){
+	  if($this->input->server('REQUEST_METHOD') == 'POST'){
+	    $this->user->deleteBerita($id);
+	    redirect('berita','refresh');
+	  }else{
+	  	echo 'method not allowed';
 	  }
+	}
 }
 
 /* End of file Login.php */
