@@ -21,6 +21,7 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(1);
       $data['captoranghilang'] = 'Data Orang Hilang Proses Pencarian';
+      $data['redirect'] = '';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
@@ -80,6 +81,13 @@ class Pendataan extends CI_Controller {
           $this->input->post('id_status_org_hilang')          
         )){
           $data['success']=true;
+          $redirect = array(
+            '1' => '',
+            '2' => 'ditemukanhidup',
+            '3' => 'ditemukanmeninggal',
+            '4' => 'tidakditemukan'
+          );
+          $data['redirect'] = $redirect[$this->input->post('id_status_org_hilang')];
         }        
       }
       echo json_encode($data);

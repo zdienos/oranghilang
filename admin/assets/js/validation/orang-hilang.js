@@ -11,7 +11,9 @@ $(document).ready(function() {
 			dataType: "json",  
 			success: function(data){
         if (data.success == true) {
-          window.location.href=base_url+"pendataan";
+          console.log(data.redirect);
+          
+          window.location.href=base_url+"pendataan/"+data.redirect;
 				}else if (data.error == true) {
 					$.each(data.error_msg, function(key, value) {
 						if (value) {
