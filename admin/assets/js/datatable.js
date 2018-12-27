@@ -25,14 +25,14 @@ $(document).ready(function() {
           });
       },
       oLanguage: {
-          sProcessing: base_url + "assets/datatable/datatables/images/loading.gif"
+          sProcessing: "Loading ..."
       },
       processing: true,
       serverSide: true,
-      ajax: {"url": base_url + "/bencana/json", "type": "POST"},
+      ajax: {"url": base_url + "bencana/json", "type": "POST"},
       columns: [
           {
-            "data": null,
+            "data": "ID",
             "orderable": false
           },
           {
