@@ -9,6 +9,7 @@ class Bencana extends CI_Controller {
     $this->load->model('M_bencana','bencana');
     $this->load->library('form_validation');
     $this->form_validation->set_error_delimiters('', '');
+    $this->load->library('datatables');
   }
 
   public function index()
@@ -17,7 +18,9 @@ class Bencana extends CI_Controller {
       if ($this->session->userdata('user_grup') == 'admin' || $this->session->userdata('user_grup') == 'petugas') {
         $data['view'] = 'menu/bencana/bencana';
         $data['bencana'] = $this->bencana->getBencana();
-        $data['js_validation'] = 'bencana-form';
+        $data['js_validation'] = '';
+        $data['datatablecss'] = 'css';
+        $data['datatable'] = 'datatable';
         $this->load->view('layout/home', $data);
       }else{
        redirect('error/error_403','refresh');
@@ -28,32 +31,9 @@ class Bencana extends CI_Controller {
   }
 }
 
-public function dataTableServerRender(){
-
-  $this->load->library('ssp');
-  $db = array(
-    'host' => 'localhost',
-    'user' => 'root',
-    'pass' => '',
-    'database' => 'db_stiki'
-  );
-  $table = 'bencana_alam';
-  $primaryKey = 'id';
-
-  $columns = array(
-    array('db' => 'id', 'dt' => 1),
-    array('db' => 'jenis_bencana_alam.nama_jenis_bencana_alam', 'dt' => 2),
-    array('db' => 'name_provinces', 'dt' => 3),
-    array('db' => 'name_regencies', 'dt' => 4),
-    array('db' => 'name_districts', 'dt' => 5),
-    array('db' => 'name_villages', 'dt' => 6),
-    array('db' => 'nama_bencana_alam', 'dt' => 7),
-    array('db' => 'tgl_waktu', 'dt' => 8),
-  );
-
-  echo json_encode(
-    SSP::simple( $_GET, $db, $table, $primaryKey, $columns )
-  );
+public function json(){
+  header('Content-Type: application/json');
+  echo $this->bencana->json();
 }
 
 public function add(){    
@@ -93,7 +73,7 @@ public function validate()
 }
 
 public function detail($id){
-  if($this->input->server('REQUEST_METHOD') == 'POST'){
+
     $bencana = $this->bencana->getBencanaById($id);
     $data['js_validation'] = 'bencana-form';
     $data['view'] = 'menu/bencana/detail';
@@ -104,13 +84,11 @@ public function detail($id){
     $data['notselectedjenisbencana'] = $this->bencana->getNotSelectedJenisBencana($bencana->jbaaid);
     $data['dropdown'] = 'dropdown-bencana';
     $this->load->view('layout/home', $data);
-  }else{
-    echo 'method not allowed';
-  }
+
 }
 
 public function edit($id){
-  if($this->input->server('REQUEST_METHOD') == 'POST'){
+
     $data['js_validation'] = 'bencana-form';
     $bencana = $this->bencana->getBencanaById($id);
     $data['view'] = 'menu/bencana/edit';
@@ -121,9 +99,7 @@ public function edit($id){
     $data['notselectedjenisbencana'] = $this->bencana->getNotSelectedJenisBencana($bencana->jbaaid);
     $data['dropdown'] = 'validation/dropdown-bencana-edit';
     $this->load->view('layout/home', $data);
-  }else{
-    echo 'method not allowed';
-  }
+  
 }
 
 public function update($id){

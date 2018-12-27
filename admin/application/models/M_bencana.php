@@ -13,6 +13,9 @@ class M_bencana extends CI_Model {
 	public $created_at;
 	public $updated_at;
 
+  public function __construct() {
+    parent::__construct();
+  }
   public function rules()
   {
     return [
@@ -96,6 +99,19 @@ class M_bencana extends CI_Model {
       'nama_bencana_alam' => form_error('nama_bencana_alam'),
       'keterangan' => form_error('keterangan'),
     );
+  }
+
+  public function json(){
+    return $this->datatables->select('bencana_alam.id as ID, jenis_bencana_alam.nama_jenis_bencana_alam as Jenis,provinces.name_provinces as Provinsi,regencies.name_regencies as Kabupaten,districts.name_disctricts as Kecamatan,villages.name_villages as Desa,nama_bencana_alam as Bencana,tgl_waktu as Tanggal, keterangan as Keterangan')
+                            ->join('provinces','bencana_alam.id_provinces=provinces.id')
+                            ->join('regencies','bencana_alam.id_regencies=regencies.id')
+                            ->join('districts','bencana_alam.id_districts=districts.id')
+                            ->join('villages','bencana_alam.id_villages=villages.id')
+                            ->join('jenis_bencana_alam','bencana_alam.id_jenis_bencana_alam=jenis_bencana_alam.id')
+                            ->from('bencana_alam')
+                            ->add_column('aksi','<a href="bencana/detail/$1" class="btn cur-p btn-success ti-eye"></a> | <a href="bencana/edit/$1" class="btn cur-p btn-primary ti-pencil"></a> | <a href="bencana/delete/$1" class="btn cur-p btn-danger ti-trash" onclick="return confirm(Are you sure to delete this item ?)"></a>',
+                              'ID')
+                            ->generate();
   }
 
   public function getBencana(){
