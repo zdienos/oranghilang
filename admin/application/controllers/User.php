@@ -65,6 +65,48 @@ class User extends CI_Controller {
 	    echo json_encode($data);
 	  }
 	}
+	public function edit($id){
+	  if($this->input->server('REQUEST_METHOD') == 'POST'){
+	    $data['js_validation'] = 'user-form';
+	    $user = $this->user->getUserById($id);
+	    $data['view'] = 'menu/user/edit';
+	    $data['label'] = $this->user->label();
+	    $data['id_user_grup'] = $this->user->getUserGrup();
+	    $data['detail'] = $user;
+	    $this->load->view('layout/home', $data);
+	  }else{
+	    echo 'method not allowed';
+	  }
+	}
+
+	public function update($id){
+	  if ($this->input->server('REQUEST_METHOD') == 'POST'){      
+	    $this->form_validation->set_rules($this->user->rulesFormEdit());        
+	    $this->form_validation->set_message($this->config->item('msg_error'));      
+	    if (!$this->form_validation->run()) {
+	      $data['error'] = true;
+	      $data['error_msg'] = $this->user->error_msgEdit();
+	    }else{
+	    	if ($this->input->post('password')) {
+	    		$password = md5($this->input->post('password'));
+	    	}else{
+	    		$password = $this->user->getPasswordById($id)->password;
+	    	}
+	    	if ($this->user->mUpdateUser($id,$this->input->post('name'),$this->input->post('email'),$password, $this->input->post('id_user_grup'))) {
+	    		$data['success']=true;
+	    	}	        
+	    }
+	    echo json_encode($data);
+	  }
+	}
+	public function delete($id){
+	  if($this->input->server('REQUEST_METHOD') == 'POST'){
+	    $this->user->deleteUser($id);
+	    redirect('user','refresh');
+	  }else{
+	  	echo 'method not allowed';
+	  }
+	}
 }
 
 /* End of file User.php */

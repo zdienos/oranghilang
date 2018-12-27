@@ -67,9 +67,40 @@ class M_user extends CI_Model {
        );
     }
 
+    public function rulesFormEdit()
+    {
+        return[
+            ['field'=>'id_user_grup',
+            'label' => 'User Grup',
+            'rules' => 'trim|required'],
+
+            ['field'=>'name',
+            'label' => 'Nama User',
+            'rules' => 'trim|required|min_length[2]'],
+
+            ['field'=>'email',
+            'label' => 'Email',
+            'rules' => 'trim|required|valid_email'],
+
+            ['field'=>'password',
+            'label' => 'Password',
+            'rules' => 'trim|min_length[5]'],
+        ];
+    }
+
+    public function error_msgEdit()
+    {
+       return array(
+            'id_user_grup' => form_error('id_user_grup'),
+            'name' => form_error('name'),
+            'email'=> form_error('email'),            
+            'password'=>form_error('password')
+       );
+    }
+
     public function get_login()
     {
-        return $this->db->join('user_grup','user.id_user_grup=user_grup.id')->get_where('user',array('email' => $this->input->post('email'),'password' => md5($this->input->post('password'))));
+        return $this->db->join('user_grup','user.id_user_grup=user_grup.id_grup')->get_where('user',array('email' => $this->input->post('email'),'password' => md5($this->input->post('password'))));
     }
 
     public function getEmail($email){
@@ -78,7 +109,7 @@ class M_user extends CI_Model {
 
     public function getUser()
     {
-        return $this->db->join('user_grup', 'user_grup.id = user.id_user_grup')
+        return $this->db->join('user_grup', 'user_grup.id_grup = user.id_user_grup')
             ->select('user.id,name,email,password,user_grup.nama_grup')
             ->get('user')
             ->result();
@@ -87,6 +118,19 @@ class M_user extends CI_Model {
     public function getIdByEmail($email)
     {
         return $this->db->where('email',$email)->select('id')->get('user')->row();
+    }
+
+    public function getPasswordById($id)
+    {
+        return $this->db->where('id',$id)->select('password')->get('user')->row();
+    }
+
+    public function getUserById($id)
+    {
+        return $this->db
+                ->select('user.id,name,id_user_grup,email,user_grup.nama_grup,password')
+                ->join('user_grup', 'user_grup.id_grup = user.id_user_grup', 'left')
+                 ->get_where('user',array('user.id'=>$id))->row();
     }
 
     public function getUserGrup()
@@ -100,11 +144,25 @@ class M_user extends CI_Model {
             'id' => ''  , 
             'name' => $name,
             'email' => $email,
-            'password'=>$password,
+            'password'=>md5($password),
             'id_user_grup'=>$id_user_grup
         );
         return $this->db->insert('user', $object);
     }
+
+    public function mUpdateUser($id,$name,$email,$password,$id_user_grup)
+    {
+        $object = array(            
+            'name' => $name,
+            'email' => $email,
+            'password'=>$password,
+            'id_user_grup'=>$id_user_grup
+        );
+        return $this->db->where('id',$id)->update('user',$object);
+    }
+    public function deleteUser($id){
+        return $this->db->delete('user',array('id' => $id));
+      }
 }
 
 /* End of file M_user.php */
