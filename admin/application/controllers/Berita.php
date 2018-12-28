@@ -46,15 +46,24 @@ class Berita extends CI_Controller {
 			if (!$this->form_validation->run()) {
 				$data['error'] = true;
 				$data['error_msg'] = $this->berita->error_msg();
-			}else{                    
-				if ($this->berita->mAddBerita(
+			}else{
+				$this->berita->mAddBerita(
 					$this->input->post('judul_berita'),
 					$this->input->post('isi')
-				)) {
-					$data['success']=true;
-				}else{
-					exit();
-				}        
+				);
+				$tags = explode(',',ucfirst($this->input->post('tag')));
+				$tag2 = array_map('trim',$tags);
+				$allTag = $this->berita->getAllTag();
+				for($i=0;$i<count($tag2);$i++){
+					if ($this->berita->getWhereTag($tag2[$i])) {
+						$id_tag = $this->berita->getTagByName($tag2[$i])->id_tag;
+						$this->berita->insertTagsBerita($id_tag);
+					}else{
+						$this->berita->insertTag(ucfirst($tag2[$i]));
+						$this->berita->insertTagsBeritaAll();
+					}
+				}
+				$data['success']=true;
 			}
 			echo json_encode($data);
 		}
@@ -84,7 +93,8 @@ class Berita extends CI_Controller {
 			$data['editor'] = 'berita-disabled';			
 			$data['view'] = 'menu/berita/detail';
 			$data['label'] = $this->berita->label();
-			$data['detail'] = $berita;	   	    
+			$data['tags'] = $this->berita->getTagsBeritaById($berita->id_berita);
+			$data['detail'] = $berita;
 			$this->load->view('layout/home', $data);
 		}else{
 			echo 'method not allowed';
