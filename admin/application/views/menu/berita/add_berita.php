@@ -21,6 +21,28 @@
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label"><?=$label['foto_header']?></label>
+              <div class="col-sm-9">
+                <?=form_input('foto_header', '', array('class' => 'form-control', 'placeholder' => $label['foto_header'], 'id' => 'input-foto_header'));?>
+                <div id="error" class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label"><?=$label['foto_thumbnail']?></label>
+              <div class="col-sm-9">
+                <?=form_input('foto_thumbnail', '', array('class' => 'form-control', 'placeholder' => $label['foto_thumbnail'], 'id' => 'input-foto_thumbnail'));?>
+                <div id="error" class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label"><?=$label['tag']?></label>
+              <div class="col-sm-9">
+                <textarea class="form-control" name="tag" placeholder="<?=$label['tag']?>" id="input-tag"></textarea>                
+                <div id="error" class="invalid-feedback"></div>
+                <small>Pisahkan dengan tanda koma (,)</small>
+              </div>
+            </div>
           </div>         
         </div>
         <button type="submit" id="button-submit" class="btn cur-p btn-primary">Tambah Data</button>
