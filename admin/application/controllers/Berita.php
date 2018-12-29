@@ -30,11 +30,12 @@ class Berita extends CI_Controller {
 	}
 
 	public function add()
-	{		
+	{				
 		$data['js_validation'] = 'berita-form';
 		$data['view'] = 'menu/berita/add_berita';
 		$data['editor'] = 'berita-editor';
-		$data['label'] = $this->berita->label();		
+		$data['label'] = $this->berita->label();
+		$data['js']='berita';
 		$this->load->view('layout/home', $data);
 	}
 
@@ -42,28 +43,60 @@ class Berita extends CI_Controller {
 	{
 		if ($this->input->server('REQUEST_METHOD') == 'POST'){      
 			$this->form_validation->set_rules($this->berita->rules());        
-			$this->form_validation->set_message($this->config->item('msg_error'));      
+			$this->form_validation->set_message($this->config->item('msg_error'));
 			if (!$this->form_validation->run()) {
 				$data['error'] = true;
 				$data['error_msg'] = $this->berita->error_msg();
-			}else{
-				$this->berita->mAddBerita(
-					$this->input->post('judul_berita'),
-					$this->input->post('isi')
-				);
-				$tags = explode(',',ucfirst($this->input->post('tag')));
-				$tag2 = array_map('trim',$tags);
-				$allTag = $this->berita->getAllTag();
-				for($i=0;$i<count($tag2);$i++){
-					if ($this->berita->getWhereTag($tag2[$i])) {
-						$id_tag = $this->berita->getTagByName($tag2[$i])->id_tag;
-						$this->berita->insertTagsBerita($id_tag);
-					}else{
-						$this->berita->insertTag(ucfirst($tag2[$i]));
-						$this->berita->insertTagsBeritaAll();
+			}else{				
+				$judul =$this->input->post('judul_berita');
+				$tanggal = date("Y_m_d H:i:s");
+				$this->load->library('upload'); 
+				$config['upload_path'] = './assets/berita/foto';
+				$config['allowed_types'] = 'jpg|png|jpeg';
+				$config['max_size']  = '2048';		
+				$foto_header=''	;
+				$foto_thumbnail='';
+				if (isset($_FILES["foto_header"]["name"])) {
+					$config['file_name']  = "header_".md5($tanggal);
+					$this->upload->initialize($config);	
+					if ( ! $this->upload->do_upload('foto_header')){
+					$data['error'] = true;
+					$data['wrong_msg'] = $this->upload->display_errors();
+					}	else{
+						$foto_header = $this->upload->data('file_name');
+						$data['mm']=$foto_header;
 					}
 				}
-				$data['success']=true;
+				if (isset($_FILES["foto_thumbnail"]["name"])) {
+					$config['file_name']  = "thumbnail_".md5($tanggal);
+					$this->upload->initialize($config);	
+					if ( ! $this->upload->do_upload('foto_thumbnail')){
+					$data['error'] = true;
+					$data['wrong_msg2'] = $this->upload->display_errors();
+					}	else{
+						$foto_thumbnail = $this->upload->data('file_name');
+						$data['c']=$foto_thumbnail;
+					}
+				}
+				if ($foto_thumbnail!==''&&$foto_header!=='') {
+					$this->berita->mAddBerita(
+						$this->input->post('judul_berita'),
+						$this->input->post('isi'),$foto_header,$foto_thumbnail
+					);
+					$tags = explode(',',ucfirst($this->input->post('tag')));
+					$tag2 = array_map('trim',$tags);
+					$allTag = $this->berita->getAllTag();
+					for($i=0;$i<count($tag2);$i++){
+						if ($this->berita->getWhereTag($tag2[$i])) {
+							$id_tag = $this->berita->getTagByName($tag2[$i])->id_tag;
+							$this->berita->insertTagsBerita($id_tag);
+						}else{
+							$this->berita->insertTag(ucfirst($tag2[$i]));
+							$this->berita->insertTagsBeritaAll();
+						}
+					}
+					$data['success']=true;
+				}				
 			}
 			echo json_encode($data);
 		}

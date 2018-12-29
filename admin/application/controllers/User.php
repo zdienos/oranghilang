@@ -50,17 +50,22 @@ class User extends CI_Controller {
 	    if (!$this->form_validation->run()) {
 	      $data['error'] = true;
 	      $data['error_msg'] = $this->user->error_msg();
-	    }else{                    
-	      if ($this->user->mAddUser(
-	        $this->input->post('name'),
-	        $this->input->post('email'),
-	        $this->input->post('password'),
-	        $this->input->post('id_user_grup')	        
-	      )) {
-	        $data['success']=true;
-	      }else{
-	      	exit();
-	      }        
+	    }else{
+	      if ($this->user->getEmail($this->input->post('email',TRUE))) {
+	      	$data['error'] = true;
+	      	$data['error_msg'] = array(
+	      		'email' => 'Email sudah dipakai'
+	      	);
+	      }               
+	      else{
+	      	$this->user->mAddUser(
+		        $this->input->post('name', TRUE),
+		        $this->input->post('email',TRUE),
+		        $this->input->post('password',TRUE),
+		        $this->input->post('id_user_grup',TRUE)	        
+		      );
+	      	$data['success']=true;
+	      }
 	    }
 	    echo json_encode($data);
 	  }
@@ -87,12 +92,18 @@ class User extends CI_Controller {
 	      $data['error'] = true;
 	      $data['error_msg'] = $this->user->error_msgEdit();
 	    }else{
+	    	if ($this->user->getEmail($this->input->post('email',TRUE))) {
+		      	$data['error'] = true;
+		      	$data['error_msg'] = array(
+		      		'email' => 'Email sudah dipakai'
+		      	);
+		    }
 	    	if ($this->input->post('password')) {
-	    		$password = md5($this->input->post('password'));
+	    		$password = md5($this->input->post('password'),TRUE);
 	    	}else{
 	    		$password = $this->user->getPasswordById($id)->password;
 	    	}
-	    	if ($this->user->mUpdateUser($id,$this->input->post('name'),$this->input->post('email'),$password, $this->input->post('id_user_grup'))) {
+	    	if ($this->user->mUpdateUser($id,$this->input->post('name',TRUE),$this->input->post('email',TRUE),$password, $this->input->post('id_user_grup'),TRUE)) {
 	    		$data['success']=true;
 	    	}	        
 	    }

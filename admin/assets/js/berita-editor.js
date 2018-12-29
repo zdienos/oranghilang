@@ -1,4 +1,4 @@
-    $('#isi').summernote({
+    $('#input-isi').summernote({
       height: 200,
 
       toolbar: [    

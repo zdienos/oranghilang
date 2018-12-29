@@ -104,5 +104,10 @@
       <?php if ($datatable): ?>
          <script type="text/javascript" src="<?= base_url('assets/js/'.$datatable)?>.js"></script>
       <?php endif ?>
+
+      <?php echo isset($js) ? '' : $js = false; ?>
+      <?php if ($js): ?>
+         <script type="text/javascript" src="<?= base_url('assets/js/'.$js)?>.js"></script>
+      <?php endif ?>
    </body>
 </html>

@@ -521,4 +521,5 @@ $config['msg_error']= array(
 	'required'=>'{field} harus diisi',
 	'min_length'=>'{field} minimal 5 karakter',
 	'valid_email'=>'Masukkan email yang valid',
+	'file_selected_test'=>'Please select file.'
 );

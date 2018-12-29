@@ -18,11 +18,11 @@ class M_berita extends CI_Model {
 
             ['field' => 'foto_header',
             'label' => 'Foto Header Berita',
-            'rules' => 'required'],
+            'rules' => ''],
 
             ['field' => 'foto_thumbnail',
             'label' => 'Foto Thumbnail',
-            'rules' => 'required'],
+            'rules' => ''],
 
             ['field' => 'tag',
             'label' => 'Tag Berita',
@@ -30,7 +30,13 @@ class M_berita extends CI_Model {
 
         ];
     }   
-
+    function file_selected_test(){        
+        if (empty($_FILES['foto_header']['name'])) {
+                return false;
+            }else{
+                return true;
+            }
+    }
     public function rulesFormEdit()
     {
         return [           
@@ -104,13 +110,15 @@ class M_berita extends CI_Model {
                 ->get('berita')->result();
     }
 
-    public function mAddBerita($judul_berita,$isi)
+    public function mAddBerita($judul_berita,$isi,$foto_header,$foto_thumbnail)
     {
         $object = array(
             'id_berita' => ''  , 
             'judul_berita' => $judul_berita,
             'isi' => $isi,
             'id_user'=>$this->session->userdata('id'),
+            'foto_header'=>$foto_header,
+            'foto_thumbnail'=>$foto_thumbnail,
             'status'=>'0'    
         );
         return $this->db->insert('berita', $object);
