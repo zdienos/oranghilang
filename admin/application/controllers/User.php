@@ -7,8 +7,9 @@ class User extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_user','user');
-		$this->load->library('form_validation');
-    	$this->form_validation->set_error_delimiters('', '');
+    $this->load->library('form_validation');
+    $this->load->library('datatables');
+    $this->form_validation->set_error_delimiters('', '');
 	}
 
 	public function index()
@@ -20,7 +21,9 @@ class User extends CI_Controller {
 				case 'admin':
 					$data['view'] = 'menu/user/user';
 			        $data['user'] = $this->user->getUser();
-			        $data['js_validation'] = '';
+              $data['js_validation'] = '';
+              $data['datatables'] = 'datatables-user';
+              $data['datatablescss'] = 'css';
 			        $this->load->view('layout/home', $data);
 					break;
 				case 'petugas':					
@@ -31,7 +34,12 @@ class User extends CI_Controller {
 					break;
 			}
 		}
-	}
+  }
+  
+  public function json(){
+    header('Content-Type: application/json');
+    echo $this->user->json();
+  }
 
 	public function add()
 	{

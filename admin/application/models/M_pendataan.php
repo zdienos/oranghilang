@@ -137,11 +137,17 @@ class M_pendataan extends CI_Model {
       }
 
       public function json($id){
+        $jenkel = array(
+          'Laki-Laki' => 'L',
+          'Perempuan' => 'P'
+        );
         return $this->datatables->select('orang_hilang.id,nama_lengkap,nama_panggilan,tgl_laporan,nama_bencana_alam,jenis_kelamin.nama_jenis_kelamin,umur,alamat')
                                 ->where('id_status_org_hilang',$id)
                                 ->join('bencana_alam','bencana_alam.id=orang_hilang.id_bencana_alam')
                                 ->join('jenis_kelamin','jenis_kelamin.id=orang_hilang.id_jenis_kelamin')
                                 ->from('orang_hilang')
+                                ->add_column('name','$1 / $2','nama_lengkap,nama_panggilan')
+                                ->add_column('jenage','$1 / $2 Tahun','nama_jenis_kelamin,umur')
                                 ->add_column('aksi','
                                   <form action="'.base_url('pendataan/detail/$1').'" method="post">
                                     <button type="submit" class="btn cur-p btn-success ti-eye"></button>

@@ -13,6 +13,10 @@ class M_user extends CI_Model {
 	public $created_at;
 	public $updated_at;
 
+  public function __construct() {
+    parent::__construct();
+  }
+
     public function rules()
     {
         return [           
@@ -96,6 +100,22 @@ class M_user extends CI_Model {
             'email'=> form_error('email'),            
             'password'=>form_error('password')
        );
+    }
+
+    public function json(){
+      return $this->datatables->select('user.id,name,email,user_grup.nama_grup,created_at')
+                       ->join('user_grup','user_grup.id_grup=user.id_user_grup')
+                       ->from('user')
+                       ->add_column('aksi','
+                          <form action="'.base_url('user/edit/$1').'" method="post">
+                            <button type="submit" class="btn cur-p btn-primary ti-pencil"></button>
+                          </form>
+
+                          <form action="'.base_url('user/delete/$1').'" method="post">
+                            <button type="submit" class="btn cur-p btn-danger ti-trash"></button>
+                          </form>
+                       ','id')
+                       ->generate();
     }
 
     public function get_login()

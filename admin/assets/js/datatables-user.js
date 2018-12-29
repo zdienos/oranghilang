@@ -30,38 +30,30 @@ $(document).ready(function() {
       },
       processing: true,
       serverSide: true,
-      ajax: {"url": "http://localhost/stiki/admin/pendataan/json/"+id, "type": "POST"},
+      ajax: {"url": "http://localhost/stiki/admin/user/json", "type": "POST"},
       columns: [
           {
             "data": "id",
             "orderable": false
           },
           {
-            "data": "id",
+            "data": "name",
             "orderable": false
           },
           {
-            "data": "nama_bencana_alam",
+            "data": "email",
             "orderable": false
           },
           {
-            "data": "tgl_laporan"
+            "data" : "created_at",
           },
           {
-            "data" : "name",
-            "orderable": false
-          }
-          ,
-          {
-            "data": "jenage",
+            "data": "nama_grup",
             "orderable": false
           },
           {
-            "data": "alamat",
-            "orderable": false},
-          {
-            "data" : "aksi",
-            "orderable" : false
+            "data": "aksi",
+            "orderable": false
           }
           
       ],
