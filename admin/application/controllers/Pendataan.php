@@ -130,6 +130,8 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(3);
       $data['captoranghilang'] = 'Data Orang Hilang Ditemukan Meninggal';
+      $data['datatables'] = 'datatable-orang';
+      $data['datatablecss'] = 'css';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
@@ -152,6 +154,8 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(4);
       $data['captoranghilang'] = 'Data Orang Hilang Tidak Ditemukan';
+      $data['datatables'] = 'datatable-orang';
+      $data['datatablecss'] = 'css';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
