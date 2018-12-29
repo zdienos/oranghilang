@@ -38,28 +38,26 @@ $(document).ready(function() {
           },
           {
             "data": "id",
+            "orderable": false
           },
           {
             "data": "nama_bencana_alam",
             "orderable": false
           },
           {
-            "data": "lokasi_terakhir",
-            "orderable": false
+            "data": "tgl_laporan"
           },
           {
-            "data" : "nama_bencana_alam",
+            "data" : "nama_lengkap",
             "orderable": false
           }
           ,
           {
-            "data": "lokasi_terakhir",
+            "data": "nama_jenis_kelamin",
+            "orderable": false
           },
           {
             "data": "alamat",
-            "orderable": false},
-          {
-            "data": "nama_status_org",
             "orderable": false},
           {
             "data" : "aksi",
@@ -67,7 +65,7 @@ $(document).ready(function() {
           }
           
       ],
-      order: [[1, 'asc']],
+      order: [[3, 'asc']],
       rowCallback: function(row, data, iDisplayIndex) {
           var info = this.fnPagingInfo();
           var page = info.iPage;

@@ -22,8 +22,8 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(1);
       $data['captoranghilang'] = 'Data Orang Hilang Proses Pencarian';
-      $data['datatablecss'] = 'css';
-      $data['datatable'] = 'datatable-orang';
+      $data['datatablescss'] = 'css';
+      $data['datatables'] = 'datatables-orang';
       $data['id'] = 1;
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
@@ -106,8 +106,8 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(2);
       $data['captoranghilang'] = 'Data Orang Hilang Ditemukan Hidup';
-      $data['datatables'] = 'datatable-orang';
-      $data['datatablecss'] = 'css';
+      $data['datatables'] = 'datatables-orang';
+      $data['datatablescss'] = 'css';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
@@ -130,8 +130,8 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(3);
       $data['captoranghilang'] = 'Data Orang Hilang Ditemukan Meninggal';
-      $data['datatables'] = 'datatable-orang';
-      $data['datatablecss'] = 'css';
+      $data['datatables'] = 'datatables-orang';
+      $data['datatablescss'] = 'css';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
@@ -154,8 +154,8 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(4);
       $data['captoranghilang'] = 'Data Orang Hilang Tidak Ditemukan';
-      $data['datatables'] = 'datatable-orang';
-      $data['datatablecss'] = 'css';
+      $data['datatables'] = 'datatables-orang';
+      $data['datatablescss'] = 'css';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
@@ -236,10 +236,10 @@ class Pendataan extends CI_Controller {
     }
   }
 
-  public function delete($id,$redirect){
+  public function delete($id){
     if($this->input->server('REQUEST_METHOD') == 'POST'){
       $this->pendataan->deleteOrangHilang($id);
-      redirect('pendataan/'.$redirect,'refresh');
+      redirect('pendataan/'.$this->session->userdata('redirect_back'),'refresh');
     }else{
       echo 'Method not allowed!';
     }

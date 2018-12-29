@@ -137,13 +137,10 @@ class M_pendataan extends CI_Model {
       }
 
       public function json($id){
-        return $this->datatables->select('orang_hilang.id,nama_lengkap,nama_panggilan,alamat,umur,jenis_kelamin.nama_jenis_kelamin,marga_suku,warna_kulit,baju_terakhir,celana_terakhir,kategori_umur.nama_kategori_umur,foto,lokasi_terakhir,lat_lokasi,lon_lokasi,nama_ayah,nama_ibu,keterangan_lainnya,nama_pelapor,no_hp_pelapor,bencana_alam.nama_bencana_alam,hubungan_pelapor.nama_hubungan_pelapor,status_org_hilang.nama_status_org,tgl_laporan,tkp_korban,status_korban,nama_status_org,nama_bencana_alam,tgl_waktu,keterangan,nama_jenis_kelamin')
+        return $this->datatables->select('orang_hilang.id,nama_lengkap,nama_panggilan,tgl_laporan,nama_bencana_alam,jenis_kelamin.nama_jenis_kelamin,umur,alamat')
                                 ->where('id_status_org_hilang',$id)
-                                ->join('status_org_hilang','status_org_hilang.id=orang_hilang.id_status_org_hilang')
                                 ->join('bencana_alam','bencana_alam.id=orang_hilang.id_bencana_alam')
                                 ->join('jenis_kelamin','jenis_kelamin.id=orang_hilang.id_jenis_kelamin')
-                                ->join('kategori_umur','kategori_umur.id=orang_hilang.id_kategori_umur')
-                                ->join('hubungan_pelapor','hubungan_pelapor.id=orang_hilang.id_hubungan_pelapor')
                                 ->from('orang_hilang')
                                 ->add_column('aksi','
                                   <form action="'.base_url('pendataan/detail/$1').'" method="post">
