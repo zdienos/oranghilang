@@ -104,12 +104,13 @@
       <?php if ($datatables): ?>
          <script type="text/javascript" src="<?= base_url('assets/js/'.$datatables)?>.js"></script>
       <?php endif ?>
-	  <?php echo isset($id) ? '' : $id = false; ?>
-      <?php if ($id): ?>
-         <script type="text/javascript"> const id = <?= $id ?></script>
-      <?php endif ?>
-	  <?php echo isset($js) ? '' : $js = false; ?>
+      <?php echo isset($js) ? '' : $js = false; ?>
       <?php if ($js): ?>
          <script type="text/javascript" src="<?= base_url('assets/js/'.$js)?>.js"></script>
-      <?php endif ?>   </body>
+      <?php endif ?>  
+	    <?php echo isset($id) ? '' : $id = false; ?>
+        <?php if ($id): ?>
+          <script type="text/javascript"> const id = <?= $id ?></script>
+        <?php endif ?>
+	  </body>
 </html>

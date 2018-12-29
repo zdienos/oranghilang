@@ -70,7 +70,7 @@ $(document).ready(function() {
             "data": "aksi",
             "orderable": false}
       ],
-      order: [[8, 'asc']],
+      order: [[8, 'desc']],
       rowCallback: function(row, data, iDisplayIndex) {
           var info = this.fnPagingInfo();
           var page = info.iPage;
