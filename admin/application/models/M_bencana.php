@@ -16,6 +16,7 @@ class M_bencana extends CI_Model {
   public function __construct() {
     parent::__construct();
   }
+  
   public function rules()
   {
     return [

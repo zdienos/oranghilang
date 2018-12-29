@@ -104,5 +104,10 @@
       <?php if ($datatable): ?>
          <script type="text/javascript" src="<?= base_url('assets/js/'.$datatable)?>.js"></script>
       <?php endif ?>
+
+      <?php echo isset($id) ? '' : $id = false; ?>
+      <?php if ($id): ?>
+         <script type="text/javascript"> const id = <?= $id ?></script>
+      <?php endif ?>
    </body>
 </html>

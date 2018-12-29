@@ -9,6 +9,7 @@ class Pendataan extends CI_Controller {
     $this->load->model('M_pendataan','pendataan');
     $this->load->model('M_bencana','bencana');
     $this->load->library('form_validation');
+    $this->load->library('datatables');
     $this->form_validation->set_error_delimiters('', '');
 	}
 
@@ -21,7 +22,9 @@ class Pendataan extends CI_Controller {
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(1);
       $data['captoranghilang'] = 'Data Orang Hilang Proses Pencarian';
-      $data['redirect'] = '';
+      $data['datatablecss'] = 'css';
+      $data['datatable'] = 'datatable-orang';
+      $data['id'] = 1;
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
@@ -97,11 +100,14 @@ class Pendataan extends CI_Controller {
   public function ditemukanhidup(){
     if ($this->session->userdata('login')) {
       if($this->session->userdata('user_grup') == 'petugas' || $this->session->userdata('user_grup') == 'admin'){
+      $data['id'] = 2;
       $data['active'] = 'blue';
       $data['js_validation']='';
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(2);
       $data['captoranghilang'] = 'Data Orang Hilang Ditemukan Hidup';
+      $data['datatables'] = 'datatable-orang';
+      $data['datatablecss'] = 'css';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
@@ -118,6 +124,7 @@ class Pendataan extends CI_Controller {
   public function ditemukanmeninggal(){
     if ($this->session->userdata('login')) {
       if($this->session->userdata('user_grup') == 'petugas' || $this->session->userdata('user_grup') == 'admin'){
+      $data['id'] = 3;  
       $data['active'] = 'blue';
       $data['js_validation']='';
       $data['view'] = 'menu/pendataan/orang_hilang';
@@ -139,6 +146,7 @@ class Pendataan extends CI_Controller {
   public function tidakditemukan(){
     if ($this->session->userdata('login')) {
       if($this->session->userdata('user_grup') == 'petugas' || $this->session->userdata('user_grup') == 'admin'){
+      $data['id'] = 4;
       $data['active'] = 'blue';
       $data['js_validation']='';
       $data['view'] = 'menu/pendataan/orang_hilang';
@@ -231,6 +239,11 @@ class Pendataan extends CI_Controller {
     }else{
       echo 'Method not allowed!';
     }
+  }
+
+  public function json($id){
+    header('Content-Type: application/json');
+    echo $this->pendataan->json($id);
   }
 }
 
