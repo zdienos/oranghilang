@@ -254,7 +254,7 @@ class M_pendataan extends CI_Model {
       }
 
       public function mEditOrangHilang($id,$nama_lengkap,$nama_panggilan,$alamat,$umur,$id_jenis_kelamin,$marga_suku,$warna_kulit,$baju_terakhir,$celana_terakhir,$id_kategori_umur,$foto,$lokasi_terakhir,$lat_lokasi,$lon_lokasi,$nama_ayah,$nama_ibu,$keterangan_lainnya,$nama_pelapor,$no_hp_pelapor,$id_bencana_alam,$id_hubungan_pelapor,$id_status_org_hilang){
-        $array = array(
+        $data = array(
           'nama_lengkap' => $nama_lengkap,
           'nama_panggilan' => $nama_panggilan,
           'alamat' => $alamat,
@@ -278,7 +278,7 @@ class M_pendataan extends CI_Model {
           'id_hubungan_pelapor' => $id_hubungan_pelapor,
           'id_status_org_hilang' => $id_status_org_hilang,          
         );
-        return $this->db->where('id',$id)->update('orang_hilang',$array);
+        return $this->db->where('id',$id)->update('orang_hilang',$data);
       }
 
       public function deleteOrangHilang($id){

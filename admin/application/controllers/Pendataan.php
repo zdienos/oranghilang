@@ -84,13 +84,7 @@ class Pendataan extends CI_Controller {
           $this->input->post('id_status_org_hilang')          
         )){
           $data['success']=true;
-          $redirect = array(
-            '1' => '',
-            '2' => 'ditemukanhidup',
-            '3' => 'ditemukanmeninggal',
-            '4' => 'tidakditemukan'
-          );
-          $data['redirect'] = $redirect[$this->input->post('id_status_org_hilang')];
+          $data['redirect'] = $this->session->userdata('redirect_back');
         }        
       }
       echo json_encode($data);
@@ -185,7 +179,7 @@ class Pendataan extends CI_Controller {
       $data['edit'] = $oranghilang;
       $data['jenkel'] = $oranghilang->id_jenis_kelamin;
       $data['label'] = $this->pendataan->label();
-      $data['js_validation']='';
+      $data['js_validation'] = 'orang-hilang';
       $data['selectedjenkel'] = $this->pendataan->getSelectedJenkel($oranghilang->id_jenis_kelamin);
       $data['notselectedjenkel'] = $this->pendataan->getNotSelectedJenkel($oranghilang->id_jenis_kelamin);
       $data['selectedkategoriumur'] = $this->pendataan->getSelectedKategoriUmur($oranghilang->id_kategori_umur);
@@ -196,7 +190,8 @@ class Pendataan extends CI_Controller {
       $data['notselectedbencanaalam'] = $this->pendataan->getNotSelectedBencanaAlam($oranghilang->id_bencana_alam);
       $data['selectedstatus'] = $this->pendataan->getSelectedStatus($oranghilang->id_status_org_hilang);
       $data['notselectedstatus'] = $this->pendataan->getNotSelectedStatus($oranghilang->id_status_org_hilang);
-      
+      $data['datatablescss'] = '';
+      $data['datatables'] = '';
       $data['view'] = 'menu/pendataan/edit_orang_hilang';
       $this->load->view('layout/home',$data);
     }else{
@@ -204,11 +199,17 @@ class Pendataan extends CI_Controller {
     }
   }
 
-  public function editt(){
-    if($this->input->server('REQUEST_METHOD') == 'POST'){
-      echo json_encode($this->pendataan->mEditOrangHilang(
-        $this->input->post('id'),
-        $this->input->post('nama_lengkap'),
+  public function update($id){
+    if($this->input->server('REQUEST_METHOD') == 'POST'){      
+      $this->form_validation->set_rules($this->pendataan->rules());        
+      $this->form_validation->set_message($this->config->item('msg_error'));      
+      if (!$this->form_validation->run()) {
+        $data['error'] = true;
+        $data['error_msg'] = $this->pendataan->error_msg();
+      }else{                    
+        if($this->pendataan->mEditOrangHilang(
+          $id,
+          $this->input->post('nama_lengkap'),
           $this->input->post('nama_panggilan'),
           $this->input->post('alamat'),
           $this->input->post('umur'),
@@ -229,10 +230,19 @@ class Pendataan extends CI_Controller {
           $this->input->post('no_hp_pelapor'),
           $this->input->post('id_bencana_alam'),
           $this->input->post('id_hubungan_pelapor'),
-          $this->input->post('id_status_org_hilang')
-      ));
-    }else{
-      echo 'Method not allowed!';
+          $this->input->post('id_status_org_hilang')          
+        )){
+          $data['success']=true;
+          $redirect = array(
+            '1' => '',
+            '2' => 'ditemukanhidup',
+            '3' => 'ditemukanmeninggal',
+            '4' => 'tidakditemukan'
+          );
+          $data['redirect'] = $redirect[$this->input->post('id_status_org_hilang')];
+        }        
+      }
+      echo json_encode($data);
     }
   }
 
