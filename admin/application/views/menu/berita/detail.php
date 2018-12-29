@@ -10,7 +10,7 @@
         <!-- <h1><?=$detail->judul_berita?></h1> -->
         <h1><?=$detail->judul_berita?></h1>
         <div class="image">
-          <?=$detail->foto_header?>
+          <img src="<?php echo base_url('assets/berita/foto/');echo $detail->foto_header?>">
         </div>
         <h7><?=$detail->date?>, Oleh : <?=$detail->name?></h7>
         <div class="container">
@@ -35,9 +35,7 @@
         <h3><u>Most Viewed</u></h3>
           <div class="row">
             <div class="col-md-4">
-              <div class="image" style="height: 100%; width:100%;background-color: red">
-          <center><h7 style="color: white"><?=$detail->foto_thumbnail?></h7></center>
-        </div>
+              <img src="<?php echo base_url('assets/berita/foto/');echo $detail->foto_thumbnail?>">
             </div>
             <div class="col-md-8">
               <?=$detail->judul_berita?><br>
