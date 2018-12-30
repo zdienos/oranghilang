@@ -150,6 +150,8 @@ class Berita extends CI_Controller {
 	    $data['js_validation'] = 'berita-form';
 	    $data['editor'] = 'berita-editor';
 	    $data['view'] = 'menu/berita/edit';
+	    $data['js']='berita';
+	    $data['js2']='berita-edit';
 	    $data['tags'] = $this->berita->getTagsBeritaById($berita->id_berita);
 	    $data['label'] = $this->berita->label();	    
 	    $data['detail'] = $berita;

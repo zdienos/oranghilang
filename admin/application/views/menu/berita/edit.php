@@ -43,16 +43,20 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['foto_header']?></label>
               <div class="col-sm-9">
-                <input type="file" name="foto_header" class="form-control" id="input-foto_header" accept="image/x-png,image/jpeg" onchange="validateFileType()" hidden>
-                <img src="<?=base_url('assets/berita/foto/'.$detail->foto_header)?>" width="auto" height="200px">
-                <div id="error" class="invalid-feedback"></div>                
+                <input type="text" name="foto_header" class="form-control" id="input-foto_header" accept="image/x-png,image/jpeg" onchange="validateFileType()" hidden="true" value="<?=$detail->foto_header?>">
+                <img id="img_header" src="<?=base_url('assets/berita/foto/'.$detail->foto_header)?>" width="auto" height="200px">
+                <i onclick="ubah()"  class="btn btn-success" id="ubah_header">Ubah</i>
+                <br><i style="display:none;margin-top: 50px;" onclick="cancel()"  class="btn btn-danger" id="cancel_header">Cancel</i>
+                <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['foto_thumbnail']?></label>
               <div class="col-sm-9">
-                <input type="file" name="foto_thumbnail" class="form-control" id="input-foto_thumbnail" accept="image/x-png,image/jpeg" onchange="validateFileType2()" hidden="">
-                <img src="<?=base_url('assets/berita/foto/'.$detail->foto_thumbnail)?>" width="auto" height="200px">
+                <input type="text" name="foto_thumbnail" class="form-control" id="input-foto_thumbnail" accept="image/x-png,image/jpeg" onchange="validateFileType2()" hidden="true" value="<?=$detail->foto_thumbnail?>">
+                <img id="img_thumbnail" src="<?=base_url('assets/berita/foto/'.$detail->foto_thumbnail)?>" width="auto" height="200px">
+                <i onclick="ubahThumbnail()"  class="btn btn-success" id="ubah_thumbnail">Ubah</i>
+                <br><i style="display:none;margin-top: 50px;" onclick="cancelThumbnail()"  class="btn btn-danger" id="cancel_thumbnail">Cancel</i>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
