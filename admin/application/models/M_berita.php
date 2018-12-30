@@ -29,7 +29,7 @@ class M_berita extends CI_Model {
 
             ['field' => 'tag',
             'label' => 'Tag Berita',
-            'rules' => 'required|regex_match[/^[a-z0-9 ,]+$/]']
+            'rules' => 'trim|required|regex_match[/^[a-z0-9 ,]+$/]']
 
         ];
     }   
@@ -57,15 +57,15 @@ class M_berita extends CI_Model {
 
             ['field' => 'foto_header',
             'label' => 'Foto Header Berita',
-            'rules' => 'required'],
+            'rules' => ''],
 
             ['field' => 'foto_thumbnail',
             'label' => 'Foto Thumbnail',
-            'rules' => 'required'],
+            'rules' => ''],
 
             ['field' => 'tag',
             'label' => 'Tag Berita',
-            'rules' => 'required']
+            'rules' => 'trim|required|regex_match[/^[a-z0-9 ,]+$/]']
         ];
     }   
 
@@ -161,11 +161,13 @@ class M_berita extends CI_Model {
         return $this->db->delete('berita',array('id_berita' => $id));
     }
 
-    public function updateBerita($id_user,$id_berita,$judul_berita,$isi,$status)
+    public function updateBerita($id_user,$id_berita,$judul_berita,$isi,$foto_header,$foto_thumbnail,$status)
     {
         $object = array(            
             'judul_berita' => $judul_berita,
             'isi' => $isi,
+            'foto_header' => $foto_header,
+            'foto_thumbnail' => $foto_thumbnail,
             'id_user'=>$id_user,
             'status'=>$status    
         );
@@ -178,6 +180,11 @@ class M_berita extends CI_Model {
 
     public function getWhereTag($tag){
       return $this->db->where('nama_tag',$tag)->get('tag')->num_rows();
+    }
+
+    public function getWhereTagsBeritaByIdTagAndIdBerita($id_berita,$id_tag)
+    {
+        # code...
     }
 
     public function getTagByName($name)
@@ -223,6 +230,29 @@ class M_berita extends CI_Model {
         return $this->db->insert('tags_berita', $object);
     }
 
+    public function insertTagsBeritaIdBerita($id_berita)
+    {
+        $tag = $this->db->select('id_tag')
+                              ->order_by('id_tag', 'desc')
+                              ->limit(1)
+                              ->get('tag')
+                              ->row();
+        $object = array(
+            'id_berita' => $id_berita,
+            'id_tag' => $tag->id_tag
+        );
+        return $this->db->insert('tags_berita', $object);
+    }
+
+    public function inserTagBeritaIdTag($id_berita,$id_tag)
+    {
+        $object = array(
+            'id_berita' => $id_berita,
+            'id_tag' => $id_tag
+        );
+        return $this->db->insert('tags_berita', $object);
+    }
+
     public function insertTag($tag)
     {
         $object = array(
@@ -235,6 +265,36 @@ class M_berita extends CI_Model {
         return $this->db->join('tag','tag.id_tag=tags_berita.id_tag')
                         ->select('nama_tag')
                         ->where('id_berita', $id)->get('tags_berita')->result();
+    }
+
+    public function countTagsBeritaWhereIdBerita($id_berita)
+    {
+        return $this->db->where('id_berita',$id_berita)->get('tags_berita')->num_rows();
+    }
+
+    public function checkTagsBeritaName($nama)
+    {
+        return $this->db->join('tag', 'tag.id_tag=tags_berita.id_tag')
+                        ->where('nama_tag',$nama)
+                        ->get('tags_berita')
+                        ->row();
+    }
+    public function checkTagsBeritaName2($id_berita,$nama_tag)
+    {
+        return $this->db->query("SELECT * FROM tags_berita join tag on tag.id_tag=tags_berita.id_tag 
+            WHERE nama_tag NOT IN (".$nama_tag.") AND id_berita = ".$id_berita."")->result();
+    }
+
+    public function deleteTagsBerita($id_berita,$id_tag)
+    {
+        return $this->db->delete('tags_berita',array('id_berita' => $id_berita,'id_tag'=>$id_tag));
+    }
+
+    public function getFotoByIdBerita($id)
+    {
+        return $this->db->select('foto_header,foto_thumbnail')
+                 ->where('id_berita',$id)
+                 ->get('berita')->row();
     }
 }
 

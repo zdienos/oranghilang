@@ -38,7 +38,8 @@
          const loader = document.getElementById('loader');
          setTimeout(() => {
            loader.classList.add('fadeOut');
-         }, 300);
+         // }, 300);
+         }, 0);
          });
       </script>
       <div>
@@ -107,7 +108,11 @@
       <?php echo isset($js) ? '' : $js = false; ?>
       <?php if ($js): ?>
          <script type="text/javascript" src="<?= base_url('assets/js/'.$js)?>.js"></script>
-      <?php endif ?>  
+      <?php endif ?>
+      <?php echo isset($js2) ? '' : $js2 = false; ?>
+      <?php if ($js2): ?>
+         <script type="text/javascript" src="<?= base_url('assets/js/'.$js2)?>.js"></script>
+      <?php endif ?>
 	    <?php echo isset($id) ? '' : $id = false; ?>
         <?php if ($id): ?>
           <script type="text/javascript"> const id = <?= $id ?></script>

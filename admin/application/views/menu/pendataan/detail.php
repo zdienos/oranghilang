@@ -82,7 +82,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['foto']?></label>
               <div class="col-sm-9">
-                <input type="text" name="foto" class="form-control" id="input-foto">
+                <img src="<?=base_url('assets/orang_hilang/foto/'.$detail->foto)?>" style="width: 200px;height: auto;">
               </div>
             </div>
             <div class="form-group row">

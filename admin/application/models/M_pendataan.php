@@ -287,6 +287,13 @@ class M_pendataan extends CI_Model {
         );
         return $this->db->delete('orang_hilang',$array);
       }
+
+      public function getFotoById($id)
+      {
+        return $this->db->where('id', $id)
+                        ->select('foto')
+                        ->get('orang_hilang')->row();
+      }
     }
 
     /* End of file M_user.php */

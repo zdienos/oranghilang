@@ -88,7 +88,10 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['foto']?></label>
               <div class="col-sm-9">
-                <input type="text" name="foto" class="form-control" id="input-foto">
+                <input type="text" name="foto" class="form-control" id="input-foto" accept="image/x-png,image/jpeg" onchange="validateFileType()" value="Klik Untuk Upload" onclick="ubah_foto()">
+                <br style="display: none;" id="br">
+                <i onclick="cancel_foto()" class="btn btn-danger" style="display: none;" id="cancel-foto">Cancel</i>
+                <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="form-group row">
@@ -158,7 +161,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['nama_pelapor']?></label>
               <div class="col-sm-9">
-                <?=form_input('nama_pelapor', '', array('id'=>'input-no_hp_pelapor','class' => 'form-control', 'placeholder' => $label['id_bencana_alam'], 'id' => 'input-nama_pelapor'));?>
+                <?=form_input('nama_pelapor', '', array('id'=>'input-no_hp_pelapor','class' => 'form-control', 'placeholder' => $label['nama_pelapor'], 'id' => 'input-nama_pelapor'));?>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>

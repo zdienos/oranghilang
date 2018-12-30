@@ -1,25 +1,33 @@
 $(document).ready(function() {
 	$('#error').html(" ");
-
 	$('#form-add').submit(function(e){
 		e.preventDefault();
 		var fa = $(this);
+		var formData = new FormData($("#form-add")[0]);
 		$.ajax({
 			type: "POST",
 			url: fa.attr('action'), 
-			data: $("#form-add").serialize(),
+			data: formData,
 			dataType: "json",  
+			cache: false,
+			contentType: false,
+			processData: false,  
 			success: function(data){
-        if (data.success == true) {          
-          window.location.href=base_url+"pendataan/"+data.redirect;
+				if (data.success == true) {          
+					window.location.href=base_url+"pendataan/"+data.redirect;
 				}else if (data.error == true) {
+					if (data.wrong_msg) {
+						console.log(data.wrong_msg);
+						$('#input-foto').addClass('is-invalid');
+						$('#input-foto').parents('.form-group').find('#error').html(data.wrong_msg);
+					};
 					$.each(data.error_msg, function(key, value) {
 						if (value) {
 							console.log(value);						
 							$('#input-' + key).addClass('is-invalid');
 							$('#input-' + key).parents('.form-group').find('#error').html(value);													
 						}else{
-								$('#input-' + key).addClass('is-valid');
+							$('#input-' + key).addClass('is-valid');
 						}
 					});
 				}else if(data.wrong == true){
@@ -33,18 +41,18 @@ $(document).ready(function() {
 		$(this).removeClass('is-invalid').addClass('is-valid');
 		$(this).parents('.form-group').find('#error').html(" ");
 		$('#info').html(" ");			  
-  });
+	});
 
-  $('#form-add input').on('change', function () { 
+	$('#form-add input').on('change', function () { 
 		$(this).removeClass('is-invalid').addClass('is-valid');
 		$(this).parents('.form-group').find('#error').html(" ");
 		$('#info').html(" ");			  
-  });
-  
-  $('#form-add select').on('change', function () { 
+	});
+
+	$('#form-add select').on('change', function () { 
 		$(this).removeClass('is-invalid').addClass('is-valid');
 		$(this).parents('.form-group').find('#error').html(" ");
 		$('#info').html(" ");			  
-  });
-  
+	});
+
 });	

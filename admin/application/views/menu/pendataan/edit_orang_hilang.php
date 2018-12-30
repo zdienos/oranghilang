@@ -88,7 +88,12 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['foto']?></label>
               <div class="col-sm-9">
-                <input type="text" name="foto" class="form-control" id="input-foto">
+                <input type="text" name="foto" class="form-control" id="input-foto" accept="image/x-png,image/jpeg" onchange="validateFileType()" hidden="true" value="<?=$edit->foto?>">
+                <img id="foto" src="<?=base_url('assets/orang_hilang/foto/'.$edit->foto )?>" width="auto" height="200px">
+                <i onclick="ubah()"  class="btn btn-success" id="ubah_foto">Ubah</i>
+                <i onclick="hapus()"  class="btn btn-danger" id="hapus_foto">Hapus</i>
+                <i onclick="ubah()" style="width: 100%;display: none;" class="btn btn-primary" id="tambah_foto">Tambah Foto</i>
+                <br><i style="display:none;margin-top: 50px;" onclick="cancel()"  class="btn btn-danger" id="cancel_foto">Cancel</i>
               </div>
             </div>
             <div class="form-group row">
