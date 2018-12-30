@@ -56,14 +56,14 @@ public function validate()
       $data['error_msg'] = $this->bencana->error_msg();
     }else{                    
       if ($this->bencana->mAddBencana(
-        $this->input->post('jenis_bencana_alam'),
-        $this->input->post('id_provinces'),
-        $this->input->post('id_regencies'),
-        $this->input->post('id_districts'),
-        $this->input->post('id_villages'),
-        $this->input->post('nama_bencana_alam'),
-        $this->input->post('tgl_waktu'),
-        $this->input->post('keterangan')
+        $this->input->post('jenis_bencana_alam',TRUE),
+        $this->input->post('id_provinces',TRUE),
+        $this->input->post('id_regencies',TRUE),
+        $this->input->post('id_districts',TRUE),
+        $this->input->post('id_villages',TRUE),
+        $this->input->post('nama_bencana_alam',TRUE),
+        $this->input->post('tgl_waktu',TRUE),
+        $this->input->post('keterangan',TRUE)
       )) {
         $data['success']=true;
       }        
@@ -112,14 +112,14 @@ public function update($id){
     }else{                    
       if($this->bencana->updateBencana(
         $id,
-        $this->input->post('jenis_bencana_alam'),
-        $this->input->post('nama_bencana_alam'),
-        $this->input->post('tgl_waktu'),
-        $this->input->post('keterangan'),
-        $this->input->post('id_provinces'),
-        $this->input->post('id_regencies'),
-        $this->input->post('id_districts'),
-        $this->input->post('id_villages')
+        $this->input->post('jenis_bencana_alam',TRUE),
+        $this->input->post('nama_bencana_alam',TRUE),
+        $this->input->post('tgl_waktu',TRUE),
+        $this->input->post('keterangan',TRUE),
+        $this->input->post('id_provinces',TRUE),
+        $this->input->post('id_regencies',TRUE),
+        $this->input->post('id_districts',TRUE),
+        $this->input->post('id_villages',TRUE)
       )){
         $data['success']=true;
       }
