@@ -169,30 +169,29 @@ class Berita extends CI_Controller {
 				$data['error'] = true;
 				$data['error_msg'] = $this->berita->error_msgEdit();
 			}else{				
-				// $tags = explode(',',rtrim($this->input->post('tag'),','));
-				// $tag2 = array_map('trim', $tags);
-				// $tag = array_unique(array_map('ucfirst',$tag2));	
-				// $allTag = $this->berita->getAllTag();
-				// $tag_sql = '"'.implode('","', $tag).'"';
-				// $not_tag = $this->berita->checkTagsBeritaName2($this->input->post('id_berita'),$tag_sql);			
-				// if ($not_tag) {
-				// 	foreach ($not_tag as $mm) {
-				// 		$this->berita->deleteTagsBerita($mm->id_berita,$mm->id_tag);
-				// 	}
-				// }
+				$tags = explode(',',rtrim($this->input->post('tag'),','));
+				$tag2 = array_map('trim', $tags);
+				$tag = array_unique(array_map('ucfirst',$tag2));	
+				$allTag = $this->berita->getAllTag();
+				$tag_sql = '"'.implode('","', $tag).'"';
+				$not_tag = $this->berita->checkTagsBeritaName2($this->input->post('id_berita'),$tag_sql);			
+				if ($not_tag) {
+					foreach ($not_tag as $mm) {
+						$this->berita->deleteTagsBerita($mm->id_berita,$mm->id_tag);
+					}
+				}
 
-				// for($i=0;$i<count($tag);$i++){
-				// 	if (!$this->berita->checkTagsBeritaName($tag[$i])) {
-				// 		if ($this->berita->getWhereTag($tag[$i])) {						
-				// 			$id = $this->berita->getTagByName($tag[$i])->id_tag;
-				// 			$this->berita->inserTagBeritaIdTag($this->input->post('id_berita'),$id);
-				// 		}else{
-				// 			$this->berita->insertTag(ucfirst($tag[$i]));
-				// 			$this->berita->insertTagsBeritaIdBerita($this->input->post('id_berita'));
-				// 		}
-
-				// 	}
-				// }
+				for($i=0;$i<count($tag);$i++){
+					if (!$this->berita->checkTagsBeritaName($tag[$i])) {
+						if ($this->berita->getWhereTag($tag[$i])) {						
+							$id = $this->berita->getTagByName($tag[$i])->id_tag;
+							$this->berita->inserTagBeritaIdTag($this->input->post('id_berita'),$id);
+						}else{
+							$this->berita->insertTag(ucfirst($tag[$i]));
+							$this->berita->insertTagsBeritaIdBerita($this->input->post('id_berita'));
+						}
+					}
+				}
 				$judul =$this->input->post('judul_berita');
 				$tanggal = date("Y_m_d H:i:s");
 				$this->load->library('upload'); 

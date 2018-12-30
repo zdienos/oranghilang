@@ -42,6 +42,8 @@ class Pendataan extends CI_Controller {
   public function add(){
     $data['view'] = 'menu/pendataan/add_orang_hilang';
     $data['label'] = $this->pendataan->label();
+    $data['js'] = 'pendataan';
+    $data['js2'] = 'pendataan-extra';
     $data['gender'] =$this->pendataan->getGender();
     $data['kategoriumur'] =$this->pendataan->getKategoriUmur();
     $data['hubunganpelapor'] =$this->pendataan->getHubunganPelapor();
@@ -58,8 +60,30 @@ class Pendataan extends CI_Controller {
       if (!$this->form_validation->run()) {
         $data['error'] = true;
         $data['error_msg'] = $this->pendataan->error_msg();
-      }else{                    
-        if($this->pendataan->mAddOrangHilang(
+      }else{
+        $foto='' ;        
+        if ($this->input->post('foto')=='Klik Untuk Upload') {
+          $foto = '';
+        }else{
+          $nama =$this->input->post('nama_lengkap');
+          $tanggal = date("Y_m_d H:i:s");
+          $this->load->library('upload');
+          $config['upload_path'] = './assets/orang_hilang/foto';
+          $config['allowed_types'] = 'jpg|png|jpeg';
+          $config['max_size']  = '2048';
+          if (isset($_FILES["foto"]["name"])) {
+            $config['file_name']  = $nama."_".md5($tanggal);
+            $this->upload->initialize($config); 
+            if ( ! $this->upload->do_upload('foto')){
+              $data['error'] = true;
+              $data['wrong_msg'] = $this->upload->display_errors();
+            } else{
+              $foto = $this->upload->data('file_name');
+              $data['mm']=$foto;
+            }
+          }
+        }        
+        $this->pendataan->mAddOrangHilang(
           $this->input->post('nama_lengkap'),
           $this->input->post('nama_panggilan'),
           $this->input->post('alamat'),
@@ -70,7 +94,7 @@ class Pendataan extends CI_Controller {
           $this->input->post('baju_terakhir'),
           $this->input->post('celana_terakhir'),
           $this->input->post('id_kategori_umur'),
-          $this->input->post('foto'),
+          $foto,
           $this->input->post('lokasi_terakhir'),
           $this->input->post('lat_lokasi'),
           $this->input->post('lon_lokasi'),
@@ -82,10 +106,10 @@ class Pendataan extends CI_Controller {
           $this->input->post('id_bencana_alam'),
           $this->input->post('id_hubungan_pelapor'),
           $this->input->post('id_status_org_hilang')          
-        )){
+        );
           $data['success']=true;
           $data['redirect'] = $this->session->userdata('redirect_back');
-        }        
+        
       }
       echo json_encode($data);
     }
@@ -177,6 +201,8 @@ class Pendataan extends CI_Controller {
     if($this->input->server('REQUEST_METHOD') == "POST"){
       $oranghilang = $this->pendataan->getOrangHilangById($id);
       $data['edit'] = $oranghilang;
+      $data['js'] = 'pendataan';
+      $data['js2'] = 'pendataan-extra';
       $data['jenkel'] = $oranghilang->id_jenis_kelamin;
       $data['label'] = $this->pendataan->label();
       $data['js_validation'] = 'orang-hilang';
@@ -207,6 +233,27 @@ class Pendataan extends CI_Controller {
         $data['error'] = true;
         $data['error_msg'] = $this->pendataan->error_msg();
       }else{                    
+        if ($this->input->post('foto')=='hapus') {          
+          $foto = '';
+        }
+        $nama =$this->input->post('nama_lengkap');
+          $tanggal = date("Y_m_d H:i:s");
+          $this->load->library('upload');
+          $config['upload_path'] = './assets/orang_hilang/foto';
+          $config['allowed_types'] = 'jpg|png|jpeg';
+          $config['max_size']  = '2048';
+        if (isset($_FILES["foto"]["name"])) {
+            $config['file_name']  = $nama."_".md5($tanggal);
+            $this->upload->initialize($config); 
+            if ( ! $this->upload->do_upload('foto')){
+              $data['error'] = true;
+              $data['wrong_msg'] = $this->upload->display_errors();
+            } else{
+              $foto = $this->upload->data('file_name');              
+            }
+        }else{
+          $foto = $this->pendataan->getFotoById($id)->foto;
+        }
         if($this->pendataan->mEditOrangHilang(
           $id,
           $this->input->post('nama_lengkap'),
@@ -219,7 +266,7 @@ class Pendataan extends CI_Controller {
           $this->input->post('baju_terakhir'),
           $this->input->post('celana_terakhir'),
           $this->input->post('id_kategori_umur'),
-          $this->input->post('foto'),
+          $foto,
           $this->input->post('lokasi_terakhir'),
           $this->input->post('lat_lokasi'),
           $this->input->post('lon_lokasi'),

@@ -38,7 +38,8 @@
          const loader = document.getElementById('loader');
          setTimeout(() => {
            loader.classList.add('fadeOut');
-         }, 300);
+         // }, 300);
+         }, 0);
          });
       </script>
       <div>
