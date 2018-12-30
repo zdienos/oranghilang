@@ -83,8 +83,10 @@ class Berita extends CI_Controller {
 						$this->input->post('judul_berita'),
 						$this->input->post('isi'),$foto_header,$foto_thumbnail
 					);
-					$tags = explode(',',ucfirst($this->input->post('tag')));
-					$tag2 = array_map('trim',$tags);
+					$tags = explode(',',rtrim($this->input->post('tag'),','));
+	    			$tagss = array_map('trim', $tags);
+					$tag2 = array_unique(array_map('ucfirst',$tagss));
+
 					$allTag = $this->berita->getAllTag();
 					for($i=0;$i<count($tag2);$i++){
 						if ($this->berita->getWhereTag($tag2[$i])) {
@@ -140,6 +142,7 @@ class Berita extends CI_Controller {
 	    $data['js_validation'] = 'berita-form';
 	    $data['editor'] = 'berita-editor';
 	    $data['view'] = 'menu/berita/edit';
+	    $data['tags'] = $this->berita->getTagsBeritaById($berita->id_berita);
 	    $data['label'] = $this->berita->label();	    
 	    $data['detail'] = $berita;
 	    $this->load->view('layout/home', $data);
@@ -156,15 +159,37 @@ class Berita extends CI_Controller {
 	      $data['error'] = true;
 	      $data['error_msg'] = $this->berita->error_msgEdit();
 	    }else{
-	    	if ($this->berita->updateBerita(
-	    		$this->input->post('id_user'),
+	    	$tags = explode(',',rtrim($this->input->post('tag'),','));
+	    	$tag2 = array_map('trim', $tags);
+			$tag = array_unique(array_map('ucfirst',$tag2));	
+			$allTag = $this->berita->getAllTag();
+			$tag_sql = '"'.implode('","', $tag).'"';
+			$not_tag = $this->berita->checkTagsBeritaName2($this->input->post('id_berita'),$tag_sql);			
+			if ($not_tag) {
+				foreach ($not_tag as $mm) {
+					$this->berita->deleteTagsBerita($mm->id_berita,$mm->id_tag);
+				}
+			}
+
+			for($i=0;$i<count($tag);$i++){
+				if (!$this->berita->checkTagsBeritaName($tag[$i])) {
+					if ($this->berita->getWhereTag($tag[$i])) {						
+						$id = $this->berita->getTagByName($tag[$i])->id_tag;
+						$this->berita->inserTagBeritaIdTag($this->input->post('id_berita'),$id);
+					}else{
+						$this->berita->insertTag(ucfirst($tag[$i]));
+						$this->berita->insertTagsBeritaIdBerita($this->input->post('id_berita'));
+					}
+					
+				}
+			}
+			if ($this->berita->updateBerita($this->input->post('id_user'),
 	    		$this->input->post('id_berita'),
 	    		$this->input->post('judul_berita'),
 	    		$this->input->post('isi'),
-	    		$this->input->post('status')
-	    	)) {
-	    		$data['success']=true;
-	    	}	        
+	    		$this->input->post('status'))) {
+				$data['success'] = true;
+			}
 	    }
 	    echo json_encode($data);
 	  }
