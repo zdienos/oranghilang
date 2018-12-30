@@ -20,7 +20,7 @@ class Bencana extends CI_Controller {
         $data['bencana'] = $this->bencana->getBencana();
         $data['js_validation'] = '';
         $data['datatablescss'] = 'css';
-        $data['datatables'] = 'datatables';
+        $data['datatables'] = 'datatables-bencana';
         $this->load->view('layout/home', $data);
       }else{
        redirect('error/error_403','refresh');

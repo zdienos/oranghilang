@@ -7,7 +7,8 @@ class Berita extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_berita','berita');
-		$this->load->library('form_validation');
+    $this->load->library('form_validation');
+    $this->load->library('datatables');
 		$this->form_validation->set_error_delimiters('', '');		
 	}
 
@@ -17,7 +18,9 @@ class Berita extends CI_Controller {
 			if ($this->session->userdata('user_grup') == 'admin' || $this->session->userdata('user_grup') == 'writer') {
 				$data['view'] = 'menu/berita/berita';
 				$data['berita'] = $this->berita->getBerita();		        
-				$data['js_validation'] = 'berita-form';
+        $data['js_validation'] = 'berita-form';
+        $data['datatablescss'] = 'css';
+        $data['datatables'] = 'datatables-berita';
 				$data['status'] = array(
 					0 => 'Unpublished',
 					1 => 'Published'
@@ -27,7 +30,12 @@ class Berita extends CI_Controller {
 				redirect('error/error_403','refresh');
 			}
 		}
-	}
+  }
+  
+  public function json(){
+    header('Content-Type: application/json');
+    echo $this->berita->json();
+  }
 
 	public function add()
 	{				

@@ -3,8 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_berita extends CI_Model {
 
-	private $_table = "berita";	
-
+  private $_table = "berita";
+  	
+  public function __construct() {
+    parent::__construct();
+  }
     public function rules()
     {
         return [           
@@ -101,6 +104,29 @@ class M_berita extends CI_Model {
             'foto_header' => form_error('foto_header'),
             'foto_thumbnail' => form_error('foto_thumbnail')
        );
+    }
+
+    public function json(){
+      $status = array(
+        0 => 'Unpublished',
+        1 => 'Published'
+      );
+      return $this->datatables->select('judul_berita,date,status,berita.id_berita,user_grup.nama_grup')
+                              ->join('user','user.id=berita.id_user')
+                              ->join('user_grup','user_grup.id_grup=user.id_user_grup')
+                              ->add_column('aksi','
+                                  <form action="'.base_url('berita/detail/$1').'" method="post">
+                                    <button type="submit" class="btn cur-p btn-success ti-eye"></button>
+                                  </form>
+                                  <form action="'.base_url('berita/edit/$1').'" method="post">
+                                    <button type="submit" class="btn cur-p btn-primary ti-pencil"></button>
+                                  </form>
+                                  <form action="'.base_url('berita/delete/$1').'" method="post">
+                                    <button type="submit" class="btn cur-p btn-danger ti-trash" onclick="return confirm(Are you sure to delete this item ?)"></button>
+                                  </form>',
+                                  'id_berita')
+                              ->from('berita')  
+                              ->generate();
     }
 
     public function getBerita()
