@@ -161,11 +161,13 @@ class M_berita extends CI_Model {
         return $this->db->delete('berita',array('id_berita' => $id));
     }
 
-    public function updateBerita($id_user,$id_berita,$judul_berita,$isi,$status)
+    public function updateBerita($id_user,$id_berita,$judul_berita,$isi,$foto_header,$foto_thumbnail,$status)
     {
         $object = array(            
             'judul_berita' => $judul_berita,
             'isi' => $isi,
+            'foto_header' => $foto_header,
+            'foto_thumbnail' => $foto_thumbnail,
             'id_user'=>$id_user,
             'status'=>$status    
         );
@@ -286,6 +288,13 @@ class M_berita extends CI_Model {
     public function deleteTagsBerita($id_berita,$id_tag)
     {
         return $this->db->delete('tags_berita',array('id_berita' => $id_berita,'id_tag'=>$id_tag));
+    }
+
+    public function getFotoByIdBerita($id)
+    {
+        return $this->db->select('foto_header,foto_thumbnail')
+                 ->where('id_berita',$id)
+                 ->get('berita')->row();
     }
 }
 
