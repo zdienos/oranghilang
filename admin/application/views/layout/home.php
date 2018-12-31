@@ -77,7 +77,7 @@
                 </style>
                 <nav aria-label="breadcrumb" style="z-index: 999999">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item active"><a href="#">Home</a></li>                      
+                      <li class="breadcrumb-item active"><a href="<?=base_url()?>">Home</a></li>                      
                       <?php if ($this->uri->segment(1)&&!$this->uri->segment(2)&&!$this->uri->segment(3)): ?>
                         <li class="breadcrumb-item"><?=ucfirst($this->uri->segment(1))?></li>
                       <?php endif ?>
