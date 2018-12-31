@@ -59,7 +59,7 @@ class M_pendataan extends CI_Model {
       public function label()
       {
         return array(
-          'nama_lengkap' => 'Nama Lengap',
+          'nama_lengkap' => 'Nama Lengkap',
           'nama_panggilan' => 'Nama Panggilan',
           'alamat' => 'Alamat',
           'umur' => 'Umur',
@@ -156,7 +156,7 @@ class M_pendataan extends CI_Model {
                                     <button type="submit" class="btn cur-p btn-primary ti-pencil"></button>
                                   </form>
                                   <form action="'.base_url('pendataan/delete/$1').'" method="post">
-                                    <button type="submit" class="btn cur-p btn-danger ti-trash" onclick="return confirm(are you sure to delete this item ?)"></button>
+                                    <button id="btnDelete" type="submit" class="btn cur-p btn-danger ti-trash" onclick="return confirm(are you sure to delete this item ?)"></button>
                                   </form>',
                                   'id')
                                 ->generate();

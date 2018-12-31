@@ -125,6 +125,9 @@
 
       <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
       <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+      <?php
+        echo isset($deleteItem) ? $deleteItem : '';
+      ?>
       <?php echo isset($editor) ? '' : $editor = false; ?>
       <?php if ($editor): ?>
          <script type="text/javascript" src="<?= base_url('assets/js/'.$editor)?>.js"></script>

@@ -122,7 +122,7 @@ class M_berita extends CI_Model {
                                     <button type="submit" class="btn cur-p btn-primary ti-pencil"></button>
                                   </form>
                                   <form action="'.base_url('berita/delete/$1').'" method="post">
-                                    <button type="submit" class="btn cur-p btn-danger ti-trash" onclick="return confirm(Are you sure to delete this item ?)"></button>
+                                    <button id="btnDelete" type="submit" class="btn cur-p btn-danger ti-trash" onclick="return confirm(Are you sure to delete this item ?)"></button>
                                   </form>',
                                   'id_berita')
                               ->from('berita')  

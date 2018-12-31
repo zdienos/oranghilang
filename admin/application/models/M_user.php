@@ -112,7 +112,7 @@ class M_user extends CI_Model {
                           </form>
 
                           <form action="'.base_url('user/delete/$1').'" method="post">
-                            <button type="submit" class="btn cur-p btn-danger ti-trash"></button>
+                            <button id="btnDelete" type="submit" class="btn cur-p btn-danger ti-trash"></button>
                           </form>
                        ','id')
                        ->generate();

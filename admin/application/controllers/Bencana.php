@@ -25,6 +25,7 @@ class Bencana extends CI_Controller {
   $data['js_validation'] = '';
   $data['datatablescss'] = 'css';
   $data['datatables'] = 'datatables-bencana';
+  $data['deleteItem'] = '<script src="'.base_url("assets/js/delete-item.js").'"></script>';
   $this->load->view('layout/home', $data);
 }
 

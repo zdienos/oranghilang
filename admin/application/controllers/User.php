@@ -24,6 +24,7 @@ class User extends CI_Controller {
               $data['js_validation'] = '';
               $data['datatables'] = 'datatables-user';
               $data['datatablescss'] = 'css';
+              $data['deleteItem'] = '<script src="'.base_url("assets/js/delete-item.js").'"></script>';
 			        $this->load->view('layout/home', $data);
 					break;
 				case 'petugas':					

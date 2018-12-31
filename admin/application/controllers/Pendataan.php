@@ -24,6 +24,7 @@ class Pendataan extends CI_Controller {
       $data['captoranghilang'] = 'Daftar Orang Hilang Proses Pencarian';
       $data['datatablescss'] = 'css';
       $data['datatables'] = 'datatables-orang';
+      $data['deleteItem'] = '<script src="'.base_url("assets/js/delete-item.js").'"></script>';
       $data['id'] = 1;
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
@@ -158,6 +159,7 @@ class Pendataan extends CI_Controller {
       $data['captoranghilang'] = 'Daftar Orang Hilang Ditemukan Hidup';
       $data['datatables'] = 'datatables-orang';
       $data['datatablescss'] = 'css';
+      $data['deleteItem'] = '<script src="'.base_url("assets/js/delete-item.js").'"></script>';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
@@ -182,6 +184,7 @@ class Pendataan extends CI_Controller {
       $data['captoranghilang'] = 'Daftar Orang Hilang Ditemukan Meninggal';
       $data['datatables'] = 'datatables-orang';
       $data['datatablescss'] = 'css';
+      $data['deleteItem'] = '<script src="'.base_url("assets/js/delete-item.js").'"></script>';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
@@ -206,6 +209,7 @@ class Pendataan extends CI_Controller {
       $data['captoranghilang'] = 'Daftar Orang Hilang Tidak Ditemukan';
       $data['datatables'] = 'datatables-orang';
       $data['datatablescss'] = 'css';
+      $data['deleteItem'] = '<script src="'.base_url("assets/js/delete-item.js").'"></script>';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
