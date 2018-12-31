@@ -79,7 +79,7 @@ class M_pendataan extends CI_Model {
           'nama_pelapor' => 'Nama Pelapor',
           'no_hp_pelapor' => 'No HP Pelapor',
           'id_bencana_alam' => 'Pilih Bencana Alam',
-          'id_hubungan_pelapor' => 'Pilih Hubungan dengan pelapor',
+          'id_hubungan_pelapor' => 'Pilih Hubungan Dengan Pelapor',
           'id_status_org_hilang' => 'Pilih Status Orang',          
         );
       }
@@ -156,7 +156,7 @@ class M_pendataan extends CI_Model {
                                     <button type="submit" class="btn cur-p btn-primary ti-pencil"></button>
                                   </form>
                                   <form action="'.base_url('pendataan/delete/$1').'" method="post">
-                                  <button type="submit" class="btn cur-p btn-danger ti-trash" onclick="return confirm(Are you sure to delete this item ?)"></button>
+                                    <button type="submit" class="btn cur-p btn-danger ti-trash" onclick="return confirm(are you sure to delete this item ?)"></button>
                                   </form>',
                                   'id')
                                 ->generate();

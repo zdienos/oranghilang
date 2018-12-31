@@ -151,7 +151,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['keterangan_lainnya']?></label>
               <div class="col-sm-9">
-                <textarea id="input-keterangan_lainnya" class="form-control" name="keterangan_lainnya" placeholder="<?=$label['id_bencana_alam']?>"></textarea>
+                <textarea id="input-keterangan_lainnya" class="form-control" name="keterangan_lainnya" placeholder="<?=$label['keterangan_lainnya']?>"></textarea>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>            
@@ -176,7 +176,7 @@
               <label class="col-sm-3 col-form-label"><?=$label['id_hubungan_pelapor']?></label>
               <div class="col-sm-9">
                 <select class="form-control" name="id_hubungan_pelapor" id="input-id_hubungan_pelapor">
-                  <option value="" style="display:none;" selected><?=$label['id_hubungan_pelapor']?>r</option>
+                  <option value="" style="display:none;" selected><?=$label['id_hubungan_pelapor']?></option>
                   <?php foreach($hubunganpelapor as $hp){?>
                     <option value="<?= $hp->id ?>"><?= $hp->nama_hubungan_pelapor ?></option>
                   <?php } ?>
@@ -186,7 +186,8 @@
             </div>
           </div>
         </div>
-        <button type="submit" id="button-submit" class="btn cur-p btn-primary">Tambah Data</button>
+        <a href="<?=base_url($this->uri->segment(1))?>" class="btn btn-danger">Batal</a>
+        <button type="submit" id="button-submit" class="btn cur-p btn-primary">Simpan</button>
       <?=form_close()?>
       </div>
     </div>

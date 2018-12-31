@@ -1,9 +1,8 @@
 <div class="container-fluid">
-  <h4 class="c-grey-900 mT-10 mB-30">Tambah Data Orang Hilang</h4>
+  <h4 class="c-grey-900 mT-10 mB-30">Detail Data Orang Hilang</h4>
   <div class="row">
     <div class="col-md-12">
-      <div class="bgc-white bd bdrs-3 p-20 mB-20">      
-      <?= form_open('pendataan/validate', array('id' => 'form-add', 'role' => 'form','enctype'=>'multipart/from-data'));?>
+      <div class="bgc-white bd bdrs-3 p-20 mB-20">
         <div class="row">
           <div class="col-md-6">
             <h4>Data Orang Hilang</h4><br>
@@ -168,8 +167,10 @@
             </div>
           </div>
         </div>
-      <?=form_close()?>
       </div>
+      <div class="form-group row">
+        <a href="<?=base_url($this->uri->segment(1).'/'.$this->session->userdata('redirect'))?>" class="btn btn-primary">Kembali</a>
+      </div> 
     </div>
   </div>
 </div>

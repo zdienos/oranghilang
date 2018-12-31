@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h4 class="c-grey-900 mT-10 mB-30">Tambah User</h4>
+  <h4 class="c-grey-900 mT-10 mB-30">Edit Data User</h4>
   <div class="row">
     <div class="col-md-12">
       <div class="bgc-white bd bdrs-3 p-20 mB-20">      
@@ -43,7 +43,8 @@
             </div>
           </div>         
         </div>
-        <button type="submit" id="button-submit" class="btn cur-p btn-primary">Tambah Data</button>
+        <a href="<?=base_url($this->uri->segment(1))?>" class="btn btn-danger">Batal</a>
+        <button type="submit" id="button-submit" class="btn cur-p btn-primary">Simpan</button>
       <?=form_close()?>
       </div>
     </div>

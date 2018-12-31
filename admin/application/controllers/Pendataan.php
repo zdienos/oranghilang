@@ -21,7 +21,7 @@ class Pendataan extends CI_Controller {
       $data['js_validation']='';
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(1);
-      $data['captoranghilang'] = 'Data Orang Hilang Proses Pencarian';
+      $data['captoranghilang'] = 'Daftar Orang Hilang Proses Pencarian';
       $data['datatablescss'] = 'css';
       $data['datatables'] = 'datatables-orang';
       $data['id'] = 1;
@@ -133,7 +133,13 @@ class Pendataan extends CI_Controller {
           $this->input->post('id_status_org_hilang')          
         );
           $data['success']=true;
-          $data['redirect'] = $this->session->userdata('redirect_back');
+          $redirect = array(
+            '1' => '',
+            '2' => 'ditemukanhidup',
+            '3' => 'ditemukanmeninggal',
+            '4' => 'tidakditemukan'
+          );
+          $data['redirect'] = $redirect[$this->input->post('id_status_org_hilang')];
         
       }
       echo json_encode($data);
@@ -149,7 +155,7 @@ class Pendataan extends CI_Controller {
       $data['js_validation']='';
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(2);
-      $data['captoranghilang'] = 'Data Orang Hilang Ditemukan Hidup';
+      $data['captoranghilang'] = 'Daftar Orang Hilang Ditemukan Hidup';
       $data['datatables'] = 'datatables-orang';
       $data['datatablescss'] = 'css';
       $data['jenkel'] = array(
@@ -173,7 +179,7 @@ class Pendataan extends CI_Controller {
       $data['js_validation']='';
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(3);
-      $data['captoranghilang'] = 'Data Orang Hilang Ditemukan Meninggal';
+      $data['captoranghilang'] = 'Daftar Orang Hilang Ditemukan Meninggal';
       $data['datatables'] = 'datatables-orang';
       $data['datatablescss'] = 'css';
       $data['jenkel'] = array(
@@ -197,7 +203,7 @@ class Pendataan extends CI_Controller {
       $data['js_validation']='';
       $data['view'] = 'menu/pendataan/orang_hilang';
       $data['oranghilang'] = $this->pendataan->getOrangHilang(4);
-      $data['captoranghilang'] = 'Data Orang Hilang Tidak Ditemukan';
+      $data['captoranghilang'] = 'Daftar Orang Hilang Tidak Ditemukan';
       $data['datatables'] = 'datatables-orang';
       $data['datatablescss'] = 'css';
       $data['jenkel'] = array(
@@ -344,7 +350,7 @@ class Pendataan extends CI_Controller {
   public function delete($id){
     if($this->input->server('REQUEST_METHOD') == 'POST'){
       $this->pendataan->deleteOrangHilang($id);
-      redirect('pendataan/'.$this->session->userdata('redirect_back'),'refresh');
+      redirect('pendataan/'.$this->session->userdata('redirect'),'refresh');
     }else{
       echo 'Method not allowed!';
     }

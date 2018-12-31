@@ -188,7 +188,8 @@
             </div>
           </div>
         </div>
-        <button type="submit" id="button-submit" class="btn cur-p btn-primary">Update Data</button>
+        <a href="<?=base_url($this->uri->segment(1).'/'.$this->session->userdata('redirect'))?>" class="btn btn-danger">Batal</a>
+        <button type="submit" id="button-submit" class="btn cur-p btn-primary">Simpan</button>
       <?=form_close()?>
       </div>
     </div>

@@ -6,7 +6,6 @@
         <center>
           <a a href="<?= base_url('bencana/add')?>"  class="btn cur-p btn-primary">Tambah Data</a>
         </center>
-        <br>
         <table class="table table-bordered table-striped" id="mytable">
         <thead>
           <tr>
