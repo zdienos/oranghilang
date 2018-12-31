@@ -210,6 +210,11 @@ class M_bencana extends CI_Model {
   public function deleteBencana($id){
     return $this->db->delete('bencana_alam',array('id' => $id));
   }
+
+  public function checkOrangIlangById($id)
+  {
+    return $this->db->select('id')->where('id_bencana_alam',$id)->get('orang_hilang')->num_rows();
+  }
 }
 
 /* End of file M_user.php */

@@ -132,7 +132,14 @@ public function update($id){
 
 public function delete($id){
   if($this->input->server('REQUEST_METHOD') == 'POST'){
-    $this->bencana->deleteBencana($id);
+    if (!$this->bencana->checkOrangIlangById($id)) {
+     $this->bencana->deleteBencana($id); 
+    }else{
+      echo "<script>
+      alert('Data tidak dapat dihapus');
+      window.location.href='".base_url('bencana')."';  
+      </script>";
+    }
     redirect('bencana','refresh');
   }
 }
