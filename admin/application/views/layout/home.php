@@ -11,6 +11,11 @@
       <?php if ($datatablescss): ?>
         <link rel="stylesheet" href="<?= base_url('assets/datatable/datatables/dataTables.bootstrap.css') ?>"/>
       <?php endif ?>
+      <style type="text/css">
+        .dataTables_wrapper{
+          min-height: 0 !important;
+        }
+      </style>
    </head>
    <body class="app">
     <style>
