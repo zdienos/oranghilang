@@ -115,7 +115,7 @@ class M_bencana extends CI_Model {
                                 <button type="submit" class="btn cur-p btn-success ti-eye"></button>
                               </form>
                               <form action="'.base_url('bencana/edit/$1').'" method="post">
-                                <button id="btnEdit" onclick="delete()" type="submit" class="btn cur-p btn-primary ti-pencil"></button>
+                                <button onclick="delete()" type="submit" class="btn cur-p btn-primary ti-pencil"></button>
                               </form>
                               <form action="'.base_url('bencana/delete/$1').'" method="post">
                                 <button id="btnDelete" onclick="delete()" type="submit" class="btn cur-p btn-danger ti-trash"></button>
