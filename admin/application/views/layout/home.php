@@ -72,6 +72,35 @@
                </div>
             </div>
             <main class="main-content bgc-grey-100">
+               <style type="text/css">
+                  .breadcumb{border-radius: 0!important}
+                </style>
+                <nav aria-label="breadcrumb" style="z-index: 999999">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item active"><a href="#">Home</a></li>                      
+                      <?php if ($this->uri->segment(1)&&!$this->uri->segment(2)&&!$this->uri->segment(3)): ?>
+                        <li class="breadcrumb-item"><?=ucfirst($this->uri->segment(1))?></li>
+                      <?php endif ?>
+                      <?php if ($this->uri->segment(1)&&$this->uri->segment(2)&&!$this->uri->segment(3)): ?>
+                        <li class="breadcrumb-item active">
+                          <a href="<?=base_url($this->uri->segment(1))?>">
+                            <?=ucfirst($this->uri->segment(1))?>
+                          </a>
+                        </li>
+                        <li class="breadcrumb-item"><?=ucfirst($this->uri->segment(2))?></li>
+                      <?php endif ?>
+                      <?php if ($this->uri->segment(1)&&$this->uri->segment(2)&&$this->uri->segment(3)): ?>
+                        <li class="breadcrumb-item active">
+                          <a href="<?=base_url($this->uri->segment(1))?>">
+                            <?=ucfirst($this->uri->segment(1))?>
+                          </a>
+                        </li>                        
+                        <li class="breadcrumb-item"><?=ucfirst($this->uri->segment(2))?></li>
+                      <?php endif ?>
+                      <!-- <li class="breadcrumb-item"><a href="#">Library</a></li>
+                      <li class="breadcrumb-item active">Data</li>-->
+                    </ol>
+                  </nav>
                <div id="mainContent">
                  <?php $this->load->view($view)?>
                </div>

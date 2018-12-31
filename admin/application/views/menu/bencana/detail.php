@@ -1,9 +1,8 @@
 <div class="container-fluid">
-  <h4 class="c-grey-900 mT-10 mB-30">Tambah Data Bencana Alam</h4>
+  <h4 class="c-grey-900 mT-10 mB-30">Detail Data Bencana Alam</h4>
   <div class="row">
     <div class="col-md-12">
-      <div class="bgc-white bd bdrs-3 p-20 mB-20">      
-      <?= form_open('bencana/validate', array('id' => 'form-add', 'role' => 'form','enctype'=>'multipart/from-data'));?>
+      <div class="bgc-white bd bdrs-3 p-20 mB-20">            
         <div class="row">
           <div class="col-md-6">
             <h4>Data Bencana Alam</h4><br>
@@ -76,15 +75,16 @@
               <div class="col-sm-9">
                 <select name="id_villages" class="form-control" id="input-id_villages" disabled>
                   <option><?= $detail->name_villages ?></option>
-                
                 </select>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>
           </div>
-        </div>
-      <?=form_close()?>
+        </div>  
       </div>
+      <div class="form-group row">
+              <a href="<?=base_url($this->uri->segment(1))?>" class="btn btn-primary">Kembali</a>
+        </div>    
     </div>
   </div>
 </div>

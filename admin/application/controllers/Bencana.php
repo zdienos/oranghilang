@@ -6,6 +6,12 @@ class Bencana extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
+    if(!$this->session->userdata('login')){
+      redirect('error/error_401','refresh');
+    }    
+    if (strcasecmp($this->session->userdata('user_grup'),'writer') == 0) {
+      redirect('error/error_403','refresh');      
+    }
     $this->load->model('M_bencana','bencana');
     $this->load->library('form_validation');
     $this->form_validation->set_error_delimiters('', '');
@@ -14,21 +20,12 @@ class Bencana extends CI_Controller {
 
   public function index()
   {   
-    if($this->session->userdata('login')){
-      if ($this->session->userdata('user_grup') == 'admin' || $this->session->userdata('user_grup') == 'petugas') {
-        $data['view'] = 'menu/bencana/bencana';
-        $data['bencana'] = $this->bencana->getBencana();
-        $data['js_validation'] = '';
-        $data['datatablescss'] = 'css';
-        $data['datatables'] = 'datatables-bencana';
-        $this->load->view('layout/home', $data);
-      }else{
-       redirect('error/error_403','refresh');
-     }      
-   }
-  else{
-    redirect('error/error_401','refresh');
-  }
+  $data['view'] = 'menu/bencana/bencana';
+  $data['bencana'] = $this->bencana->getBencana();
+  $data['js_validation'] = '';
+  $data['datatablescss'] = 'css';
+  $data['datatables'] = 'datatables-bencana';
+  $this->load->view('layout/home', $data);
 }
 
 public function json(){

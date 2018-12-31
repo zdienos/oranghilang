@@ -4,6 +4,8 @@ $(document).ready(function() {
 	$('#form-add').submit(function(e){
 		e.preventDefault();
 		var fa = $(this);
+		$('#form-add').find(':submit').attr("disabled", "disabled");
+		$('#form-add').find(':submit').html("Menyimpan...");
 		$.ajax({
 			type: "POST",
 			url: fa.attr('action'), 
@@ -14,6 +16,8 @@ $(document).ready(function() {
 					window.location.href=base_url+"bencana";
 
 				}else if (data.error == true) {
+					$('#form-add').find(':submit').attr("disabled", false);
+					$('#form-add').find(':submit').html("Simpan");
 					$.each(data.error_msg, function(key, value) {
 						if (value) {
 							console.log(value);						
@@ -25,6 +29,8 @@ $(document).ready(function() {
 						
 					});
 				}else if(data.wrong == true){
+					$('#form-add').find(':submit').attr("disabled", false);
+					$('#form-add').find(':submit').html("Simpan");
 					$('#info').html(data.wrong_msg);			            	
 				}	
 			}

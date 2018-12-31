@@ -66,6 +66,8 @@
 		    $('#form').submit(function(e){
 		    	e.preventDefault();
 		    	var fa = $(this);
+		    	$('#form').find(':submit').attr("disabled", "disabled");
+            	$('#form').find(':submit').html("Submitting...");
 		        $.ajax({
 		            type: "POST",
 		            url: fa.attr('action'), 
@@ -83,11 +85,15 @@
 					          }, 2000);
 
 		                }else if (data.error == true) {
+		                	$('#form').find(':submit').attr("disabled", false);
+            				$('#form').find(':submit').html("Login");
 			                $.each(data.error_msg, function(key, value) {			                	
 			                    $('#input-' + key).addClass('is-invalid');
 			                    $('#input-' + key).parents('.form-group').find('#error').html(value);
 			                });
 			            }else if(data.wrong == true){
+			            	$('#form').find(':submit').attr("disabled", false);
+            				$('#form').find(':submit').html("Login");
 			            	$('#info').html(data.wrong_msg);			            	
 			           	}	
 		            }

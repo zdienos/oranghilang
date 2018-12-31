@@ -14,9 +14,9 @@
             <th>ID Bencana</th>
             <th>Jenis Bencana Alam</th>
             <th>Provinsi</th>
-            <th>Regenci</th>
-            <th>District</th>
-            <th>Village</th>
+            <th>Kota/Kabupaten</th>
+            <th>Kecamatan</th>
+            <th>Desa</th>
             <th>Nama Bencana</th>
             <th>Tanggal</th>
             <th>Keterangan</th>
