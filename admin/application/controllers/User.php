@@ -38,8 +38,12 @@ class User extends CI_Controller {
   }
   
   public function json(){
-    header('Content-Type: application/json');
-    echo $this->user->json();
+    if($this->input->server('REQUEST_METHOD') == 'POST'){
+      header('Content-Type: application/json');
+      echo $this->user->json();
+    }else{
+      echo 'Method not allowed!';
+    }
   }
 
 	public function add()

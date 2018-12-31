@@ -360,8 +360,12 @@ class Pendataan extends CI_Controller {
   }
 
   public function json($id){
-    header('Content-Type: application/json');
-    echo $this->pendataan->json($id);
+    if($this->input->server('REQUEST_METHOD') == 'POST'){
+      header('Content-Type: application/json');
+      echo $this->pendataan->json($id);
+    }else{
+      echo 'Method not allowed!';
+    }
   }
 }
 
