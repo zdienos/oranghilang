@@ -5,7 +5,13 @@ class Berita extends CI_Controller {
 	
 	public function __construct()
 	{
-		parent::__construct();
+    parent::__construct();
+    if(!$this->session->userdata('login')){
+      redirect('error/error_401','refresh');
+    }    
+    if (strcasecmp($this->session->userdata('user_grup'),'petugas') == 0) {
+      redirect('error/error_403','refresh');      
+    }
 		$this->load->model('m_berita','berita');
 		$this->load->library('form_validation');
 		$this->load->library('datatables');
