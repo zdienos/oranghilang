@@ -141,10 +141,9 @@ class Pendataan extends CI_Controller {
             '4' => 'tidakditemukan'
           );
           $data['redirect'] = $redirect[$this->input->post('id_status_org_hilang')];
-        
-      }
-      echo json_encode($data);
+      } 
     }
+    echo json_encode($data);
   }
 }
 
