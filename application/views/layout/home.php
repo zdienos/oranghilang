@@ -26,9 +26,9 @@
 					<div class="nav-drop">
 						<ul>
 							<li class="active visible-sm visible-xs"><a href="<?=base_url()?>assets/#">Home</a></li>
-							<li><a href="<?php echo base_url('index.php/home'); ?>" >Beranda</a></li>
+							<li><a href="<?php echo base_url('home'); ?>" >Beranda</a></li>
 							<li><a href="<?=base_url()?>assets/#" >Data Profil</a></li>
-							<li><a href="<?php echo base_url('index.php/berita'); ?>">Berita</a></li>							
+							<li><a href="<?php echo base_url('berita'); ?>">Berita</a></li>							
 						</ul>
 						<div class="drop-holder visible-sm visible-xs">
 							<span>Follow Us</span>
