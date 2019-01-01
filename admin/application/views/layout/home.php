@@ -6,7 +6,10 @@
       <title>Dashboard</title>
       <style>#loader{transition:all .3s ease-in-out;opacity:1;visibility:visible;position:fixed;height:100vh;width:100%;background:#fff;z-index:90000}#loader.fadeOut{opacity:0;visibility:hidden}.spinner{width:40px;height:40px;position:absolute;top:calc(50% - 20px);left:calc(50% - 20px);background-color:#333;border-radius:100%;-webkit-animation:sk-scaleout 1s infinite ease-in-out;animation:sk-scaleout 1s infinite ease-in-out}@-webkit-keyframes sk-scaleout{0%{-webkit-transform:scale(0)}100%{-webkit-transform:scale(1);opacity:0}}@keyframes sk-scaleout{0%{-webkit-transform:scale(0);transform:scale(0)}100%{-webkit-transform:scale(1);transform:scale(1);opacity:0}}</style>
       <link href="<?=base_url()?>assets/style.css" rel="stylesheet">   
-      <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+      <?php echo isset($editor) ? '' : $editor = false; ?>
+      <?php if ($editor): ?>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+      <?php endif?>
       <?php echo isset($datatablescss) ? '' : $datatablescss = false; ?>
       <?php if ($datatablescss): ?>
         <link rel="stylesheet" href="<?= base_url('assets/datatable/datatables/dataTables.bootstrap.css') ?>"/>
@@ -114,8 +117,6 @@
          </div>
       </div>      
       <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-      <script src="<?php echo base_url('assets/datatable/datatables/jquery.dataTables.js') ?>" ></script>
-      <script src="<?php echo base_url('assets/datatable/datatables/dataTables.bootstrap.js') ?>"></script>
       <script>var base_url = '<?= base_url() ?>';</script>
       <script type="text/javascript" src="<?= base_url('assets/vendor.js')?>"></script><script type="text/javascript" src="<?=base_url('assets/bundle.js')?>"></script>
       <?php echo isset($js_validation) ? '' : $js_validation = false; ?>
@@ -127,20 +128,21 @@
       <?php if ($dropdown): ?>
          <script type="text/javascript" src="<?= base_url('assets/js/');echo $dropdown?>.js"></script>
       <?php endif ?>   
-
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
-      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
       <?php
         echo isset($deleteItem) ? $deleteItem : '';
       ?>
       <?php echo isset($editor) ? '' : $editor = false; ?>
       <?php if ($editor): ?>
-         <script type="text/javascript" src="<?= base_url('assets/js/'.$editor)?>.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+        <script type="text/javascript" src="<?= base_url('assets/js/'.$editor)?>.js"></script>
       <?php endif ?>
 
       <?php echo isset($datatables) ? '' : $datatables = false; ?>
       <?php if ($datatables): ?>
-         <script type="text/javascript" src="<?= base_url('assets/js/'.$datatables)?>.js"></script>
+        <script src="<?php echo base_url('assets/datatable/datatables/jquery.dataTables.js') ?>" ></script>
+        <script src="<?php echo base_url('assets/datatable/datatables/dataTables.bootstrap.js') ?>"></script>
+        <script type="text/javascript" src="<?= base_url('assets/js/'.$datatables)?>.js"></script>
       <?php endif ?>
       <?php echo isset($js) ? '' : $js = false; ?>
       <?php if ($js): ?>

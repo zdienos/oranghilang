@@ -3,6 +3,8 @@ $(document).ready(function() {
 	$('#form-add').submit(function(e){
 		e.preventDefault();				
 		var fa = $(this);
+		$('#form-add').find(':submit').attr("disabled", "disabled");
+		$('#form-add').find(':submit').html("Menyimpan...");
 		var formData = new FormData($("#form-add")[0]);
 		$.ajax({
 			type: "POST",
@@ -18,6 +20,8 @@ $(document).ready(function() {
 					window.location.href=base_url+"berita";
 
 				}else if (data.error == true) {
+					$('#form-add').find(':submit').attr("disabled", false);
+					$('#form-add').find(':submit').html("Simpan");
 					if (data.wrong_msg) {
 						$('#input-foto_header').addClass('is-invalid');
 						$('#input-foto_header').parents('.form-group').find('#error').html(data.wrong_msg);
@@ -37,6 +41,8 @@ $(document).ready(function() {
 						
 					});
 				}else if(data.wrong == true){
+					$('#form-add').find(':submit').attr("disabled", false);
+					$('#form-add').find(':submit').html("Simpan");
 					console.log(data.wrong_msg);
 					$('#info').html(data.wrong_msg);		            	
 				}	

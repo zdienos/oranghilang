@@ -42,7 +42,7 @@
             </div>
           </div>         
         </div>
-        <button type="submit" id="button-submit" class="btn cur-p btn-primary">Tambah Data</button>
+        <button type="submit" id="button-submit" class="btn cur-p btn-primary">Simpan</button>
       <?=form_close()?>
       </div>
     </div>

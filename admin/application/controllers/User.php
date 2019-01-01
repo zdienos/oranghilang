@@ -6,10 +6,16 @@ class User extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		if(!$this->session->userdata('login')){
+	      redirect('error/error_401','refresh');
+	    }    
+	    if (strcasecmp($this->session->userdata('user_grup'),'writer') == 0 && strcasecmp($this->session->userdata('user_grup'),'petugas') == 0) {
+	      redirect('error/error_403','refresh');      
+	    }
 		$this->load->model('m_user','user');
-    $this->load->library('form_validation');
-    $this->load->library('datatables');
-    $this->form_validation->set_error_delimiters('', '');
+    	$this->load->library('form_validation');
+    	$this->load->library('datatables');
+    	$this->form_validation->set_error_delimiters('', '');
 	}
 
 	public function index()

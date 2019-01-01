@@ -3,6 +3,8 @@ $(document).ready(function() {
 	$('#form-add').submit(function(e){
 		e.preventDefault();
 		var fa = $(this);
+		$('#form-add').find(':submit').attr("disabled", "disabled");
+		$('#form-add').find(':submit').html("Menyimpan...");
 		var formData = new FormData($("#form-add")[0]);
 		$.ajax({
 			type: "POST",
@@ -16,6 +18,8 @@ $(document).ready(function() {
 				if (data.success == true) {          
 					window.location.href=base_url+"pendataan/"+data.redirect;
 				}else if (data.error == true) {
+					$('#form-add').find(':submit').attr("disabled", false);
+					$('#form-add').find(':submit').html("Simpan");
 					if (data.wrong_msg) {
 						console.log(data.wrong_msg);
 						$('#input-foto').addClass('is-invalid');
@@ -31,6 +35,8 @@ $(document).ready(function() {
 						}
 					});
 				}else if(data.wrong == true){
+					$('#form-add').find(':submit').attr("disabled", false);
+					$('#form-add').find(':submit').html("Simpan");
 					$('#info').html(data.wrong_msg);			            	
 				}	
 			}
