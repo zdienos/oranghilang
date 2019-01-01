@@ -116,7 +116,7 @@
             <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600"><span>Copyright © 2017 Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a>. All rights reserved.</span></footer>
          </div>
       </div>      
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+      <script src="<?= base_url('assets/js/jquery-2.1.4.min.js')?>"></script> 
       <script>var base_url = '<?= base_url() ?>';</script>
       <script type="text/javascript" src="<?= base_url('assets/vendor.js')?>"></script><script type="text/javascript" src="<?=base_url('assets/bundle.js')?>"></script>
       <?php echo isset($js_validation) ? '' : $js_validation = false; ?>
