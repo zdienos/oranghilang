@@ -16,8 +16,16 @@ $(document).ready(function() {
 		    processData: false,
 			success: function(data){
 				if (data.success == true) {
-					console.log(data.success);
-					window.location.href=base_url+"berita";
+					swal({
+			          title: "Berhasil",
+			          text: "Data Berhasil Disimpan",
+			          icon: "success",
+			          buttons: false,
+			          timer: 3000,
+			        });
+					setTimeout(function(){
+						window.location.href=base_url+"berita";						
+					},3000);
 
 				}else if (data.error == true) {
 					$('#form-add').find(':submit').attr("disabled", false);

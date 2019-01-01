@@ -121,7 +121,8 @@
       <script type="text/javascript" src="<?= base_url('assets/vendor.js')?>"></script><script type="text/javascript" src="<?=base_url('assets/bundle.js')?>"></script>
       <?php echo isset($js_validation) ? '' : $js_validation = false; ?>
       <?php if ($js_validation): ?>
-         <script type="text/javascript" src="<?= base_url('assets/js/validation/');echo $js_validation?>.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript" src="<?= base_url('assets/js/validation/');echo $js_validation?>.js"></script>
       <?php endif ?>
       
       <?php echo isset($dropdown) ? '' : $dropdown = false; ?>
@@ -153,8 +154,8 @@
          <script type="text/javascript" src="<?= base_url('assets/js/'.$js2)?>.js"></script>
       <?php endif ?>
 	    <?php echo isset($id) ? '' : $id = false; ?>
-        <?php if ($id): ?>
+      <?php if ($id): ?>
           <script type="text/javascript"> const id = <?= $id ?></script>
-        <?php endif ?>
+      <?php endif ?>      
 	  </body>
 </html>

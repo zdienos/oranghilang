@@ -13,8 +13,16 @@ $(document).ready(function() {
 			dataType: "json",  
 			success: function(data){
 				if (data.success == true) {
-					window.location.href=base_url+"bencana";
-
+					swal({
+			          title: "Berhasil",
+			          text: "Data Berhasil Disimpan",
+			          icon: "success",
+			          buttons: false,
+			          timer: 3000,
+			        });
+					setTimeout(function(){
+						window.location.href=base_url+"bencana";						
+					},3000);
 				}else if (data.error == true) {
 					$('#form-add').find(':submit').attr("disabled", false);
 					$('#form-add').find(':submit').html("Simpan");
