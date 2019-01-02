@@ -29,7 +29,10 @@ class M_pendataan extends CI_Model {
 
        ['field' => 'umur',
       'label' => 'Umur',
-      'rules' => 'trim|required'],
+      'rules' => 'trim|required|numeric',
+      'errors' => array(
+        'numeric' => 'Umur Harus Berupa Nomor'
+      )],
 
       ['field' => 'id_kategori_umur',
       'label' => 'Kategori Umur',
@@ -51,9 +54,16 @@ class M_pendataan extends CI_Model {
         [
           'field' => 'id_status_org_hilang',
           'label' => 'Status',
-          'rules' => 'required'],
-
-        ];
+          'rules' => 'required'
+        ],
+        [
+          'field' => 'no_hp_pelapor',
+          'label' => 'No HP Pelapor',
+          'rules' => 'numeric',
+          'errors' => array(
+            'numeric' => 'No Hp Pelapor Harus Berupa Nomor'
+          )
+        ]];
       }
 
       public function label()
@@ -94,10 +104,8 @@ class M_pendataan extends CI_Model {
           'id_jenis_kelamin' => form_error('id_jenis_kelamin'),
           'marga_suku' => form_error('marga_suku'),
           'warna_kulit' => form_error('warna_kulit'),
-          'baju_terakhir' => form_error('baju_terakhir
-            '),
-          'celana_terakhir' => form_error('celana_terakhir
-            '),
+          'baju_terakhir' => form_error('baju_terakhir'),
+          'celana_terakhir' => form_error('celana_terakhir'),
           'id_kategori_umur' => form_error('id_kategori_umur'),
           'foto' => form_error('foto'),
           'lokasi_terakhir' => form_error('lokasi_terakhir'),
