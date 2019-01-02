@@ -276,6 +276,7 @@ class Pendataan extends CI_Controller {
       }else{                    
         if ($this->input->post('foto')=='hapus') {          
           $foto = '';
+          $cek = 'oke';
         }
         $nama =$this->input->post('nama_lengkap');
           $tanggal = date("Y_m_d H:i:s");
@@ -289,13 +290,17 @@ class Pendataan extends CI_Controller {
             if ( ! $this->upload->do_upload('foto')){
               $data['error'] = true;
               $data['wrong_msg'] = $this->upload->display_errors();
+              $cek = 'gak';
             } else{
-              $foto = $this->upload->data('file_name');              
+              $foto = $this->upload->data('file_name');
+              $cek = 'oke';              
             }
         }else{
           $foto = $this->pendataan->getFotoById($id)->foto;
+          $cek = 'oke';
         }
-        if($this->pendataan->mEditOrangHilang(
+        if ($cek == 'oke') {
+         if($this->pendataan->mEditOrangHilang(
           $id,
           $this->input->post('nama_lengkap',TRUE),
           $this->input->post('nama_panggilan',TRUE),
@@ -350,7 +355,8 @@ class Pendataan extends CI_Controller {
             '4' => 'tidakditemukan'
           );
           $data['redirect'] = $redirect[$this->input->post('id_status_org_hilang')];
-        }        
+        } 
+        }
       }
       echo json_encode($data);
     }

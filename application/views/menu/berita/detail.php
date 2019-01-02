@@ -39,7 +39,6 @@
 			</div>
 
 			<div class="col-md-4" style="">
-					
 	                <div class="sidebar-widget-area" style="margin-bottom: 30px">
 	                    <h5 class="title" style="">Tag</h5>
 	                    <div class="widget-content">
@@ -78,11 +77,8 @@
 	                            </div>
 	                        </div>
 	                        <!-- Single Blog Post -->
-	                        
 	                    </div>
 	                </div>
-
-
 			</div>		
 		</div>
 	</section>

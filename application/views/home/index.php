@@ -14,17 +14,17 @@
 	<div class="container">
 		<u><h1>Temukan Keluarga Anda</h1><br></u>
 		<div class="row">
-			<div class="col-3">
+			<div class="col-md-3">
 				<select class="form-control" style="height: 100%;width: 100%;font-size: 15px">
 					<option>AASDASDASDASDSA</option>
 					<option>AASDASDASDASDSA</option>
 					<option>AASDASDASDASDSA</option>
-				</select>
+				</select><br>
 			</div>
-			<div class="col-7">
-				<input style="height: 100%;width: 100%;font-size: 15px" type="text" name="" class="form-control" placeholder="Ketikkan nama orang yang hilang">
+			<div class="col-md-7">
+				<input style="height: 100%;width: 100%;font-size: 15px" type="text" name="" class="form-control" placeholder="Ketikkan nama orang yang hilang"><br>
 			</div>
-			<div class="col-2">
+			<div class="col-md-2">
 				<button class="btn btn-primary" style="width: 100%;height: 100%;font-size: 18px"> Search</button>
 			</div>
 		</div>

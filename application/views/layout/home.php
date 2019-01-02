@@ -15,13 +15,13 @@
 </head>
 <body>
 	
-<div id="wrapper">
+<div id="wrapper">	
 		<header class="header whiteHeader">
 			<div class="container">
-				<div class="logo"><a href="<?=base_url()?>assets/#"></a></div>
+				<div class="logo"><a href="<?=base_url()?>#">OrangHilang</a></div>
 				<nav id="nav">
 					<div class="opener-holder">
-						<a href="<?=base_url()?>assets/#" class="nav-opener"><span></span></a>
+						<a href="<?=base_url()?>#" class="nav-opener"><span></span></a>
 					</div>
 					<div class="nav-drop">
 						<ul>
@@ -76,7 +76,7 @@
 </html>
 <style type="text/css">
 	.whiteHeader{
-		background-color: transparent;
+		background-color: transparent!important;
 	}
 </style>
 <script type="text/javascript">
