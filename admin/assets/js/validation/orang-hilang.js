@@ -34,15 +34,17 @@ $(document).ready(function() {
 						$('#input-foto').addClass('is-invalid');
 						$('#input-foto').parents('.form-group').find('#error').html(data.wrong_msg);
 					};
-					$.each(data.error_msg, function(key, value) {
-						if (value) {
-							console.log(value);						
-							$('#input-' + key).addClass('is-invalid');
-							$('#input-' + key).parents('.form-group').find('#error').html(value);													
-						}else{
-							$('#input-' + key).addClass('is-valid');
-						}
-					});
+					if (data.error_msg) {
+						$.each(data.error_msg, function(key, value) {
+							if (value) {
+								console.log(value);						
+								$('#input-' + key).addClass('is-invalid');
+								$('#input-' + key).parents('.form-group').find('#error').html(value);													
+							}else{
+								$('#input-' + key).addClass('is-valid');
+							}
+						});
+					}
 				}else if(data.wrong == true){
 					$('#form-add').find(':submit').attr("disabled", false);
 					$('#form-add').find(':submit').html("Simpan");
