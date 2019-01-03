@@ -16,7 +16,7 @@
 <body>
 	
 <div id="wrapper">	
-		<header class="header whiteHeader">
+		<header class="header darkHeader">
 			<div class="container">
 				<div class="logo"><a href="<?=base_url()?>#">OrangHilang</a></div>
 				<nav id="nav">
@@ -27,7 +27,7 @@
 						<ul>
 							<li class="active visible-sm visible-xs"><a href="<?=base_url()?>assets/#">Home</a></li>
 							<li><a href="<?php echo base_url('home'); ?>" >Beranda</a></li>
-							<li><a href="<?=base_url()?>assets/#" >Data Profil</a></li>
+							<li><a href="<?=base_url('oranghilang')?>" >Data Orang Hilang</a></li>
 							<li><a href="<?php echo base_url('berita'); ?>">Berita</a></li>							
 						</ul>
 						<div class="drop-holder visible-sm visible-xs">
@@ -79,17 +79,4 @@
 		background-color: transparent!important;
 	}
 </style>
-<script type="text/javascript">
-	$(window).scroll(function() {    
-
-    var scroll = $(window).scrollTop();
-
-    if (scroll >= 200) {
-    	$(".header").removeClass("whiteHeader");
-        $(".header").addClass("darkHeader");
-    } else {
-    	$(".header").addClass("whiteHeader");
-        $(".header").removeClass("darkHeader");    
-    }
-});
 </script>

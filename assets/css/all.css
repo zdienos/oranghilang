@@ -86,7 +86,7 @@ p {
   /* Prevent Chrome bug because of on-scroll effect in other section */ }
 
   .darkHeader {
-  background-color:gray;
+  background-color:#d85825;
   }
 
   .header .btn {
@@ -110,7 +110,7 @@ p {
     overflow: hidden; }
   #nav .nav-drop ul li a {
     overflow: hidden;
-    color: #000000 }  
+    color: #ffffff }  
   #nav ul {
     padding: 9px 0 5px;
     margin: 0; }
