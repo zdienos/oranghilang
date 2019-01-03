@@ -79,35 +79,21 @@
 					<span class="sr-only">Next</span>
 				</a>
 			</div>
-
-				<div class="row">
-					<div class="col-sm-12"  style="margin-top:5%">
-          <?php foreach($kotak as $data){?>
-						<div class="col-xs-6">
-						<!-- Single Blog Post -->
-							<div class="single-blog-post wow fadeInUpBig" data-wow-delay="0.2s">
-							<!-- Post Thumbnail -->
-								<div class="post-thumbnail">
-									<img src="<?=base_url('admin/assets/berita/foto/'.$data->foto_header)?>" alt="" style="width:100%;height:240px">
-								</div>
-							<!-- Post Content -->
-								<div class="post-content" style="padding-top:10px;padding-left:10px;padding-bottom: 10px">
-									<div class="post-meta">
-										<p>
-										<a href="#" class="post-author">Katy Liu</a> on Sep 29, 2017 at 9:48 am </p>
-									</div>
-									<a href="#" class="headline">
-										<h5 style="font-weight:bold;font-color: orange;text-decoration: none;color: orange;font-size: 1.3vw;"><?= $data->judul_berita ?></h5>
-									</a
-										<!-- Post Meta -->
-								</div>
-							</div>
-						</div>
-					<?php } ?>						
-					</div>
-					<div class="text-right" style="position: relative;">
+<div class="text-right" style="position: relative;">
 						<br>
 						<h3><a href="#">Read More ...</a></h3>
+					</div>
+				<h3>Orang Hilang Terbaru</h3><br>
+				<div class="row">
+					<div class="col-xs-4" >
+						<img src="<?=base_url('assets/images/default-user-image.png')?>" width="80%">
+          				<h3><br>Nama : Alfian Dimas Sugara</h3>
+					</div>
+					<div class="col-xs-4" >
+          				<h1>ahah</h1>			
+					</div>
+					<div class="col-xs-4" >
+          				<h1>ahah</h1>			
 					</div>
 				</div>
 			</div>
@@ -116,7 +102,7 @@
 						<div class="row">
 							<div class="title">
 								<h5>Twitter BMKG</h5>
-							</div>
+							</div><br>
 							<div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
 								<a class="twitter-timeline" class="twitter" style="margin-left:2%" data-width="auto" data-height="600" data-theme="dark" href="https://twitter.com/infoBMKG?ref_src=twsrc%5Etfw">Tweets by infoBMKG</a> <script async src="https	://platform.twitter.com/widgets.js" charset="utf-8"></script>
 							</div>

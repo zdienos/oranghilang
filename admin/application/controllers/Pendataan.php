@@ -67,32 +67,7 @@ class Pendataan extends CI_Controller {
       if (!$this->form_validation->run()) {
         $data['error'] = true;
         $data['error_msg'] = $this->pendataan->error_msg();
-      }else{                    
-        if($this->pendataan->mAddOrangHilang(
-          $this->input->post('nama_lengkap',TRUE),
-          $this->input->post('nama_panggilan',TRUE),
-          $this->input->post('alamat',TRUE),
-          $this->input->post('umur',TRUE),
-          $this->input->post('id_jenis_kelamin',TRUE),
-          $this->input->post('marga_suku',TRUE),
-          $this->input->post('warna_kulit',TRUE),
-          $this->input->post('baju_terakhir',TRUE),
-          $this->input->post('celana_terakhir',TRUE),
-          $this->input->post('id_kategori_umur',TRUE),
-          $this->input->post('foto',TRUE),
-          $this->input->post('lokasi_terakhir',TRUE),
-          $this->input->post('lat_lokasi',TRUE),
-          $this->input->post('lon_lokasi',TRUE),
-          $this->input->post('nama_ayah',TRUE),
-          $this->input->post('nama_ibu',TRUE),
-          $this->input->post('keterangan_lainnya',TRUE),
-          $this->input->post('nama_pelapor',TRUE),
-          $this->input->post('no_hp_pelapor',TRUE),
-          $this->input->post('id_bencana_alam',TRUE),
-          $this->input->post('id_hubungan_pelapor',TRUE),
-          $this->input->post('id_status_org_hilang',TRUE)          
-        )){
-      }else{
+      }else{                            
         $foto='' ;        
         if ($this->input->post('foto')=='Klik Untuk Upload') {
           $foto = '';
@@ -147,7 +122,6 @@ class Pendataan extends CI_Controller {
             '4' => 'tidakditemukan'
           );
           $data['redirect'] = $redirect[$this->input->post('id_status_org_hilang')];
-      } 
     }
     echo json_encode($data);
   }
