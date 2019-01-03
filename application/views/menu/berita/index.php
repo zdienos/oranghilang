@@ -7,7 +7,7 @@
 	                    <div class="col-12 col-lg-11">
 	                        <div class="title">
 	                            <h5>Latest Articles</h5>
-	                        </div>	                    
+	                        </div>
 	                        <?php foreach ($model['berita'] as $data): ?>
 	                        <!-- Single Blog Post -->
 	                        <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">		                        	
@@ -28,7 +28,7 @@
 
 									    //if the string doesn't contain any space then it will cut without word basis.
 									    $string = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-									    $string .= '... <a href="'.base_url('berita/detail_berita/'.$data->id_berita).'">Read More</a>';
+									    $string .= '... <a href="'.base_url('berita/detail_berita/'.$data->slug).'">Read More</a>';
 									}
 									echo $string;
 	                                ?>

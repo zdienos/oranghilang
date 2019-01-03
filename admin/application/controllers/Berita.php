@@ -98,9 +98,13 @@ class Berita extends CI_Controller {
 					}
 				}
 				if ($foto_thumbnail!==''&&$foto_header!=='') {
+					$string=preg_replace('~[^\pL\d]+~u', '-', $this->input->post('judul_berita'));
+                	$trim=trim($string);
+                	$pre_slug=strtolower(str_replace(" ", "-", $trim));
+					$slug=$pre_slug.'.html';
 					$this->berita->mAddBerita(
 						$this->input->post('judul_berita'),
-						$this->input->post('isi'),$foto_header,$foto_thumbnail
+						$this->input->post('isi'),$foto_header,$foto_thumbnail,$slug
 					);
 					$tags = explode(',',rtrim($this->input->post('tag'),','));
 					$tagss = array_map('trim', $tags);

@@ -16,13 +16,21 @@ class Berita extends CI_Controller {
 		$this->load->view('layout/home', $data);
 	}
 
-	public function detail_berita($id)
+	public function detail_berita($slug)
 	{
-		$data['data'] = $this->berita->getBeritaById($id);
-		$data['tag'] = $this->berita->getTagsBeritaByIdBerita($id);
-		$data['berita_lain'] = $this->berita->getBeritaLain($id);
-		$data['view'] = 'menu/berita/detail';
-		$this->load->view('layout/home', $data);
+		if ($slug) {
+			if ($this->berita->checkSlug($slug)) {
+				$data['data'] = $this->berita->getBeritaById($slug);
+				$data['tag'] = $this->berita->getTagsBeritaByIdBerita($slug);
+				$data['berita_lain'] = $this->berita->getBeritaLain($slug);
+				$data['view'] = 'menu/berita/detail';
+				$this->load->view('layout/home', $data);		
+			}else{
+				redirect('error/error_404','refresh');
+			}
+		}else{
+			redirect('error/error_404','refresh');
+		}
 	}
 }
 

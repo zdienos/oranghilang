@@ -136,7 +136,7 @@ class M_berita extends CI_Model {
                 ->get('berita')->result();
     }
 
-    public function mAddBerita($judul_berita,$isi,$foto_header,$foto_thumbnail)
+    public function mAddBerita($judul_berita,$isi,$foto_header,$foto_thumbnail,$slug)
     {
         $object = array(
             'id_berita' => ''  , 
@@ -145,7 +145,8 @@ class M_berita extends CI_Model {
             'id_user'=>$this->session->userdata('id'),
             'foto_header'=>$foto_header,
             'foto_thumbnail'=>$foto_thumbnail,
-            'status'=>'0'    
+            'status'=>'0',
+            'slug' => $slug
         );
         return $this->db->insert('berita', $object);
     }

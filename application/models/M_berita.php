@@ -20,7 +20,7 @@ class M_berita extends CI_Model {
   public function view(){
     $this->load->library('pagination'); // Load librari paginationnya
     
-    $query = "SELECT id_berita,judul_berita,foto_thumbnail,isi,name,date FROM berita JOIN user on user.id=berita.id_user  ORDER BY `date` DESC "; // Query untuk menampilkan semua data siswa
+    $query = "SELECT id_berita,judul_berita,foto_thumbnail,isi,name,slug,date FROM berita JOIN user on user.id=berita.id_user  ORDER BY `date` DESC "; // Query untuk menampilkan semua data siswa
     
     $config['base_url'] = base_url('berita/index');
     $config['total_rows'] = $this->db->query($query)->num_rows();
@@ -69,19 +69,24 @@ class M_berita extends CI_Model {
     return $data;
   }
 
-  public function getBeritaById($id)
+  public function getBeritaById($slug)
   {
-    return $this->db->join('user','user.id=berita.id_user')->where('id_berita',$id)->get('berita')->row();
+    return $this->db->join('user','user.id=berita.id_user')->where('slug',$slug)->get('berita')->row();
   }
 
-  public function getTagsBeritaByIdBerita($id)
+  public function getTagsBeritaByIdBerita($slug)
   {
-    return $this->db->join('tag','tag.id_tag=tags_berita.id_tag')->where('id_berita',$id)->get('tags_berita')->result();
+    return $this->db->join('tag','tag.id_tag=tags_berita.id_tag')->join('berita','berita.id_berita=tags_berita.id_berita')->where('slug',$slug)->get('tags_berita')->result();
   }
 
-  public function getBeritalain($id)
+  public function getBeritalain($slug)
   {
-    return $this->db->select('id_berita,foto_thumbnail,judul_berita')->where_not_in('id_berita',array($id))->order_by('date', 'ASC')->get('berita', 2, 0)->result();
+    return $this->db->select('foto_thumbnail,judul_berita,slug')->where_not_in('slug',array($slug))->order_by('date', 'ASC')->get('berita', 2, 0)->result();
+  }
+
+  public function checkSlug($slug)
+  {
+    return $this->db->select('id_berita,slug')->where('slug', $slug)->get('berita')->num_rows();
   }
 
 }
