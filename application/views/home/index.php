@@ -79,7 +79,7 @@
 					<span class="sr-only">Next</span>
 				</a>
 			</div>
-<div class="text-right" style="position: relative;">
+				<div class="text-right" style="position: relative;">
 						<br>
 						<h3><a href="#">Read More ...</a></h3>
 					</div>
@@ -87,15 +87,36 @@
 				<div class="row">
 					<div class="col-xs-4" >
 						<img src="<?=base_url('assets/images/default-user-image.png')?>" width="80%">
-          				<h3><br>Nama : Alfian Dimas Sugara</h3>
+          				<h4><br><b>Nama Lengkap:</b> Alfian Dimas Sugara</h4>
+          				<h4><b>Nama Panggilan:</b> Samed</h4>
+          				<h4><b>Jenis Kelamin / Umur :</b> L/21</h4>
+          				<h4><b>Musibah :</b> Tsunami Selat Sunda</h4>
+          				<h4><b>Status :</b> Proses Pencarian</h4>
+          				<h3 class="text-right" style="padding-top: 5px"><b><a href="#">Detail</a></b></h3>
 					</div>
 					<div class="col-xs-4" >
-          				<h1>ahah</h1>			
+						<img src="<?=base_url('assets/images/default-user-image.png')?>" width="80%">
+          				<h4><br><b>Nama Lengkap:</b> Alfian Dimas Sugara</h4>
+          				<h4><b>Nama Panggilan:</b> Samed</h4>
+          				<h4><b>Jenis Kelamin / Umur :</b> L/21</h4>
+          				<h4><b>Musibah :</b> Tsunami Selat Sunda</h4>
+          				<h4><b>Status :</b> Proses Pencarian</h4>
+          				<h3 class="text-right" style="padding-top: 5px"><b><a href="#">Detail</a></b></h3>
 					</div>
 					<div class="col-xs-4" >
-          				<h1>ahah</h1>			
+						<img src="<?=base_url('assets/images/default-user-image.png')?>" width="80%">
+          				<h4><br><b>Nama Lengkap:</b> Alfian Dimas Sugara</h4>
+          				<h4><b>Nama Panggilan:</b> Samed</h4>
+          				<h4><b>Jenis Kelamin / Umur :</b> L/21</h4>
+          				<h4><b>Musibah :</b> Tsunami Selat Sunda</h4>
+          				<h4><b>Status :</b> Proses Pencarian</h4>
+          				<h3 class="text-right" style="padding-top: 5px"><b><a href="#">Detail</a></b></h3>
 					</div>
 				</div>
+				<div class="text-right" style="position: relative;">
+						<br>
+						<h3><a href="#">Read More ...</a></h3>
+					</div>
 			</div>
 				<div class="col-md-4">
 					<div class="world-latest-articles">
