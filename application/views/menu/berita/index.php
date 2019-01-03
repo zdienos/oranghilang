@@ -10,16 +10,14 @@
 	                        </div>	                    
 	                        <?php foreach ($model['berita'] as $data): ?>
 	                        <!-- Single Blog Post -->
-	                        <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
+	                        <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">		                        	
 	                            <!-- Post Thumbnail -->
 	                            <div class="post-thumbnail">
-	                                <img src="<?=base_url()?>/assets/images/b18.jpg" alt="">
+	                                <img src="<?=base_url('admin/assets/berita/foto/'.$data->foto_thumbnail)?>" alt="" width="100%">
 	                            </div>
 	                            <!-- Post Content -->
-	                            <div class="post-content">
-	                                <a href="<?php echo base_url('berita/detail_berita'); ?>" class="headline">
-	                                    <h5><?=$data->judul_berita?></h5>
-	                                </a>
+	                            <div class="post-content">	                                
+									<br><h2><?=$data->judul_berita?></h2>
 	                                <?php
 	                                $string = strip_tags($data->isi);
 									if (strlen($string) > 500) {
@@ -30,12 +28,10 @@
 
 									    //if the string doesn't contain any space then it will cut without word basis.
 									    $string = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-									    $string .= '... <a href="/this/story">Read More</a>';
+									    $string .= '... <a href="'.base_url('berita/detail_berita/'.$data->id_berita).'">Read More</a>';
 									}
 									echo $string;
 	                                ?>
-	                                
-	                                <!-- Post Meta -->
 	                                <div class="post-meta">
 	                                    <p>
 	                                    	<a href="#" class="post-author"><?=$data->name?></a> on 

@@ -10,14 +10,17 @@ class Berita extends CI_Controller {
 	}
 
 	public function index()
-	{
+	{		
 		$data['model'] = $this->berita->view(); 
 		$data['view'] = 'menu/berita/index';
 		$this->load->view('layout/home', $data);
 	}
 
-	public function detail_berita()
+	public function detail_berita($id)
 	{
+		$data['data'] = $this->berita->getBeritaById($id);
+		$data['tag'] = $this->berita->getTagsBeritaByIdBerita($id);
+		$data['berita_lain'] = $this->berita->getBeritaLain($id);
 		$data['view'] = 'menu/berita/detail';
 		$this->load->view('layout/home', $data);
 	}

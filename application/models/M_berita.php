@@ -10,11 +10,11 @@ class M_berita extends CI_Model {
   }
   
   public function getBeritaCarousel(){
-    return $this->db->order_by('id_berita','DESC')->limit(3,0)->get('berita')->result();
+    return $this->db->order_by('date','DESC')->limit(3,0)->get('berita')->result();
   }
 
   public function getBeritaKotak(){
-    return $this->db->order_by('id_berita','DESC')->limit(2,1)->get('berita')->result();
+    return $this->db->order_by('date','DESC')->limit(2,1)->get('berita')->result();
   }
 
   public function view(){
@@ -68,6 +68,22 @@ class M_berita extends CI_Model {
     
     return $data;
   }
+
+  public function getBeritaById($id)
+  {
+    return $this->db->join('user','user.id=berita.id_user')->where('id_berita',$id)->get('berita')->row();
+  }
+
+  public function getTagsBeritaByIdBerita($id)
+  {
+    return $this->db->join('tag','tag.id_tag=tags_berita.id_tag')->where('id_berita',$id)->get('tags_berita')->result();
+  }
+
+  public function getBeritalain($id)
+  {
+    return $this->db->select('id_berita,foto_thumbnail,judul_berita')->where_not_in('id_berita',array($id))->order_by('date', 'ASC')->get('berita', 2, 0)->result();
+  }
+
 }
 
 /* End of file M_user.php */
