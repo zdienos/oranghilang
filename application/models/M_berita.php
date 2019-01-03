@@ -10,17 +10,17 @@ class M_berita extends CI_Model {
   }
   
   public function getBeritaCarousel(){
-    return $this->db->order_by('date','DESC')->limit(3,0)->get('berita')->result();
+    return $this->db->order_by('date','DESC')->limit(3,0)->where('status',1)->get('berita')->result();
   }
 
   public function getBeritaKotak(){
-    return $this->db->order_by('date','DESC')->limit(2,1)->get('berita')->result();
+    return $this->db->order_by('date','DESC')->limit(2,1)->where('status',1)->get('berita')->result();
   }
 
   public function view(){
     $this->load->library('pagination'); // Load librari paginationnya
     
-    $query = "SELECT id_berita,judul_berita,foto_thumbnail,isi,name,slug,date FROM berita JOIN user on user.id=berita.id_user  ORDER BY `date` DESC "; // Query untuk menampilkan semua data siswa
+    $query = "SELECT id_berita,judul_berita,foto_thumbnail,isi,name,slug,date FROM berita JOIN user on user.id=berita.id_user WHERE status = 1  ORDER BY `date` DESC "; // Query untuk menampilkan semua data siswa
     
     $config['base_url'] = base_url('berita/index');
     $config['total_rows'] = $this->db->query($query)->num_rows();

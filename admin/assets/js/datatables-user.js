@@ -30,7 +30,7 @@ $(document).ready(function() {
       },
       processing: true,
       serverSide: true,
-      ajax: {"url": "http://localhost/stiki/admin/user/json", "type": "POST"},
+      ajax: {"url": base_url+"/user/json", "type": "POST"},
       columns: [
           {
             "data": "id",

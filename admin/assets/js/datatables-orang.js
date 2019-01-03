@@ -30,7 +30,7 @@ $(document).ready(function() {
       },
       processing: true,
       serverSide: true,
-      ajax: {"url": "http://localhost/stiki/admin/pendataan/json/"+id, "type": "POST"},
+      ajax: {"url": base_url+"/pendataan/json/"+id, "type": "POST"},
       columns: [
           {
             "data": "id",
