@@ -7,8 +7,8 @@
 	                    <div class="col-12 col-lg-11">
 	                        <div class="title">
 	                            <h5>Latest Articles</h5>
-	                        </div>
-
+	                        </div>	                    
+	                        <?php foreach ($model['berita'] as $data): ?>
 	                        <!-- Single Blog Post -->
 	                        <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
 	                            <!-- Post Thumbnail -->
@@ -18,76 +18,38 @@
 	                            <!-- Post Content -->
 	                            <div class="post-content">
 	                                <a href="<?php echo base_url('berita/detail_berita'); ?>" class="headline">
-	                                    <h5>Bencana Palu</h5>
+	                                    <h5><?=$data->judul_berita?></h5>
 	                                </a>
-	                                <p>Sejak gempa dan tsunami melanda Palu dan daerah sekitarnya di Sulawesi Tengah pada 28 September lalu, lebih ...</p>
+	                                <?php
+	                                $string = strip_tags($data->isi);
+									if (strlen($string) > 500) {
+
+									    // truncate string
+									    $stringCut = substr($string, 0, 200);
+									    $endPoint = strrpos($stringCut, ' ');
+
+									    //if the string doesn't contain any space then it will cut without word basis.
+									    $string = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+									    $string .= '... <a href="/this/story">Read More</a>';
+									}
+									echo $string;
+	                                ?>
+	                                
 	                                <!-- Post Meta -->
 	                                <div class="post-meta">
-	                                    <p><a href="#" class="post-author">Steven</a> on <a href="#" class="post-date">Des 29, 2018 at 9:48 am</a></p>
+	                                    <p>
+	                                    	<a href="#" class="post-author"><?=$data->name?></a> on 
+	                                    	<a href="#" class="post-date"><?=date('d F Y',strtotime($data->date))?></a>
+	                                	</p>
 	                                </div>
 	                            </div>
 	                        </div>
-
-
-	                        <!-- Single Blog Post -->
-	                        <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.3s">
-	                            <!-- Post Thumbnail -->
-	                            <div class="post-thumbnail">
-	                                <img src="<?=base_url()?>/assets/images/b18.jpg" alt="">
-	                            </div>
-	                            <!-- Post Content -->
-	                            <div class="post-content">
-	                                <a href="<?php echo base_url('berita/detail_berita'); ?>" class="headline">
-	                                    <h5>Bencana Palu</h5>
-	                                </a>
-	                                <p>Sejak gempa dan tsunami melanda Palu dan daerah sekitarnya di Sulawesi Tengah pada 28 September lalu, lebih ...</p>
-	                                <!-- Post Meta -->
-	                                <div class="post-meta">
-	                                    <p><a href="#" class="post-author">Steven</a> on <a href="#" class="post-date">Des 29, 2018 at 9:48 am</a></p>
-	                                </div>
-	                            </div>
-	                        </div>
-
-	                        <!-- Single Blog Post -->
-	                        <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.4s">
-	                            <!-- Post Thumbnail -->
-	                            <div class="post-thumbnail">
-	                                <img src="<?=base_url()?>/assets/images/b18.jpg" alt="">
-	                            </div>
-	                            <!-- Post Content -->
-	                            <div class="post-content">
-	                                <a href="#" class="headline">
-	                                    <h5>Bencana Palu</h5>
-	                                </a>
-	                                <p>Sejak gempa dan tsunami melanda Palu dan daerah sekitarnya di Sulawesi Tengah pada 28 September lalu, lebih ...</p>
-	                                <!-- Post Meta -->
-	                                <div class="post-meta">
-	                                    <p><a href="#" class="post-author">Steven</a> on <a href="#" class="post-date">Des 29, 2018 at 9:48 am</a></p>
-	                                </div>
-	                            </div>
-	                        </div>
-
-	                        <!-- Single Blog Post -->
-	                        <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.5s">
-	                            <!-- Post Thumbnail -->
-	                            <div class="post-thumbnail">
-	                                <img src="<?=base_url()?>/assets/images/b18.jpg" alt="">
-	                            </div>
-	                            <!-- Post Content -->
-	                            <div class="post-content">
-	                                <a href="#" class="headline">
-	                                    <h5>Bencana Palu</h5>
-	                                </a>
-	                                <p>Sejak gempa dan tsunami melanda Palu dan daerah sekitarnya di Sulawesi Tengah pada 28 September lalu, lebih ...</p>
-	                                <!-- Post Meta -->
-	                                <div class="post-meta">
-	                                    <p><a href="#" class="post-author">Steven</a> on <a href="#" class="post-date">Des 29, 2018 at 9:48 am</a></p>
-	                                </div>
-	                            </div>
-	                        </div>
+	                        <?php endforeach ?>
 	                    </div>
-
-	                
+	                    <?php
+						  // Tampilkan link-link paginationnya
+						  echo $model['pagination'];
+						  ?>
 	                </div>
             	</div>
 			</div>
