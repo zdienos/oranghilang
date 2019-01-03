@@ -71,7 +71,7 @@ p {
   left: 0;
   width: 100%;
   z-index: 99;
-  padding: 31px 0 32px;
+  padding: 10px;
   background:gray;
   position:fixed; /*trik posisi fix*/
   z-index:9999; /*supaya header selalu muncul di atas seluruh elemen*/
@@ -87,7 +87,7 @@ p {
 
   .darkHeader {
   background-color:gray;
-  height: 100px;}
+  }
 
   .header .btn {
     float: right;

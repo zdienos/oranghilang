@@ -38,33 +38,35 @@
 			<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:auto;height:auto">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>		
+					<?php $p=0; foreach ($berita as $data): ?>
+					<?php if ($p == 1): ?>
+						<li data-target="#myCarousel" data-slide-to="<?=$p++?>" class="active"></li>
+					<?php else: ?>
+						<li data-target="#myCarousel" data-slide-to="<?=$p++?>"></li>
+					<?php endif ?>					
+					<?php endforeach ?>					
 				</ol>
 
 				<!-- deklarasi carousel -->
       
 				<div class="carousel-inner" role="listbox">
-        <?php $no=0;  foreach($berita as $data){ $no++ ?>
-          <?php if($no == 1){?>
-            <div class="item active">
-						<img style="width:100%;height:400px" src="<?=base_url('admin/assets/berita/foto/'.$data->foto_header)?>" alt="">
-						<div class="carousel-caption">
-							<h1><?= $data->id_berita ?></h1>
-							<h5><?= $data->judul_berita ?></h5>
-						</div>
-					</div>
-          <?php }else { ?>
-            <div class="item">
-						<img style="width:100%;height:400px" src="<?=base_url('admin/assets/berita/foto/'.$data->foto_header)?>" alt="">
-						<div class="carousel-caption">
-							<h1><?= $data->judul_berita ?></h1>
-							<h5><?= $data->judul_berita ?></h5>
-						</div>
-					</div>
-          <?php }
-        } ?>				
+		        <?php $no=0;  foreach($berita as $data){ $no++ ?>
+		          <?php if($no == 1){?>
+		            <div class="item active">
+								<img style="width:100%;height:400px" src="<?=base_url('admin/assets/berita/foto/'.$data->foto_header)?>" alt="">
+								<div class="carousel-caption">
+									<h1><?= $data->judul_berita ?></h1>									
+								</div>
+							</div>
+		          <?php }else { ?>
+		            <div class="item">
+								<img style="width:100%;height:400px" src="<?=base_url('admin/assets/berita/foto/'.$data->foto_header)?>" alt="">
+								<div class="carousel-caption">
+									<h1><?= $data->judul_berita ?></h1>									
+								</div>
+							</div>
+		          <?php }
+		        } ?>				
 				</div>
       
 				<!-- membuat panah next dan previous -->
