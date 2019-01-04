@@ -26,6 +26,7 @@ class Bencana extends CI_Controller {
   $data['datatablescss'] = 'css';
   $data['datatables'] = 'datatables-bencana';
   $data['deleteItem'] = '<script src="'.base_url("assets/js/delete-item.js").'"></script>';
+  $data['title'] = 'oranghilang. | Bencana';
   $this->load->view('layout/home', $data);
 }
 
@@ -45,7 +46,12 @@ public function add(){
   $data['jenis_bencana'] = $this->bencana->getJenisBencanaAlam();
   $data['provinces'] = $this->bencana->getProvinces();
   $data['dropdown'] = 'dropdown-bencana';
+  $data['title'] = 'oranghilang. | Tambah Data Bencana';
   $this->load->view('layout/home', $data);
+}
+
+public function asd(){
+  echo 'asd';
 }
 
 public function validate()

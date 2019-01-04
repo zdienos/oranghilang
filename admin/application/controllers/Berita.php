@@ -30,7 +30,8 @@ class Berita extends CI_Controller {
 				$data['status'] = array(
 					0 => 'Unpublished',
 					1 => 'Published'
-				);
+        );
+        $data['title'] = 'oranghilang. | Berita';
 				$this->load->view('layout/home', $data);
 			}else{
 				redirect('error/error_403','refresh');
@@ -39,13 +40,12 @@ class Berita extends CI_Controller {
 	}
 
 	public function json(){
-		if($this->input->server('REQUEST_METHOD') == 'POST'){
+	if($this->input->server('REQUEST_METHOD') == 'POST'){
 			header('Content-Type: application/json');
 			echo $this->berita->json();
 		}else{
 			echo 'Method not allowed!';
-		}
-		
+		}		
 	}
 
 	public function add()
@@ -54,7 +54,8 @@ class Berita extends CI_Controller {
 		$data['view'] = 'menu/berita/add_berita';
 		$data['editor'] = 'berita-editor';
 		$data['label'] = $this->berita->label();
-		$data['js']='berita';
+    $data['js']='berita';
+    $data['title'] = 'oranghilang. | Tambah Berita';
 		$this->load->view('layout/home', $data);
 	}
 

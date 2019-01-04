@@ -31,6 +31,7 @@ class User extends CI_Controller {
               $data['datatables'] = 'datatables-user';
               $data['datatablescss'] = 'css';
               $data['deleteItem'] = '<script src="'.base_url("assets/js/delete-item.js").'"></script>';
+              $data['title'] = 'oranghilang. | User';
 			        $this->load->view('layout/home', $data);
 					break;
 				case 'petugas':					
@@ -57,7 +58,8 @@ class User extends CI_Controller {
 		$data['js_validation'] = 'user-form';
 		$data['view'] = 'menu/user/add_user';
 		$data['label'] = $this->user->label();
-		$data['id_user_grup'] = $this->user->getUserGrup();		
+    $data['id_user_grup'] = $this->user->getUserGrup();		
+    $data['title'] = 'oranghilang. | Tambah Data User';
 		$this->load->view('layout/home', $data);
 	}
 

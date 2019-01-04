@@ -14,7 +14,8 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		if (!$this->session->userdata('login')) {				
-      		$data['path'] = 'assets/validate.js';		
+          $data['path'] = 'assets/validate.js';
+          $data['title'] = 'oranghilang. | Admin';		
 			$this->load->view('login/index',$data);
 		}else{
 			redirect('home','refresh');
@@ -78,10 +79,6 @@ class Login extends CI_Controller {
 		} else{
 			echo "method not allowed";
 		}
-	}
-	public function haha()
-	{
-		redirect('coba','refresh');
 	}
 }
 
