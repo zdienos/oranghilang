@@ -12,7 +12,8 @@ class Home extends CI_Controller {
 		}else{					
 			$data['active'] = 'blue';
 			$data['js_validation'] = 'bencana-form';
-			$data['view'] = 'home/index';
+      $data['view'] = 'home/index';
+      $data['title'] = 'oranghilang. | Dashboard';
 			$this->load->view('layout/home', $data);
 		}
 	}

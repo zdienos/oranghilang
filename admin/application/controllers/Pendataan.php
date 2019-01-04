@@ -32,6 +32,7 @@ class Pendataan extends CI_Controller {
       $data['datatables'] = 'datatables-orang';
       $data['deleteItem'] = '<script src="'.base_url("assets/js/delete-item.js").'"></script>';
       $data['id'] = 1;
+      $data['title'] = 'oranghilang. | Daftar Orang Hilang Proses Pencarian';
       $data['jenkel'] = array(
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
@@ -57,6 +58,7 @@ class Pendataan extends CI_Controller {
     $data['bencanaalam'] = $this->bencana->getIdBencana();
     $data['statusorg'] = $this->pendataan->getStatus();
     $data['js_validation'] = 'orang-hilang';
+    $data['title'] = 'oranghilang. | Tambah Data Orang Hilang';
     $this->load->view('layout/home',$data);
   }
 
@@ -143,6 +145,7 @@ class Pendataan extends CI_Controller {
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
       );
+      $data['title'] = 'oranghilang. | Daftar Orang Hilang Ditemukan Hidup';
       $this->load->view('layout/home',$data);
       }else{
         redirect('error/error_403','refresh');
@@ -168,6 +171,7 @@ class Pendataan extends CI_Controller {
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
       );
+      $data['title'] = 'oranghilang. | Daftar Orang Hilang Ditemukan Meninggal';
       $this->load->view('layout/home',$data);
       }else{
         redirect('error/error_403','refresh');
@@ -193,6 +197,7 @@ class Pendataan extends CI_Controller {
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
       );
+      $data['title'] = 'oranghilang. | Tidak Ditemukan';
       $this->load->view('layout/home',$data);
       }else{
         redirect('error/error_403','refresh');
