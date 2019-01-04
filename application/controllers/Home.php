@@ -11,7 +11,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$data['tittle'] = 'Home';
+		$data['tittle'] = 'Oranghilang.';
     $data['view'] = 'home/index';
     $data['orang_hilang'] = $this->orang_hilang->getLimit();
     $data['berita'] = $this->berita->getBeritaCarousel();

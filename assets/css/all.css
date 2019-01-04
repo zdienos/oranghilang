@@ -128,7 +128,7 @@ p {
       color: #fff; }
       #nav li a:hover {
         text-decoration: none;
-        color: #f9e084; }
+      }
 
 .nav-opener {
   display: none;
@@ -1287,8 +1287,7 @@ p {
   }
   
   .nav-drop ul li a:hover{
-  background:#ffce1b;
-  padding: 5px;
+  padding: 2px;
   border-radius: 10px;
   } 
   .world-latest-articles .title {

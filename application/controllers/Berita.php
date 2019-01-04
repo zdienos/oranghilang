@@ -11,6 +11,7 @@ class Berita extends CI_Controller {
 
 	public function index()
 	{		
+		$data['tittle'] = 'Berita Terbaru';
 		$data['model'] = $this->berita->view(); 
 		$data['view'] = 'menu/berita/index';
 		$this->load->view('layout/home', $data);
@@ -21,6 +22,8 @@ class Berita extends CI_Controller {
 		if ($slug) {
 			if ($this->berita->checkSlug($slug)) {
 				$data['data'] = $this->berita->getBeritaById($slug);
+				$cek = $data['data'];
+				$data['tittle'] = "oranghilang. - ".$cek->judul_berita;
 				$data['tag'] = $this->berita->getTagsBeritaByIdBerita($slug);
 				$data['berita_lain'] = $this->berita->getBeritaLain($slug);
 				$data['view'] = 'menu/berita/detail';

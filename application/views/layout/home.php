@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Stiki Bencana</title>
+	<title><?=$tittle?></title>
 	
 	<link rel="icon" type="image/png" href="<?=base_url()?>assets/favicons/favicon-16x16.png" sizes="16x16">
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.css">
@@ -18,10 +18,31 @@
 <div id="wrapper">	
 		<header class="header darkHeader">
 			<div class="container">
-				<div class="logo"><a href="<?=base_url()?>#">OrangHilang</a></div>
+				<?php
+				$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+				?>
+				<style type="text/css">
+				@font-face {
+				  font-family: coolvetica;
+				  src: url(<?=base_url('assets/fonts/coolvetica.ttf')?>);
+				}
+					.logo > a{
+						letter-spacing: 1px;
+						font-family: coolvetica;
+						text-decoration: none;
+						color: white;
+						font-size: 2em;
+					}
+					.nav-drop > ul > li > a{
+						font-family: coolvetica;
+						letter-spacing: 2px;
+						font-size: 1.1em;
+					}
+				</style>
+				<div class="logo"><a href="<?=base_url()?>#">oranghilang.</a></div>
 				<nav id="nav">
 					<div class="opener-holder">
-						<a href="<?=base_url()?>#" class="nav-opener"><span></span></a>
+						<a href="<?=$actual_link?>#" class="nav-opener"><span></span></a>
 					</div>
 					<div class="nav-drop">
 						<ul>

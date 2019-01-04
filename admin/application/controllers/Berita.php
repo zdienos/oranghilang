@@ -5,13 +5,13 @@ class Berita extends CI_Controller {
 	
 	public function __construct()
 	{
-    parent::__construct();
-    if(!$this->session->userdata('login')){
-      redirect('error/error_401','refresh');
-    }    
-    if (strcasecmp($this->session->userdata('user_grup'),'petugas') == 0) {
-      redirect('error/error_403','refresh');      
-    }
+		parent::__construct();
+		if(!$this->session->userdata('login')){
+			redirect('error/error_401','refresh');
+		}    
+		if (strcasecmp($this->session->userdata('user_grup'),'petugas') == 0) {
+			redirect('error/error_403','refresh');      
+		}
 		$this->load->model('m_berita','berita');
 		$this->load->library('form_validation');
 		$this->load->library('datatables');
@@ -39,12 +39,12 @@ class Berita extends CI_Controller {
 	}
 
 	public function json(){
-    if($this->input->server('REQUEST_METHOD') == 'POST'){
-      header('Content-Type: application/json');
-		  echo $this->berita->json();
-    }else{
-      echo 'Method not allowed!';
-    }
+		if($this->input->server('REQUEST_METHOD') == 'POST'){
+			header('Content-Type: application/json');
+			echo $this->berita->json();
+		}else{
+			echo 'Method not allowed!';
+		}
 		
 	}
 
@@ -99,8 +99,8 @@ class Berita extends CI_Controller {
 				}
 				if ($foto_thumbnail!==''&&$foto_header!=='') {
 					$string=preg_replace('~[^\pL\d]+~u', '-', $this->input->post('judul_berita'));
-                	$trim=trim($string);
-                	$pre_slug=strtolower(str_replace(" ", "-", $trim));
+					$trim=trim($string);
+					$pre_slug=strtolower(str_replace(" ", "-", $trim));
 					$slug=$pre_slug.'.html';
 					$this->berita->mAddBerita(
 						$this->input->post('judul_berita'),
@@ -241,11 +241,11 @@ class Berita extends CI_Controller {
 				}				
 				if ($foto_header !==''&&$foto_thumbnail!=='') {
 					$this->berita->updateBerita($this->input->post('id_user'),
-					$this->input->post('id_berita'),
-					$this->input->post('judul_berita'),
-					$this->input->post('isi'),
-					$foto_header,$foto_thumbnail,
-					$this->input->post('status'));
+						$this->input->post('id_berita'),
+						$this->input->post('judul_berita'),
+						$this->input->post('isi'),
+						$foto_header,$foto_thumbnail,
+						$this->input->post('status'));
 					$data['success'] = true;
 				}
 			}
