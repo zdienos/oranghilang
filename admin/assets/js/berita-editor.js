@@ -1,5 +1,5 @@
     $('#input-isi').summernote({
-      height: 200,
+      height: 500,
 
       toolbar: [    
         ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -9,19 +9,17 @@
         ['insert',['picture','resizedDataImage', 'link']],
         ['misc',['fullscreen']]      
       ],    
-            //set callback image tuk upload ke serverside
-            callbacks: {
-                    onImageUpload: function(files) {
-                        uploadFile(files[0]);
-                    }
-                }
+      //set callback image tuk upload ke serverside
+      callbacks: {
+          onImageUpload: function(files) {
+            uploadFile(files[0])
+        }
+      }
 
     });
-
-    function uploadFile(file) {
+    function uploadFile(image) {
             data = new FormData();
-            data.append("file", file);
-
+            data.append("file", image);
             $.ajax({
                 data: data,
                 type: "POST",
@@ -29,9 +27,8 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function(url) {                                 
-                 console.log(url);                                        
-                 $('#isi').summernote("insertImage", url);
+                success: function(url) {                                                                      
+                 $('#input-isi').summernote("insertImage", url);
                 }
             });
         }

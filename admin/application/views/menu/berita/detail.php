@@ -1,3 +1,8 @@
+<style>
+.container > p > img{
+  width:100px;
+}
+  </style>
 <div class="container-fluid">
   <h4 class="c-grey-900 mT-10 mB-30">Detail Berita 
     <button class="<?=($detail->status=='0')?'btn btn-danger':'btn cur-p btn-success'?>" style="position: absolute;right: 0;margin-right: 35px">
@@ -9,10 +14,11 @@
       <div class="bgc-white bd bdrs-3 p-20 mB-20">            
         <!-- <h1><?=$detail->judul_berita?></h1> -->
         <h1><?=$detail->judul_berita?></h1>
-        <div class="image">
-          <img src="<?php echo base_url('assets/berita/foto/');echo $detail->foto_header?>">
+        <h7 style="margin-top:20px;"><?=$detail->date?>, Oleh : <?=$detail->name?></h7>
+        <div class="image" style="margin-top:20px;">
+          <img src="<?php echo base_url('assets/berita/foto/');echo $detail->foto_header?>" width="100%" height="400px">
         </div>
-        <h7><?=$detail->date?>, Oleh : <?=$detail->name?></h7>
+        <div style="margin-top:40px;"></div>
         <div class="container">
           <?=$detail->isi?>
         </div>
@@ -35,7 +41,7 @@
         <h3><u>Most Viewed</u></h3>
           <div class="row">
             <div class="col-md-4">
-              <img src="<?php echo base_url('assets/berita/foto/');echo $detail->foto_thumbnail?>">
+              <img src="<?php echo base_url('assets/berita/foto/');echo $detail->foto_thumbnail?>" width="100%">
             </div>
             <div class="col-md-8">
               <?=$detail->judul_berita?><br>

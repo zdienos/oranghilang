@@ -129,7 +129,7 @@ class Berita extends CI_Controller {
 	}
 	public function save()
 	{
-		if(isset($_FILES["file"]["files"]))  
+		if(isset($_FILES["file"]['name']))  
 		{  
 			$config['upload_path'] = './assets/content_upload/';  
 			$config['allowed_types'] = 'jpg|jpeg|png|gif';  
@@ -141,9 +141,11 @@ class Berita extends CI_Controller {
 			else  
 			{  
 				$data = $this->upload->data();                 
-				echo base_url().'assets/content_upload/'.$_FILES['file']['files'];                                     
+				echo base_url().'assets/content_upload/'.$_FILES['file']['name'];                                     
 			}  
-		} 
+		}else{
+      echo 'asd';
+    } 
 	}
 
 	public function detail($id){
