@@ -223,6 +223,7 @@ class Pendataan extends CI_Controller {
       $data['edit'] = $oranghilang;
       $data['js'] = 'pendataan';
       $data['js2'] = 'pendataan-extra';
+      $data['title'] = 'oranghilang. | Edit Data Orang Hilang';
       $data['jenkel'] = $oranghilang->id_jenis_kelamin;
       $data['label'] = $this->pendataan->label();
       $data['js_validation'] = 'orang-hilang';

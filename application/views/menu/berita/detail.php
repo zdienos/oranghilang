@@ -2,13 +2,13 @@
 		<div class="container">
 			<div class="col-12 col-md-8" style=" border-right:  3px dashed #ddd;">
 				<h1 class="post-title"><?=$data->judul_berita?></h1>
-				<div >by <a href=""><?=$data->name?></a></div>
+				<div >by <a href="<?=base_url('berita/user/'.$data->id_user)?>"><?=$data->name?></a></div>
 				<p align="center"><img src="<?=base_url('admin/assets/berita/foto/'.$data->foto_header)?>" style="width: 377px; height: 251px; margin-top: 20px; margin-bottom:20px;"></p>
 				 <div><i class="fa fa-calendar fa-fw"></i> <?=date('d F Y',strtotime($data->date))?>
                  <div >
 					<i class="fa fa-tag"></i> 
 					<?php foreach ($tag as $tags): ?>
-						<a href="<?=base_url('berita/tag/'.$tags->id_tag)?>">#<?=$tags->nama_tag?></a>,
+						<a href="<?=base_url('berita/tag/'.$tags->nama_tag)?>">#<?=$tags->nama_tag?></a>,
 					<?php endforeach ?>					
 				</div></div>
 
@@ -29,8 +29,8 @@
 	                            </div>
 	                            <!-- Post Content -->
 	                            <div class="post-content" style="margin-left:10px;">
-	                                <a href="<?=base_url('detail_berita')?>" class="headline" >
-	                                    <h5 class="mb-0"><?=$beritaL->slug?></h5>
+	                                <a href="<?=base_url('detail_berita'.$beritaL->slug)?>" class="headline" >
+	                                    <h5 class="mb-0"><?=$beritaL->judul_berita?></h5>
 	                                </a>
 	                            </div>
 	                        </div>

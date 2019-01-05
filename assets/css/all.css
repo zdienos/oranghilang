@@ -128,7 +128,7 @@ p {
       color: #fff; }
       #nav li a:hover {
         text-decoration: none;
-        color: #f9e084; }
+      }
 
 .nav-opener {
   display: none;
@@ -793,7 +793,7 @@ p {
       max-width: 400px;
       position: absolute;
       right: 0;
-      top: 100%;
+      top: 40%;
       pointer-events: none;
       opacity: 0;
       -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
@@ -807,7 +807,7 @@ p {
         #nav .nav-drop > ul li {
           position: relative;
           margin: 0;
-          padding: 20px 35px;
+          padding: 34px;
           display: block;
           font-size: 1.8rem;
           line-height: 1.3333333;
@@ -1287,8 +1287,7 @@ p {
   }
   
   .nav-drop ul li a:hover{
-  background:#ffce1b;
-  padding: 5px;
+  padding: 2px;
   border-radius: 10px;
   } 
   .world-latest-articles .title {

@@ -81,6 +81,7 @@ public function detail($id){
     $bencana = $this->bencana->getBencanaById($id);
     $data['js_validation'] = 'bencana-form';
     $data['view'] = 'menu/bencana/detail';
+    $data['title'] = 'oranghilang. | Detail Bencana';
     $data['label'] = $this->bencana->label();
     $data['detail'] = $bencana;
     $data['notselectedprovince'] = $this->bencana->getNotSelectedProvince($bencana->proid);
@@ -99,6 +100,7 @@ public function edit($id){
     $data['view'] = 'menu/bencana/edit';
     $data['label'] = $this->bencana->label();
     $data['detail'] = $bencana;
+    $data['title'] = 'oranghilang. | Update Berita';
     $data['notselectedprovince'] = $this->bencana->getNotSelectedProvince($bencana->proid);
     $data['jenisbencana'] = $this->bencana->getJenisBencanaAlam();
     $data['notselectedjenisbencana'] = $this->bencana->getNotSelectedJenisBencana($bencana->jbaaid);
