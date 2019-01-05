@@ -11,7 +11,7 @@ $(document).ready(function() {
           "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
       };
   };
-
+const asd = 'asd';
   var t = $("#mytable").dataTable({
     
       initComplete: function() {
