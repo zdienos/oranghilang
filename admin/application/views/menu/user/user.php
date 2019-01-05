@@ -6,7 +6,7 @@
   <a a href="javascript:;" onclick="document.getElementById('form-add').submit();" class="btn cur-p btn-primary">Tambah Data</a>
   <?=form_close()?>
 </center>
-<table class="table table-bordered table-striped table-responsive" id="mytable" class="display" style="width:100%">
+<table class="table table-bordered table-striped" id="mytable" style="width:100%">
   <thead>
     <tr>   
       <th>No</th>

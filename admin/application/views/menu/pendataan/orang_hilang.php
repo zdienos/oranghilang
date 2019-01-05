@@ -4,7 +4,7 @@
         <center>
           <a a href="<?= base_url('pendataan/add')?>"  class="btn cur-p btn-primary">Tambah Data</a>
         </center>
-        <table class="table table-bordered table-striped table-responsive" id="mytable">
+        <table class="table table-bordered table-striped" id="mytable">
           <thead>
             <tr>
               <th>No</th>
