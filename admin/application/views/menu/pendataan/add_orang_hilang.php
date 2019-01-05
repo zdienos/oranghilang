@@ -168,7 +168,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['no_hp_pelapor']?></label>
               <div class="col-sm-9">
-                <?=form_input('no_hp_pelapor', '', array('id'=>'input-no_hp_pelapor','class' => 'form-control', 'placeholder' => $label['no_hp_pelapor']));?>
+                <?=form_input('no_hp_pelapor', '', array('id'=>'input-no_hp_pelapor','class' => 'form-control', 'placeholder' => $label['no_hp_pelapor'].' (mulai dengan 0)'));?>
                 <div id="error" class="invalid-feedback"></div>
               </div>
             </div>

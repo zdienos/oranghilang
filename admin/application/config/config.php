@@ -519,7 +519,7 @@ $config['form_post'] = "method='post' enctype='multipart/form-data'";
 $config['msg_error']= array(
 	'check_default', 'You need to select something other than the default',
 	'required'=>'{field} harus diisi',
-	'min_length'=>'{field} minimal 4 karakter',
+	'min_length'=>'{field} minimal {param} karakter',
 	'valid_email'=>'Masukkan email yang valid',
 	'file_selected_test'=>'Please select file.'
 );

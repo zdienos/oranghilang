@@ -59,7 +59,7 @@ class M_pendataan extends CI_Model {
         [
           'field' => 'no_hp_pelapor',
           'label' => 'No HP Pelapor',
-          'rules' => 'numeric',
+          'rules' => 'numeric|min_length[12]',
           'errors' => array(
             'numeric' => 'No Hp Pelapor Harus Berupa Nomor'
           )
@@ -104,7 +104,8 @@ class M_pendataan extends CI_Model {
           'nama_pelapor' => form_error('nama_pelapor'),
           'id_bencana_alam' => form_error('id_bencana_alam'),
           'id_hubungan_pelapor' => form_error('id_hubungan_pelapor'),
-          'id_status_org_hilang' => form_error('id_status_org_hilang'),          
+          'id_status_org_hilang' => form_error('id_status_org_hilang'), 
+          'no_hp_pelapor' => form_error('no_hp_pelapor')         
         );
       }
 
@@ -135,7 +136,7 @@ class M_pendataan extends CI_Model {
           'Laki-Laki' => 'L',
           'Perempuan' => 'P'
         );
-        return $this->datatables->select('orang_hilang.id,nama_lengkap,nama_panggilan,tgl_laporan,nama_bencana_alam,jenis_kelamin.nama_jenis_kelamin,umur,alamat')
+        return $this->datatables->select('orang_hilang.id,nama_lengkap,nama_panggilan,tgl_laporan,nama_bencana_alam,jenis_kelamin.nama_jenis_kelamin,umur,alamat,lokasi_terakhir')
                                 ->where('id_status_org_hilang',$id)
                                 ->join('bencana_alam','bencana_alam.id=orang_hilang.id_bencana_alam')
                                 ->join('jenis_kelamin','jenis_kelamin.id=orang_hilang.id_jenis_kelamin')

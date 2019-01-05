@@ -58,7 +58,12 @@ $(document).ready(function() {
           },
           {
             "data": "alamat",
-            "orderable": false},
+            "orderable": false
+          },
+          {
+            "data": "lokasi_terakhir",
+            "orderable": false
+          },
           {
             "data" : "aksi",
             "orderable" : false
