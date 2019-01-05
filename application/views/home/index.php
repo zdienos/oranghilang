@@ -20,10 +20,12 @@
 		<u><h1 style="font-size: 2.8em;" class="font">Temukan Keluarga Anda Disini !</h1><br></u>
 		<div class="row">
 			<div class="col-md-9">
-				<input style="height: 100%;letter-spacing: 1px;width: 100%;font-size: 20px;font-family: coolvetica" type="text" name="" class="form-control" placeholder="Ketikkan nama orang yang hilang"><br>
+          <form action="<?= base_url('oranghilang/name')?>" method="post" id="form-search">
+				    <input style="height: 100%;letter-spacing: 1px;width: 100%;font-size: 20px;font-family: coolvetica" type="text" name="oranghilang" class="form-control" placeholder="Ketikkan nama orang yang hilang"><br>
+          </form>
 			</div>
 			<div class="col-md-3">
-				<button class="btn btn-primary" style="width: 100%;height: 100%;font-size: 20px;letter-spacing: 3px;font-family: coolvetica"> SEARCH</button>
+				<button class="btn btn-primary" style="width: 100%;height: 100%;font-size: 20px;letter-spacing: 3px;font-family: coolvetica" onclick="document.getElementById('form-search').submit();"> SEARCH</button>
 			</div>
 		</div>
 	</div>

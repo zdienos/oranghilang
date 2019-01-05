@@ -111,7 +111,7 @@ p {
                     </p>
                 </div> -->
                 <div class="col-sm-4 col-xs-6">
-                  <a href="<?=base_url('oranghilang')?>" class="btn btn-primary">
+                  <a href="<?= base_url('oranghilang')?>" class="btn btn-primary">
                     <h3 style="padding-top: 5px"><span class="glyphicon glyphicon-arrow-left"></span> Kembali Ke Daftar</h3>
                   </a>
                 </div>
