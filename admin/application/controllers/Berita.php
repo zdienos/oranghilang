@@ -69,7 +69,7 @@ class Berita extends CI_Controller {
 				$data['error_msg'] = $this->berita->error_msg();
 			}else{				
 				$judul =$this->input->post('judul_berita');
-				$tanggal = date("Y_m_d H:i:s");
+				$tanggal = $this->input->post('judul_berita');
 				$this->load->library('upload'); 
 				$config['upload_path'] = './assets/berita/foto';
 				$config['allowed_types'] = 'jpg|png|jpeg';

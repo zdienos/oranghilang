@@ -13,7 +13,7 @@
 		   	<p class="mB-30 fsz-def c-grey-700">Identitas kamu belum terdaftar pada sistem kami. <br>
 		   	 Silahkan Login terlebih dahulu 
 		   		<br>
-		   		<a style="margin-top: 10px;" href="http://localhost:80/stiki/admin/login/" type="primary" class="btn btn-primary">Login</a>
+		   		<a style="margin-top: 10px;" href="<?=base_url('login')?>" type="primary" class="btn btn-primary">Login</a>
 		   	</p>	
 		</center>
 	  	<p style=" width: 100%;text-align: center;position: absolute;bottom: 0;left: 0;right: 0;">

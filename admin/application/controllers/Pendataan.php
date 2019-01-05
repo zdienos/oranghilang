@@ -75,7 +75,7 @@ class Pendataan extends CI_Controller {
           $foto = '';
         }else{
           $nama =$this->input->post('nama_lengkap');
-          $tanggal = date("Y_m_d H:i:s");
+          $tanggal = $this->input->post('nama_lengkap');
           $this->load->library('upload');
           $config['upload_path'] = './assets/orang_hilang/foto';
           $config['allowed_types'] = 'jpg|png|jpeg';
