@@ -43,10 +43,6 @@ class M_bencana extends CI_Model {
       ['field' => 'tgl_waktu',
       'label' => 'Tanggal Bencana Alam',
       'rules' => 'required'],
-
-      ['field' => 'keterangan',
-      'label' => 'Keterangan',
-      'rules' => ''], 
       
       ['field' => 'jenis_bencana_alam',
       'label' => 'Jenis Bencana Alam',
@@ -59,11 +55,7 @@ class M_bencana extends CI_Model {
     return [
       ['field' => 'nama_bencana_alam',
       'label' => 'Nama Bencana Alam',
-      'rules' => 'trim|required'],
-
-      ['field' => 'keterangan',
-      'label' => 'Keterangan',
-      'rules' => 'required'], 
+      'rules' => 'trim|required'] 
     ];
   }
   
@@ -90,15 +82,13 @@ class M_bencana extends CI_Model {
       'id_districts' => form_error('id_districts'),
       'id_villages' => form_error('id_villages' ),
       'nama_bencana_alam' => form_error('nama_bencana_alam'),
-      'tgl_waktu' => form_error('tgl_waktu' ),
-      'keterangan' => form_error('keterangan'),
+      'tgl_waktu' => form_error('tgl_waktu')
     );
   }
 
   public function error_msg_edit(){
     return array(               
-      'nama_bencana_alam' => form_error('nama_bencana_alam'),
-      'keterangan' => form_error('keterangan'),
+      'nama_bencana_alam' => form_error('nama_bencana_alam')
     );
   }
 

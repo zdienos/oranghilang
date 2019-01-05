@@ -98,23 +98,10 @@ class M_pendataan extends CI_Model {
       {
         return array(               
           'nama_lengkap' => form_error('nama_lengkap'),
-          'nama_panggilan' => form_error('nama_panggilan'),
-          'alamat' => form_error('alamat'),
           'umur' => form_error('umur'),          
           'id_jenis_kelamin' => form_error('id_jenis_kelamin'),
-          'marga_suku' => form_error('marga_suku'),
-          'warna_kulit' => form_error('warna_kulit'),
-          'baju_terakhir' => form_error('baju_terakhir'),
-          'celana_terakhir' => form_error('celana_terakhir'),
           'id_kategori_umur' => form_error('id_kategori_umur'),          
-          'lokasi_terakhir' => form_error('lokasi_terakhir'),
-          'lat_lokasi' => form_error('lat_lokasi'),
-          'lon_lokasi' => form_error('lon_lokasi'),
-          'nama_ayah' => form_error('nama_ayah'),
-          'nama_ibu' => form_error('nama_ibu'),
-          'keterangan_lainnya' => form_error('keterangan_lainnya'),
           'nama_pelapor' => form_error('nama_pelapor'),
-          'no_hp_pelapor' => form_error('no_hp_pelapor'),
           'id_bencana_alam' => form_error('id_bencana_alam'),
           'id_hubungan_pelapor' => form_error('id_hubungan_pelapor'),
           'id_status_org_hilang' => form_error('id_status_org_hilang'),          
@@ -132,8 +119,8 @@ class M_pendataan extends CI_Model {
       }
 
       public function getDetailOrangHilang($id){
-        return $this->db->where('orang_hilang.id',$id)
-                        ->select('nama_lengkap,nama_panggilan,alamat,umur,jenis_kelamin.nama_jenis_kelamin,marga_suku,warna_kulit,baju_terakhir,celana_terakhir,kategori_umur.nama_kategori_umur,foto,lokasi_terakhir,lat_lokasi,lon_lokasi,nama_ayah,nama_ibu,keterangan_lainnya,nama_pelapor,no_hp_pelapor,bencana_alam.nama_bencana_alam,hubungan_pelapor.nama_hubungan_pelapor,status_org_hilang.nama_status_org,tgl_laporan,tkp_korban,status_korban,nama_status_org,nama_bencana_alam,tgl_waktu,keterangan,nama_jenis_kelamin')
+        return $this->db->select('nama_lengkap,nama_panggilan,alamat,umur,jenis_kelamin.nama_jenis_kelamin,marga_suku,warna_kulit,baju_terakhir,celana_terakhir,kategori_umur.nama_kategori_umur,foto,lokasi_terakhir,lat_lokasi,lon_lokasi,nama_ayah,nama_ibu,keterangan_lainnya,nama_pelapor,no_hp_pelapor,bencana_alam.nama_bencana_alam,hubungan_pelapor.nama_hubungan_pelapor,status_org_hilang.nama_status_org,tgl_laporan,tkp_korban,status_korban,nama_status_org,nama_bencana_alam,tgl_waktu,keterangan,nama_jenis_kelamin')
+                        ->where('orang_hilang.id',$id)
                         ->join('status_org_hilang','status_org_hilang.id=orang_hilang.id_status_org_hilang')
                         ->join('bencana_alam','bencana_alam.id=orang_hilang.id_bencana_alam')
                         ->join('jenis_kelamin','jenis_kelamin.id=orang_hilang.id_jenis_kelamin')

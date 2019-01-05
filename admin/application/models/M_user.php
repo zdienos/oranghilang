@@ -39,7 +39,7 @@ class M_user extends CI_Model {
 
             ['field'=>'name',
             'label' => 'Nama User',
-            'rules' => 'trim|required|min_length[2]'],
+            'rules' => 'trim|required|min_length[4]'],
 
             ['field'=>'email',
             'label' => 'Email',
@@ -80,7 +80,7 @@ class M_user extends CI_Model {
 
             ['field'=>'name',
             'label' => 'Nama User',
-            'rules' => 'trim|required|min_length[2]'],
+            'rules' => 'trim|required|min_length[4]'],
 
             ['field'=>'email',
             'label' => 'Email',
