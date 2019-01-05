@@ -33,9 +33,17 @@ class Oranghilang extends CI_Controller {
   public function search($name=null){
     if(isset($name)){
       $data['tittle'] = 'oranhilang. | Data Orang Hilang';
-      $data['model'] = $this->orang_hilang->view_search($name); 
-      $data['view'] = 'menu/orang_hilang/search';
-      $this->load->view('layout/home', $data);
+      $viewsearch = $this->orang_hilang->view_search($name); 
+      if(count($viewsearch["orang_hilang"]) > 0){
+        $data['model'] = $viewsearch;
+        $data['view'] = 'menu/orang_hilang/search';
+        $this->load->view('layout/home', $data);
+      }else{
+        $data['tittle'] = 'oranhilang. | Data Orang Hilang';
+        $data['view'] = 'menu/orang_hilang/search_empty';
+        $data['model'] = $this->orang_hilang->view_search(''); 
+        $this->load->view('layout/home', $data);
+      }
     }else{
       $data['tittle'] = 'oranhilang. | Data Orang Hilang';
       $data['view'] = 'menu/orang_hilang/search_empty';
