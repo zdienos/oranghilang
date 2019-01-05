@@ -30,14 +30,17 @@ class Oranghilang extends CI_Controller {
     redirect('oranghilang/search/'.$name,'refresh');
   }
 
-  public function search($name){
+  public function search($name=null){
     if(isset($name)){
       $data['tittle'] = 'oranhilang. | Data Orang Hilang';
       $data['model'] = $this->orang_hilang->view_search($name); 
       $data['view'] = 'menu/orang_hilang/search';
       $this->load->view('layout/home', $data);
     }else{
-      redirect('home');
+      $data['tittle'] = 'oranhilang. | Data Orang Hilang';
+      $data['view'] = 'menu/orang_hilang/search_empty';
+      $data['model'] = $this->orang_hilang->view_search(''); 
+      $this->load->view('layout/home', $data);
     }
     
   }
