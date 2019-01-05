@@ -1,4 +1,5 @@
 <?php $this->session->set_userdata('url_back_search',current_url()); ?>
+
 <br><br><br><br>
 	<center>
 		<h1><b><u>Daftar Orang Hilang</u></b></h1><br>
