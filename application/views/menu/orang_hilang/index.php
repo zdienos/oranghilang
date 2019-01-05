@@ -1,4 +1,5 @@
-	<br><br><br><br>
+<?php $this->session->unset_userdata('url_back_search'); ?>
+  <br><br><br><br>
 	<center>
 		<h1><b>Daftar Orang Hilang</b></h1><br>
 	<section>
