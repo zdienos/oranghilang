@@ -4,11 +4,12 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
       <title><?= $title ?></title>
+      <link rel="icon" type="text/css" href="<?=base_url('assets/search.png')?>">
       <style>#loader{transition:all .3s ease-in-out;opacity:1;visibility:visible;position:fixed;height:100vh;width:100%;background:#fff;z-index:90000}#loader.fadeOut{opacity:0;visibility:hidden}.spinner{width:40px;height:40px;position:absolute;top:calc(50% - 20px);left:calc(50% - 20px);background-color:#333;border-radius:100%;-webkit-animation:sk-scaleout 1s infinite ease-in-out;animation:sk-scaleout 1s infinite ease-in-out}@-webkit-keyframes sk-scaleout{0%{-webkit-transform:scale(0)}100%{-webkit-transform:scale(1);opacity:0}}@keyframes sk-scaleout{0%{-webkit-transform:scale(0);transform:scale(0)}100%{-webkit-transform:scale(1);transform:scale(1);opacity:0}}</style>
       <link href="<?=base_url()?>assets/style.css" rel="stylesheet">   
       <?php echo isset($editor) ? '' : $editor = false; ?>
       <?php if ($editor): ?>
-        <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
       <?php endif?>
       <?php echo isset($datatablescss) ? '' : $datatablescss = false; ?>
       <?php if ($datatablescss): ?>
@@ -57,8 +58,6 @@
                <div class="header-container">
                   <ul class="nav-left">
                      <li><a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);"><i class="ti-menu"></i></a></li>
-                     <li class="search-box"><a class="search-toggle no-pdd-right" href="javascript:void(0);"><i class="search-icon ti-search pdd-right-10"></i> <i class="search-icon-close ti-close pdd-right-10"></i></a></li>
-                     <li class="search-input"><input class="form-control" type="text" placeholder="Search..."></li>
                   </ul>
                   <ul class="nav-right">
                      <li class="dropdown">
@@ -134,8 +133,8 @@
       ?>
       <?php echo isset($editor) ? '' : $editor = false; ?>
       <?php if ($editor): ?>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
         <script type="text/javascript" src="<?= base_url('assets/js/'.$editor)?>.js"></script>
       <?php endif ?>
 

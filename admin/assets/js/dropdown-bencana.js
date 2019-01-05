@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var base_urls = 'http://localhost/stiki/admin/bencana/'
+  var base_urls = base_url+'/bencana/';
   
   $("#input-id_regencies").prop('disabled',true);
   $("#input-id_districts").prop('disabled',true);

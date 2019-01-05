@@ -10,7 +10,7 @@ class M_berita extends CI_Model {
   }
   
   public function getBeritaCarousel(){
-    return $this->db->order_by('date','DESC')->limit(3,0)->where('status',0)->get('berita')->result();
+    return $this->db->order_by('date','DESC')->limit(3,0)->where('status',1)->get('berita')->result();
   }
 
   public function getBeritaKotak(){

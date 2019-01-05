@@ -1,3 +1,16 @@
+<style type="text/css">
+        @font-face {
+          font-family: coolvetica;
+          src: url(<?=base_url('assets/coolvetica.ttf')?>);
+        }
+        .ti-search:before {
+          color: black;
+            margin-left: 20px;
+            top: 20px;
+            position: absolute;
+            content: "\E610";
+        } 
+        </style>
 <div class="sidebar">
    <div class="sidebar-inner">
       <div class="sidebar-logo">
@@ -6,10 +19,10 @@
                <a class="sidebar-link td-n" href="<?=base_url()?>">
                   <div class="peers ai-c fxw-nw">
                      <div class="peer">
-                        <div class="logo"><img src="<?=base_url()?>assets/static/images/logo.png" alt=""></div>
+                        <div class="logo"><i class="ti-search" style="font-size: 2em;"></i></div>
                      </div>
                      <div class="peer peer-greed">
-                        <h5 class="lh-1 mB-0 logo-text">Adminator</h5>
+                        <h5 class="lh-1 mB-0 logo-text" style="font-family: coolvetica">oranghilang.</h5>
                      </div>
                   </div>
                </a>
