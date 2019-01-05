@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var base_urls = 'http://localhost/stiki/admin/bencana/'
+  var base_urls = base_url+'bencana/'
   var id_province = $('#input-id_provinces').find(":selected").val();
 
   $.ajax({
