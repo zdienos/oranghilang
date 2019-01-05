@@ -79,6 +79,8 @@ class Berita extends CI_Controller {
 			redirect('error/error_404','refresh');
 		}
 	}
+
+	
 }
 
 /* End of file Berita.php */
