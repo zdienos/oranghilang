@@ -11,7 +11,7 @@ class M_oranghilang extends CI_Model {
 	public function view(){
     $this->load->library('pagination'); // Load librari paginationnya
     
-    $query = "SELECT orang_hilang.id as id_orang, nama_lengkap, nama_panggilan, umur, tgl_laporan, nama_bencana_alam, nama_status_org,lokasi_terakhir,foto FROM orang_hilang JOIN bencana_alam on bencana_alam.id=orang_hilang.id_bencana_alam JOIN status_org_hilang on status_org_hilang.id=orang_hilang.id_status_org_hilang ORDER BY `tgl_laporan` DESC"  ; // Query untuk menampilkan semua data siswa
+    $query = "SELECT keterangan,orang_hilang.id as id_orang, nama_lengkap, nama_panggilan, umur, tgl_laporan, nama_bencana_alam, nama_status_org,lokasi_terakhir,foto FROM orang_hilang JOIN bencana_alam on bencana_alam.id=orang_hilang.id_bencana_alam JOIN status_org_hilang on status_org_hilang.id=orang_hilang.id_status_org_hilang ORDER BY `tgl_laporan` DESC"  ; // Query untuk menampilkan semua data siswa
     
     $config['base_url'] = base_url('oranghilang/index');
     $config['total_rows'] = $this->db->query($query)->num_rows();

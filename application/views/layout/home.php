@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?=$tittle?></title>
 	
-	<link rel="icon" type="image/png" href="<?=base_url()?>assets/favicons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="text/css" href="<?=base_url('admin/assets/search.png')?>">
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.css">
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?=base_url()?>assets/fonts/font-awesome-4.3.0/css/font-awesome.min.css">

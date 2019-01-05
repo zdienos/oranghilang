@@ -22,6 +22,7 @@
 								   Last Seen: <span><?=$key->lokasi_terakhir?$key->lokasi_terakhir:'Tidak Diketahui'?></span></p>
 								   Bencana Alam : <span><?=$key->nama_bencana_alam?></span><br>
 								   Status : <span><?=$key->nama_status_org?></span><br>
+								   Keterangan : <span><?=$key->keterangan ? $key->keterangan :'Tidak Diketahui'?></span><br>
 								   <a href="<?=base_url('oranghilang/detail_orang/'.$key->id_orang)?>" class="btn" type="button" style="background: gray;color: white;" >Details</a>
 							</p>
 						</div>
