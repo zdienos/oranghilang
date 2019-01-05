@@ -211,7 +211,8 @@ class Pendataan extends CI_Controller {
     if($this->input->server('REQUEST_METHOD') == 'POST'){
       $data['detail'] = $this->pendataan->getDetailOrangHilang($id);
       $data['label'] = $this->pendataan->label();
-      $data['js_validation']='';      
+      $data['js_validation']='';
+      $data['title'] = 'oranghilang. | Detail Orang Hilang';      
       $data['view'] = 'menu/pendataan/detail';
       $this->load->view('layout/home',$data);
     }
