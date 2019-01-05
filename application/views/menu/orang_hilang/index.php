@@ -7,10 +7,10 @@
 				<?php foreach ($model['orang_hilang'] as $key): ?>
 				<div class="col-xs-6 " style="border-radius:10px;border: 1px black solid;">
 					<div class="row">
-						<div class="col-xs-4 " style="margin-top: 20px; margin-bottom: 20px;">
+						<div class="col-md-4 " style="margin-top: 20px; margin-bottom: 20px;">
 							<img src="<?=base_url('admin/assets/orang_hilang/foto/'.$key->foto)?>" onerror="this.src='<?=base_url("assets/images/default-user-image.png")?>'" width="100%">							
 						</div>				
-						<div class="col-xs-8" style="margin-top: 30px;">
+						<div class="col-md-8" style="margin-top: 30px;">
 							<?php if ($key->nama_panggilan): ?>
 								<h2><a href=""><?=$key->nama_lengkap?>/<?=$key->nama_panggilan?$key->nama_panggilan:'-'?></a></h2>
 							<?php else: ?>

@@ -6,8 +6,9 @@
 	                <div class="row">
 	                    <div class="col-12 col-lg-11">
 	                        <div class="title">
-	                            <h5>Latest Articles</h5>
-	                        </div>
+	                            <h5><?=$judul_berita?></h5>
+	                        </div>	                    
+	                        <?php if (isset($model)): ?>
 	                        <?php foreach ($model['berita'] as $data): ?>
 	                        <!-- Single Blog Post -->
 	                        <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">		                        	
@@ -34,13 +35,16 @@
 	                                ?>
 	                                <div class="post-meta">
 	                                    <p>
-	                                    	<a href="#" class="post-author"><?=$data->name?></a> on 
-	                                    	<a href="#" class="post-date"><?=date('d F Y',strtotime($data->date))?></a>
+	                                    	<a href="<?=base_url('berita/user/'.$data->id_user)?>" class="post-author"><?=$data->name?></a> on 
+	                                    	<i class="post-date"><?=date('d F Y',strtotime($data->date))?></i>
 	                                	</p>
 	                                </div>
 	                            </div>
 	                        </div>
 	                        <?php endforeach ?>
+	                        <?php else: ?>
+	                        	<a href="<?=base_url('berita')?>" class="btn-lg btn-primary">Kembali Ke Berita</a>
+	                    	<?php endif ?>	                    	
 	                    </div>
 	                    <?php
 						  // Tampilkan link-link paginationnya

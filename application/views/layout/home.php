@@ -46,19 +46,21 @@
 					</div>
 					<div class="nav-drop">
 						<ul>
-							<li class="active visible-sm visible-xs"><a href="<?=base_url()?>assets/#">Home</a></li>
-							<li><a href="<?php echo base_url('home'); ?>" >Beranda</a></li>
-							<li><a href="<?=base_url('oranghilang')?>" >Data Orang Hilang</a></li>
-							<li><a href="<?php echo base_url('berita'); ?>">Berita</a></li>							
-						</ul>
-						<div class="drop-holder visible-sm visible-xs">
-							<span>Follow Us</span>
-							<ul class="social-networks">
-								<li><a class="fa fa-github" href="<?=base_url()?>assets/#"></a></li>
-								<li><a class="fa fa-twitter" href="<?=base_url()?>assets/#"></a></li>
-								<li><a class="fa fa-facebook" href="<?=base_url()?>assets/#"></a></li>
-							</ul>
-						</div>
+							<?php if ($tittle == "oranhilang. | Data Orang Hilang"): ?>
+							<li class="active">
+							<?php else: ?>
+							<li>
+							<?php endif ?>							
+								<a href="<?=base_url('oranghilang')?>" >Data Orang Hilang</a>
+							</li>
+							<?php if ($tittle == "oranhilang. | Berita Terbaru"): ?>
+							<li class="active">
+							<?php else: ?>
+							<li>
+							<?php endif ?>	
+								<a href="<?php echo base_url('berita'); ?>">Berita</a>
+							</li>
+						</ul>					
 					</div>
 				</nav>
 			</div>

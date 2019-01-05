@@ -149,6 +149,7 @@ class Berita extends CI_Controller {
 	public function detail($id){
 		if($this->input->server('REQUEST_METHOD') == 'POST'){
 			$berita = $this->berita->getBeritaById($id);
+			$data['title'] = 'oranghilang. | Detail Berita';
 			$data['editor'] = 'berita-disabled';			
 			$data['view'] = 'menu/berita/detail';
 			$data['label'] = $this->berita->label();
@@ -166,6 +167,7 @@ class Berita extends CI_Controller {
 			$data['js_validation'] = 'berita-form';
 			$data['editor'] = 'berita-editor';
 			$data['view'] = 'menu/berita/edit';
+			$data['title'] = 'oranghilang. | Edit Berita';
 			$data['js']='berita';
 			$data['js2']='berita-edit';
 			$data['tags'] = $this->berita->getTagsBeritaById($berita->id_berita);

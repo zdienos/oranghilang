@@ -97,6 +97,7 @@ class User extends CI_Controller {
 	    $user = $this->user->getUserById($id);
 	    $data['view'] = 'menu/user/edit';
 	    $data['label'] = $this->user->label();
+	    $data['title'] = 'oranghilang. | Edit User';
 	    $data['id_user_grup'] = $this->user->getUserGrup();
 	    $data['detail'] = $user;
 	    $this->load->view('layout/home', $data);
