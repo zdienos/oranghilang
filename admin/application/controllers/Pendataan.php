@@ -256,7 +256,7 @@ class Pendataan extends CI_Controller {
         $data['error_msg'] = $this->pendataan->error_msg();
       }else{                    
         if ($this->input->post('foto')=='hapus') {          
-          $foto = '';
+          $foto = 'asdsdasdasad';
           $cek = 'oke';
         }
         $nama =$this->input->post('nama_lengkap');
@@ -265,6 +265,7 @@ class Pendataan extends CI_Controller {
           $config['upload_path'] = './assets/orang_hilang/foto';
           $config['allowed_types'] = 'jpg|png|jpeg';
           $config['max_size']  = '2048';
+          $foto = 'asdsasa';
         if (isset($_FILES["foto"]["name"])) {
             $config['file_name']  = $nama."_".md5($tanggal);
             $this->upload->initialize($config); 
@@ -274,6 +275,7 @@ class Pendataan extends CI_Controller {
               $cek = 'gak';
             } else{
               $foto = $this->upload->data('file_name');
+              $data['foto'] = $foto;
               $cek = 'oke';              
             }
         }else{
@@ -293,7 +295,7 @@ class Pendataan extends CI_Controller {
           $this->input->post('baju_terakhir',TRUE),
           $this->input->post('celana_terakhir',TRUE),
           $this->input->post('id_kategori_umur',TRUE),
-          $this->input->post('foto',TRUE),
+          $foto,
           $this->input->post('lokasi_terakhir',TRUE),
           $this->input->post('lat_lokasi',TRUE),
           $this->input->post('lon_lokasi',TRUE),
@@ -304,29 +306,7 @@ class Pendataan extends CI_Controller {
           $this->input->post('no_hp_pelapor',TRUE),
           $this->input->post('id_bencana_alam',TRUE),
           $this->input->post('id_hubungan_pelapor',TRUE),
-          $this->input->post('id_status_org_hilang',TRUE),
-          $this->input->post('nama_lengkap',TRUE),
-          $this->input->post('nama_panggilan'),
-          $this->input->post('alamat'),
-          $this->input->post('umur'),
-          $this->input->post('id_jenis_kelamin'),
-          $this->input->post('marga_suku'),
-          $this->input->post('warna_kulit'),
-          $this->input->post('baju_terakhir'),
-          $this->input->post('celana_terakhir'),
-          $this->input->post('id_kategori_umur'),
-          $foto,
-          $this->input->post('lokasi_terakhir'),
-          $this->input->post('lat_lokasi'),
-          $this->input->post('lon_lokasi'),
-          $this->input->post('nama_ayah'),
-          $this->input->post('nama_ibu'),
-          $this->input->post('keterangan_lainnya'),
-          $this->input->post('nama_pelapor'),
-          $this->input->post('no_hp_pelapor'),
-          $this->input->post('id_bencana_alam'),
-          $this->input->post('id_hubungan_pelapor'),
-          $this->input->post('id_status_org_hilang')          
+          $this->input->post('id_status_org_hilang',TRUE)          
         )){
           $data['success']=true;
           $redirect = array(
