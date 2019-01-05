@@ -98,7 +98,8 @@ class User extends CI_Controller {
 	    $data['view'] = 'menu/user/edit';
 	    $data['label'] = $this->user->label();
 	    $data['id_user_grup'] = $this->user->getUserGrup();
-	    $data['detail'] = $user;
+      $data['detail'] = $user;
+      $data['title'] = 'oranghilang. | Edit Data User';
 	    $this->load->view('layout/home', $data);
 	  }else{
 	    echo 'method not allowed';

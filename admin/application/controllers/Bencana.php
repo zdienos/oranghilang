@@ -50,10 +50,6 @@ public function add(){
   $this->load->view('layout/home', $data);
 }
 
-public function asd(){
-  echo 'asd';
-}
-
 public function validate()
 {
   if ($this->input->server('REQUEST_METHOD') == 'POST'){      
@@ -91,6 +87,7 @@ public function detail($id){
     $data['jenisbencana'] = $this->bencana->getJenisBencanaAlam();
     $data['notselectedjenisbencana'] = $this->bencana->getNotSelectedJenisBencana($bencana->jbaaid);
     $data['dropdown'] = 'dropdown-bencana';
+    $data['title'] = 'oranghilang. | Detail Bencana Alam';
     $this->load->view('layout/home', $data);
 
 }
@@ -106,6 +103,7 @@ public function edit($id){
     $data['jenisbencana'] = $this->bencana->getJenisBencanaAlam();
     $data['notselectedjenisbencana'] = $this->bencana->getNotSelectedJenisBencana($bencana->jbaaid);
     $data['dropdown'] = 'validation/dropdown-bencana-edit';
+    $data['title'] = 'oranghilang. | Edit Bencana Alam';
     $this->load->view('layout/home', $data);
   
 }
