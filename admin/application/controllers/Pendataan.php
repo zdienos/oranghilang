@@ -256,7 +256,7 @@ class Pendataan extends CI_Controller {
         $data['error_msg'] = $this->pendataan->error_msg();
       }else{                    
         if ($this->input->post('foto')=='hapus') {          
-          $foto = 'asdsdasdasad';
+          $foto = '';
           $cek = 'oke';
         }
         $nama =$this->input->post('nama_lengkap');
@@ -265,7 +265,7 @@ class Pendataan extends CI_Controller {
           $config['upload_path'] = './assets/orang_hilang/foto';
           $config['allowed_types'] = 'jpg|png|jpeg';
           $config['max_size']  = '2048';
-          $foto = 'asdsasa';
+          $foto = '';
         if (isset($_FILES["foto"]["name"])) {
             $config['file_name']  = $nama."_".md5($tanggal);
             $this->upload->initialize($config); 
