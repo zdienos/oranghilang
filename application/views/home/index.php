@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="text-block">
 			<div class="heading-holder">
-				<h1>Temukan Keluaga Anda !</h1>
+				<h1>Temukan Keluarga Anda !</h1>
 			</div>
 			<style type="text/css">
 				.font{
@@ -123,15 +123,15 @@
 				<h3><a href="<?=base_url('oranghilang')?>">Read More ...</a></h3>
 			</div>
 		</div>
-		<div class="col-md-4" style="margin-top: 100px;">
+		<div class="col-md-4" style="margin-top: 0px;">
 			<div class="world-latest-articles">
 				<div class="row">
 					<div class="title">
 						<h5>Twitter BMKG</h5>
 					</div>
-					<div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
-						<a class="twitter-timeline" class="twitter" style="margin-left:10%" data-width="auto" data-height="600" data-theme="dark" href="https://twitter.com/infoBMKG?ref_src=twsrc%5Etfw">Tweets by infoBMKG</a> <script async src="https	://platform.twitter.com/widgets.js" charset="utf-8"></script>
-					</div>
+					<!-- <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s"> -->
+						<a class="twitter-timeline" data-lang="id" data-height="600" data-theme="light" href="https://twitter.com/infoBMKG?ref_src=twsrc%5Etfw">@infoBMKG</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+					<!-- </div> -->
 				</div>
 			</div>
 		</div>

@@ -59,10 +59,8 @@
 					<div class="row">
 						<div class="title">
 							<h5>Twitter BMKG</h5>
-						</div>
-					<div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
-						<a class="twitter-timeline" class="twitter" data-width="300" data-height="700" data-theme="dark" href="https://twitter.com/infoBMKG?ref_src=twsrc%5Etfw">Tweets by infoBMKG</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-					</div>
+						</div>					
+						<a class="twitter-timeline" data-lang="id" data-height="600" data-theme="light" href="https://twitter.com/infoBMKG?ref_src=twsrc%5Etfw">@infoBMKG</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>					
 					</div>
 				</div>
 				
