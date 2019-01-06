@@ -136,7 +136,7 @@ class M_pendataan extends CI_Model {
           'Laki-Laki' => 'L',
           'Perempuan' => 'P'
         );
-        return $this->datatables->select('orang_hilang.id,nama_lengkap,nama_panggilan,tgl_laporan,nama_bencana_alam,jenis_kelamin.nama_jenis_kelamin,umur,alamat,lokasi_terakhir')
+        return $this->datatables->select('orang_hilang.id,nama_lengkap,nama_panggilan,tgl_laporan,nama_bencana_alam,jenis_kelamin.nama_jenis_kelamin,umur,alamat,keterangan_lainnya')
                                 ->where('id_status_org_hilang',$id)
                                 ->join('bencana_alam','bencana_alam.id=orang_hilang.id_bencana_alam')
                                 ->join('jenis_kelamin','jenis_kelamin.id=orang_hilang.id_jenis_kelamin')

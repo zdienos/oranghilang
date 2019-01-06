@@ -14,8 +14,8 @@
               <th>Nama Lengkap / Panggilan</th>
               <th>Jenis Kelamin / Umur</th>
               <th>Alamat</th>
-              <th>Aksi</th>
               <th>Keterangan</th>
+              <th>Aksi</th>
             </tr>
           </thead>
         </table>

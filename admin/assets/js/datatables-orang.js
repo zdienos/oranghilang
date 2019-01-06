@@ -61,7 +61,7 @@ $(document).ready(function() {
             "orderable": false
           },
           {
-            "data": "lokasi_terakhir",
+            "data": "keterangan_lainnya",
             "orderable": false
           },
           {

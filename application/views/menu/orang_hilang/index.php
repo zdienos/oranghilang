@@ -1,4 +1,4 @@
-<?php $this->session->unset_userdata('url_back_search'); ?>
+<?php $this->session->set_userdata('url_back_search',current_url()); ?>
   <br><br><br><br>
 	<center>
 		<h1><b>Daftar Orang Hilang</b></h1><br>
