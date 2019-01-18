@@ -1,6 +1,11 @@
 ###################
-What is CodeIgniter
+oranghilang.site
 ###################
+Aplikasi ini berfungsi untuk mendata orang hilang pasca terjadinya bencana. Tidak hanya itu aplikasi dapat memudahakan keluarga korban untuk melihat status evakuasi dari korban tersebut. Terdapat 3 tingaktan user pada web yaitu admin, petugas, dan content writer.
+
+*******************
+What is CodeIgniter
+*******************
 
 CodeIgniter is an Application Development Framework - a toolkit - for people
 who build web sites using PHP. Its goal is to enable you to develop projects
