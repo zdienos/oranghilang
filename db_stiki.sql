@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 22, 2018 at 07:08 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.5.35
+-- Host: localhost:3306
+-- Generation Time: Jan 19, 2019 at 08:22 AM
+-- Server version: 5.7.24-log
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_stiki`
 --
+CREATE DATABASE IF NOT EXISTS `db_stiki` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `db_stiki`;
 
 -- --------------------------------------------------------
 
@@ -29,14 +33,49 @@ SET time_zone = "+00:00";
 CREATE TABLE `bencana_alam` (
   `id` int(11) NOT NULL,
   `id_jenis_bencana_alam` int(11) NOT NULL,
-  `id_provinces` int(11) NOT NULL,
-  `id_regencies` int(11) NOT NULL,
-  `id_districts` int(11) NOT NULL,
-  `id_villages` int(11) NOT NULL,
+  `id_provinces` char(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id_regencies` char(4) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id_districts` char(7) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id_villages` char(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `nama_bencana_alam` varchar(255) NOT NULL,
   `tgl_waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bencana_alam`
+--
+
+INSERT INTO `bencana_alam` (`id`, `id_jenis_bencana_alam`, `id_provinces`, `id_regencies`, `id_districts`, `id_villages`, `nama_bencana_alam`, `tgl_waktu`, `keterangan`) VALUES
+(1, 1, '11', '1107', '1107062', '1107062026', 'Tsunami Aceh 2002', '2002-08-22 17:00:00', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `berita`
+--
+
+CREATE TABLE `berita` (
+  `id_berita` int(11) NOT NULL,
+  `judul_berita` varchar(255) NOT NULL,
+  `foto_header` varchar(255) DEFAULT NULL,
+  `foto_thumbnail` varchar(255) DEFAULT NULL,
+  `isi` text NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL,
+  `slug` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `berita`
+--
+
+INSERT INTO `berita` (`id_berita`, `judul_berita`, `foto_header`, `foto_thumbnail`, `isi`, `id_user`, `date`, `status`, `slug`) VALUES
+(3, 'BNPB: 429 Korban Tewas Tsunami Selat Sunda Sudah Teridentifikasi', 'header_d237b3c379122a1bf93577bac835a0d6.jpg', 'thumbnail_d237b3c379122a1bf93577bac835a0d6.jpg', '<p style=\"margin: 1em 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: medium; line-height: 22px; font-family: Roboto, HelveticaNeueW01-45Light, Helvetica, Arial; vertical-align: baseline; letter-spacing: 0.16px; text-rendering: optimizespeed; -webkit-font-smoothing: antialiased; color: rgb(51, 51, 51);\"><span style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">Sumber :&nbsp;</span><a href=\"https://nasional.tempo.co/read/1161045/bnpb-429-korban-tewas-tsunami-selat-sunda-sudah-teridentifikasi\" target=\"_blank\">https://nasional.tempo.co/read/1161045/bnpb-429-korban-tewas-tsunami-selat-sunda-sudah-teridentifikasi</a></p><p style=\"margin: 1em 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: medium; line-height: 22px; font-family: Roboto, HelveticaNeueW01-45Light, Helvetica, Arial; vertical-align: baseline; letter-spacing: 0.16px; text-rendering: optimizespeed; -webkit-font-smoothing: antialiased; color: rgb(51, 51, 51);\"><span style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">TEMPO.CO, Jakarta&nbsp;</span>- Badan Nasional Penanggulangan Bencana (<a href=\"https://www.tempo.co/tag/bnpb\" style=\"margin: 0px; padding: 0px; border: 0px; font: inherit; vertical-align: baseline; color: rgb(0, 176, 255);\">BNPB</a>) menyatakan tim evakuasi telah memakamkan 429 jenazah dari 437 korban tewas akibat tsunami Selat Sunda hingga Rabu, 2 Januari 2018 pukul 13.30 WIB.</p><p style=\"margin: 1em 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: medium; line-height: 22px; font-family: Roboto, HelveticaNeueW01-45Light, Helvetica, Arial; vertical-align: baseline; letter-spacing: 0.16px; text-rendering: optimizespeed; -webkit-font-smoothing: antialiased; color: rgb(51, 51, 51);\">Simak:&nbsp;<a href=\"https://nasional.tempo.co/read/1160990/bnpb-korban-meninggal-longsor-sukabumi-15-orang\" target=\"_blank\" rel=\"noopener\" style=\"margin: 0px; padding: 0px; border: 0px; font: inherit; vertical-align: baseline; color: rgb(0, 176, 255);\">BNPB: Korban Meninggal Longsor&nbsp;<span class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; vertical-align: baseline; letter-spacing: 0.01em; text-rendering: optimizespeed; -webkit-font-smoothing: antialiased;\">Sukabumi</span>&nbsp;15 Orang</a></p><p style=\"margin: 1em 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: medium; line-height: 22px; font-family: Roboto, HelveticaNeueW01-45Light, Helvetica, Arial; vertical-align: baseline; letter-spacing: 0.16px; text-rendering: optimizespeed; -webkit-font-smoothing: antialiased; color: rgb(51, 51, 51);\">Sutopo menuturkan, jenazah dimakamkan setelah berhasil diidentifikasi. \"Sementara 8 jenazah yang belum dimakamkan belum teridentifikasi,\" kata dia di kantornya, Jakarta, Rabu, 2 Januari 2019. Rencananya, kedepalan korban ini akan disemayamkan dalam satu kuburan massal.</p><p style=\"margin: 1em 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: medium; line-height: 22px; font-family: Roboto, HelveticaNeueW01-45Light, Helvetica, Arial; vertical-align: baseline; letter-spacing: 0.16px; text-rendering: optimizespeed; -webkit-font-smoothing: antialiased; color: rgb(51, 51, 51);\">Menurut Sutopo, data korban tewas hingga hari ini masih sama dengan data terakhir yang dirilis pada 31 Desember 2018. Begitu pula dengan jumlah korban luka yang mencapai 1.459 orang dan hilang sebanyak 10 orang.</p><div id=\"inarticle\" style=\"margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: medium; line-height: inherit; font-family: Roboto, HelveticaNeueW01-45Light, Helvetica, Arial; vertical-align: baseline; letter-spacing: 0.16px;\"></div><p style=\"margin: 1em 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: medium; line-height: 22px; font-family: Roboto, HelveticaNeueW01-45Light, Helvetica, Arial; vertical-align: baseline; letter-spacing: 0.16px; text-rendering: optimizespeed; -webkit-font-smoothing: antialiased; color: rgb(51, 51, 51);\">Perbedaannya terletak pada jumlah pengungsi. BNPB mencatat saat ini terdapat 36.923 orang yang mengungsi dari tempat tinggalnya. Dari total tersebut, Sutopo menyatakan hanya sekitar 10 ribu orang yang mengungsi karena kehilangan rumah. \"Sebagian besar lainnya mengungsi karena trauma dengan tsunami,\" kata dia.</p><p style=\"margin: 1em 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: medium; line-height: 22px; font-family: Roboto, HelveticaNeueW01-45Light, Helvetica, Arial; vertical-align: baseline; letter-spacing: 0.16px; text-rendering: optimizespeed; -webkit-font-smoothing: antialiased; color: rgb(51, 51, 51);\">Di Kabupaten Pandeglang, sejumlah pengungsi menempati sekolah sambil menunggu hunian sementara selesai dibangun. Mendekati berakhirnya liburan sekolah, pemerintah setempat akan memindahkan mereka ke lokasi lain agar tak menggangu proses belajar mengajar di sekolah.</p><p style=\"margin: 1em 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: medium; line-height: 22px; font-family: Roboto, HelveticaNeueW01-45Light, Helvetica, Arial; vertical-align: baseline; letter-spacing: 0.16px; text-rendering: optimizespeed; -webkit-font-smoothing: antialiased; color: rgb(51, 51, 51);\">Baca:&nbsp;<a href=\"https://nasional.tempo.co/read/1161010/sutopo-bnpb-longsor-sukabumi-karena-hujan-dan-retakan-di-bukit/\" style=\"margin: 0px; padding: 0px; border: 0px; font: inherit; vertical-align: baseline; color: rgb(0, 176, 255);\">Sutopo BNPB: Longsor Sukabumi Karena Hujan dan Retakan di Bukit</a></p><p style=\"margin: 1em 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: medium; line-height: 22px; font-family: Roboto, HelveticaNeueW01-45Light, Helvetica, Arial; vertical-align: baseline; letter-spacing: 0.16px; text-rendering: optimizespeed; -webkit-font-smoothing: antialiased; color: rgb(51, 51, 51);\">Tsunami menerjang sejumlah pantai di sekitar Selat Sunda. Lima kabupaten di Banten dan Lampung tersapu air. Tsunami tersebut dipicu longsor bawah laut akibat erupsi Gunung Anak Krakatau.</p>', 383883, '2019-01-03 11:19:33', 1, 'bnpb-429-korban-tewas-tsunami-selat-sunda-sudah-teridentifikasi.html'),
+(4, 'Pulihkan Korban Tsunami Selat Sunda, Kemensos Dirikan Trauma Healing', 'header_c8da06a6230e1eb141f01d1a0d8677b8.JPG', 'thumbnail_c8da06a6230e1eb141f01d1a0d8677b8.JPG', '<p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><span style=\"font-weight: 700; outline: none !important;\">Sumber :&nbsp;</span><a href=\"https://www.idntimes.com/news/indonesia/indianamalia/pulihkan-korban-tsunami-selat-sunda-kemensos-dirikan-trauma-healing/full\" target=\"_blank\">https://www.idntimes.com/news/indonesia/indianamalia/pulihkan-korban-tsunami-selat-sunda-kemensos-dirikan-trauma-healing/full</a></p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><span style=\"font-weight: 700; outline: none !important;\">Jakarta, IDN Times</span>&nbsp;- Kementerian Sosial menggelar program Layanan Dukungan Psikososial (LDP) guna memulihkan para korban bencana tsunami Selat Sunda. Program LDP dilakukan oleh 56 petugas di 7 Pos LDP dan menyebar ke titik pengungsian lain.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">\"Kegiatan ini dihadiri 1.000-1.500 orang pengungsi anak-anak atau ibu-ibu setiap hari,\" ujar Menteri Sosial Agus Gumiwang Kartasasmita, Selasa (1/1).&nbsp;</p><div class=\"inarticle-ads\" style=\"color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; margin: 10px auto; outline: none !important;\"></div><h2 style=\"font-family: \" roboto=\"\" slab\",=\"\" serif;=\"\" color:=\"\" rgb(51,=\"\" 51,=\"\" 51);=\"\" margin:=\"\" 20px=\"\" 0px=\"\" 4px;=\"\" font-size:=\"\" 30px;=\"\" letter-spacing:=\"\" normal;=\"\" outline:=\"\" none=\"\" !important;\"=\"\">1. Sebanyak 23 pendamping PKH diturunkan</h2><div class=\"embed-image\" style=\"position: relative; margin-bottom: 12px; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><img src=\"https://cdn.idntimes.com/content-images/post/20181229/kondisi-terkini-pasca-tsunami-banten-6a66d6310167274dfd61b19ed2a029bf.JPG\" alt=\"Pulihkan Korban Tsunami Selat Sunda, Kemensos Dirikan Trauma Healing&nbsp;\" style=\"border: 0px; max-width: 100%; width: 765px; outline: none !important; height: auto !important;\"><span class=\"main-article-source\" style=\"font-size: 12px; display: block; position: absolute; bottom: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.4); text-align: center; color: rgb(255, 255, 255); font-style: italic; padding: 4px 10px; outline: none !important;\">IDN Times/ Helmi Shemi</span></div><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Untuk mempercepat proses trauma healing korban tsunami dan memperluas layanan dukungan psikososial, kata Agus, Kemensos menurunkan 23 pendamping Program Keluarga Harapan (PKH) untuk mendampingi warga.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">\"Tugas mereka adalah mendampingi pemulihan pascatrauma warga terdampak bencana agar pelan-pelan dapat melanjutkan hidupnya,\" tuturnya.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Selain pendamping PKH, Kemensos juga mengerahkan tenaga relawan dari Tagana, Tenaga Pelopor Perdamaian, Satuan Bakti Pekerja Sosial (Sakti Peksos), Tenaga Kesejahteraan Sosial Kecamatan (TKSK) dan para relawan lainnya.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">\"Hal ini menunjukkan rasa kesetiakawanan sosial yang tinggi. Semangat mereka untuk membantu sesama sangat luar biasa,\" katanya.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><a href=\"https://www.idntimes.com/news/indonesia/indianamalia/kemensos-gelontorkan-rp28-miliar-untuk-tangani-tsunami-selat-sunda\" target=\"_blank\" style=\"color: rgb(237, 33, 38); outline: none !important;\"><span style=\"font-weight: 700; outline: none !important;\"><em style=\"outline: none !important;\">Baca Juga: Kemensos Gelontorkan Rp2,8 Miliar untuk Tangani Tsunami Selat Sunda</em></span></a></p><div class=\"inarticle-ads\" style=\"color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; margin: 10px auto; outline: none !important;\"></div><h2 style=\"font-family: \" roboto=\"\" slab\",=\"\" serif;=\"\" color:=\"\" rgb(51,=\"\" 51,=\"\" 51);=\"\" margin:=\"\" 20px=\"\" 0px=\"\" 4px;=\"\" font-size:=\"\" 30px;=\"\" letter-spacing:=\"\" normal;=\"\" outline:=\"\" none=\"\" !important;\"=\"\">2. Berbagai layanan psikologi disediakan</h2><div class=\"embed-image\" style=\"position: relative; margin-bottom: 12px; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><img src=\"https://cdn.idntimes.com/content-images/post/20190101/whatsapp-image-2019-01-01-at-73340-am-43281be81cdafa6292f2f998904c7df6.jpeg\" alt=\"Pulihkan Korban Tsunami Selat Sunda, Kemensos Dirikan Trauma Healing&nbsp;\" style=\"border: 0px; max-width: 100%; width: 765px; outline: none !important; height: auto !important;\"><span class=\"main-article-source\" style=\"font-size: 12px; display: block; position: absolute; bottom: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.4); text-align: center; color: rgb(255, 255, 255); font-style: italic; padding: 4px 10px; outline: none !important;\">Biro Pers Presiden</span></div><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Agus menjelaskan, Pos Utama LDP berada di GOR Futsal Labuhan untuk Provinsi Banten dan Lapangan Tenis Indoor Kalianda untuk Provinsi Lampung. Bentuk kegiatan yang dilakukan bersama relawan antara lain phsyco therapy (katarsis mental, trauma healing, konseling, intervensi krisis, motivasi hidup), play therapy (sulap, game), spiritual therapy (pengajian, istighosah), hypno therapy (meditasi), psiko edukasi (motivasi belajar kembali).&nbsp;</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Sementara, di Posko Labuan juga sudah mulai diaktifkan Pondok Anak Ceria (PAC). Di PAC tersebut anak-anak dilibatkan dalam berbagai macam aktivitas yang membuat mereka gembira, mengurangi trauma, dan diajak beraktivitas yang bersifat edukatif dan kreatif. Kegiatan dilakukan secara terstruktur, terencana dan terjadwal.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">\"Penanganan terhadap anak diorganisasikan dengan baik seperti misalnya sudah mulai disusun jadwal kegiatan, klaster anak berdasarkan usia, dan jenis kegiatan yang berbeda,\" ungkapnya.</p><div class=\"editors-pick\" style=\"padding-bottom: 14px; border-bottom: 1px solid gray; margin-bottom: 30px; text-transform: capitalize; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><div class=\"title\" style=\"width: 765px; position: relative; margin: 0px 0px 15px; text-align: center; text-transform: uppercase; outline: none !important;\"><span style=\"background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; padding: 0px 25px; z-index: 2; position: relative; font-size: 15px; outline: none !important;\">LANJUTKAN MEMBACA ARTIKEL DI BAWAH</span></div><h3 class=\"title-editors-pick\" style=\"font-family: inherit; font-weight: 700; line-height: 1.1; color: rgb(237, 33, 38); margin-top: 20px; margin-bottom: 10px; font-size: 18px; outline: none !important;\">Editors’ Picks</h3><ul style=\"margin-bottom: 10px; padding-left: 20px; outline: none !important;\"><li style=\"list-style: square; margin-bottom: 15px; outline: none !important;\"><a href=\"https://www.idntimes.com/news/indonesia/indianamalia/pejabat-bpjs-tk-menggugat-ade-armando-siap-buka-bukaan\" style=\"color: rgb(51, 51, 51); outline: none !important;\">Pejabat BPJS TK Menggugat, Ade Armando Siap Buka-Bukaan</a></li><li style=\"list-style: square; margin-bottom: 15px; outline: none !important;\"><a href=\"https://www.idntimes.com/news/indonesia/ilyas-listianto-mujib-1/capres-cawapres-diminta-tes-baca-alquran-begini-reaksi-kubu-jokowi\" style=\"color: rgb(51, 51, 51); outline: none !important;\">Capres-Cawapres Diminta Tes Baca Alquran, Begini Reaksi Kubu Jokowi</a></li><li style=\"list-style: square; margin-bottom: 15px; outline: none !important;\"><a href=\"https://www.idntimes.com/news/indonesia/teatrika/acara-malam-tahun-baru-2019-jakarta-nikah-massal-panggung-car-free-hight\" style=\"color: rgb(51, 51, 51); outline: none !important;\">Acara Malam Tahun Baru Di Jakarta: Car Free Night Hingga Nikah Massal</a></li></ul></div><h2 style=\"font-family: \" roboto=\"\" slab\",=\"\" serif;=\"\" color:=\"\" rgb(51,=\"\" 51,=\"\" 51);=\"\" margin:=\"\" 20px=\"\" 0px=\"\" 4px;=\"\" font-size:=\"\" 30px;=\"\" letter-spacing:=\"\" normal;=\"\" outline:=\"\" none=\"\" !important;\"=\"\">3. Sebanyak 5 LDP didirikan di Banten</h2><div class=\"embed-image\" style=\"position: relative; margin-bottom: 12px; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><img src=\"https://cdn.idntimes.com/content-images/post/20181229/kondisi-terkini-pasca-tsunami-banten5-c9fdbd9199a6f4fffb51ce0c129218bf.JPG\" alt=\"Pulihkan Korban Tsunami Selat Sunda, Kemensos Dirikan Trauma Healing&nbsp;\" style=\"border: 0px; max-width: 100%; width: 765px; outline: none !important; height: auto !important;\"><span class=\"main-article-source\" style=\"font-size: 12px; display: block; position: absolute; bottom: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.4); text-align: center; color: rgb(255, 255, 255); font-style: italic; padding: 4px 10px; outline: none !important;\">IDN Times/ Helmi Shemi</span></div><div class=\"inarticle-ads\" style=\"color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; margin: 10px auto; outline: none !important;\"></div><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Di Banten, saat ini terdapat 5 Pos LDP. Posko Lapangan Futsal di Labuan, Posko di Kantor Kecamatan Angsana, Posko di Tembong Carita, Pos Bumi Perkemahan Cikujang, dan Kampung Palingping Ds. Tunggal Jaya Kecamatan Sumur. Di Lampung, Posko LDP ada di Lapangan Tennis Indoor Kalianda Lampung Selatan dan Kantor Gubernur Provinsi Lampung.&nbsp;</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">\"Upaya percepatan dalam penanganan bencana terus dilakukan sebagaimana arahan Presiden Joko Widodo agar warga terdampak bencana terpenuhi kebutuhan dasarnya dan terlindungi oleh negara,\" kata Agus.</p><h2 style=\"font-family: \" roboto=\"\" slab\",=\"\" serif;=\"\" color:=\"\" rgb(51,=\"\" 51,=\"\" 51);=\"\" margin:=\"\" 20px=\"\" 0px=\"\" 4px;=\"\" font-size:=\"\" 30px;=\"\" letter-spacing:=\"\" normal;=\"\" outline:=\"\" none=\"\" !important;\"=\"\">4. Anggaran Rp2,8 miliar digelontorkan untuk tangani korban tsunami Selat Sunda</h2><div class=\"embed-image\" style=\"position: relative; margin-bottom: 12px; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><img src=\"https://cdn.idntimes.com/content-images/post/20190101/whatsapp-image-2019-01-01-at-73220-am-12e9b3943805c884a20ce5f3eeb00667.jpeg\" alt=\"Pulihkan Korban Tsunami Selat Sunda, Kemensos Dirikan Trauma Healing&nbsp;\" style=\"border: 0px; max-width: 100%; width: 765px; outline: none !important; height: auto !important;\"><span class=\"main-article-source\" style=\"font-size: 12px; display: block; position: absolute; bottom: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.4); text-align: center; color: rgb(255, 255, 255); font-style: italic; padding: 4px 10px; outline: none !important;\">IDN Times/Uni Lubis</span></div><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Hingga 31 Desember 2018, Kemensos menggelontorkan anggaran bantuan bencana tsunami Selat Sunda senilai Rp2,8 miliar.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Bantuan tersebut terdiri dari bantuan logistik untuk Banten Rp1,4 miliar, bantuan logistik untuk Lampung Rp1,1 miliar, santunan ahli waris untuk 9 orang total Rp135 juta, bantuan peralatan dapur keluarga sebesar Rp33,5 juta, dan bantuan natura dapur umum Rp70 juta.</p><h2 style=\"font-family: \" roboto=\"\" slab\",=\"\" serif;=\"\" color:=\"\" rgb(51,=\"\" 51,=\"\" 51);=\"\" margin:=\"\" 20px=\"\" 0px=\"\" 4px;=\"\" font-size:=\"\" 30px;=\"\" letter-spacing:=\"\" normal;=\"\" outline:=\"\" none=\"\" !important;\"=\"\">5. Cadangan beras pemerintah dikeluarkan di beberapa titik</h2><div class=\"embed-image\" style=\"position: relative; margin-bottom: 12px; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><img src=\"https://cdn.idntimes.com/content-images/post/20190101/whatsapp-image-2019-01-01-at-73225-am-991932383dbf2346ffc69ee922d170e0.jpeg\" alt=\"Pulihkan Korban Tsunami Selat Sunda, Kemensos Dirikan Trauma Healing&nbsp;\" style=\"border: 0px; max-width: 100%; width: 765px; outline: none !important; height: auto !important;\"><span class=\"main-article-source\" style=\"font-size: 12px; display: block; position: absolute; bottom: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.4); text-align: center; color: rgb(255, 255, 255); font-style: italic; padding: 4px 10px; outline: none !important;\">IDN Times/Uni Lubis</span></div><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Untuk memenuhi kebutuhan logistik, pemerintah telah mengeluarkan Cadangan Beras Pemerintah (CBP) dari Gudang Bulog setempat. Kabupaten Pandeglang mengeluarkan 100 ton CBP yang dipergunakan untuk memasak di dapur umum lapangan, dapur umum mandiri, dan jumlah korban bencana sesuai nama dan alamat dengan indeks 400 gram per orang per hari dikalikan dengan jumlah hari masa tanggap darurat.&nbsp;</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Kebutuhan makanan dipenuhi dari Dapur Umum Lapangan sebanyak 15 titik di Provinsi Banten dan 8 titik di Provinsi Lampung, dengan masing-masing produksi 3.000 nasi bungkus per hari. Total 23 titik dapur umum yang memproduksi total 69.000 bungkus per hari</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Pemerintah juga menyalurkan makanan siap saji dan lauk pauk sebanyak 6.200 paket, mie instan 54.400 bungkus, pemberian peralatan dapur keluarga sebanyak 500 paket, serta distribusi bahan mentah berupa lauk pauk untuk dapur umum mandiri masyarakat</p>', 383883, '2019-01-03 11:23:59', 1, 'pulihkan-korban-tsunami-selat-sunda-kemensos-dirikan-trauma-healing.html'),
+(5, 'BNPB Prediksi Ada 2500 Bencana Alam Sepanjang 2019', 'header_2a6085443be7e56586218a3786762df4.jpeg', 'thumbnail_2a6085443be7e56586218a3786762df4.jpeg', '<p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><span style=\"font-weight: 700; outline: none !important;\">Sumber :&nbsp;</span><a href=\"https://www.idntimes.com/news/indonesia/vanny-rahman/bnpb-prediksi-ada-2500-bencana-alam-sepanjang\" target=\"_blank\">https://www.idntimes.com/news/indonesia/vanny-rahman/bnpb-prediksi-ada-2500-bencana-alam-sepanjang</a></p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><span style=\"font-weight: 700; outline: none !important;\">Jakarta, IDN Times -</span>&nbsp;Badan Nasional Penanggulangan Bencana (BNPB) memprediksi bencana alam akan terus mewarnai tanah air pada 2019 ini. Bahkan BNPB telah memperkirakan beraaa jumlah bencana yang akan terjadi sepanjang tahun ini.&nbsp;</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">“Diprediksi jumlah kejadian bencana selama 2019 lebih dari 2.500 kejadian,” kata Kepala Pusat Data Informasi dan Humas BNPB Sutopo Purwo Nugroho di kantornya, Senin (31/12/2018).</p><h2 style=\"font-family: \" roboto=\"\" slab\",=\"\" serif;=\"\" color:=\"\" rgb(51,=\"\" 51,=\"\" 51);=\"\" margin:=\"\" 20px=\"\" 0px=\"\" 4px;=\"\" font-size:=\"\" 30px;=\"\" letter-spacing:=\"\" normal;=\"\" outline:=\"\" none=\"\" !important;\"=\"\">1. Ini penyebab bencananya</h2><div class=\"embed-image\" style=\"position: relative; margin-bottom: 12px; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><img src=\"https://cdn.idntimes.com/content-images/post/20181228/whatsapp-image-2018-12-28-at-174520-90b7a9b042959a88208bf59725fbc272.jpeg\" alt=\"BNPB Prediksi Ada 2500 Bencana Alam Sepanjang 2019\" style=\"border: 0px; max-width: 100%; width: 765px; outline: none !important; height: auto !important;\"><span class=\"main-article-source\" style=\"font-size: 12px; display: block; position: absolute; bottom: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.4); text-align: center; color: rgb(255, 255, 255); font-style: italic; padding: 4px 10px; outline: none !important;\">IDN Times/Teatrika Handiko Putri</span></div><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Menurut Sutopo, tingginya prediksi bencana tahun 2019 disebabkan oleh kerusakan daerah aliran sungai (DAS) yang semakin meluas, kerusakan hutan, lingkungan, perubahan penggunaan lahan, dan tingginya kerentanan lainnya.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">“Rata-rata laju perubahan lahan pertanian menjadi non-pertanian sekitar 110.000 hektar/tahun. Luas lahan kritis mencapai 14 juta hektar. Otomatis hujan yang turun akan menjadi aliran permukaan,” jelasnya.</p><h2 style=\"font-family: \" roboto=\"\" slab\",=\"\" serif;=\"\" color:=\"\" rgb(51,=\"\" 51,=\"\" 51);=\"\" margin:=\"\" 20px=\"\" 0px=\"\" 4px;=\"\" font-size:=\"\" 30px;=\"\" letter-spacing:=\"\" normal;=\"\" outline:=\"\" none=\"\" !important;\"=\"\">2. Pesta demokrasi berdampak terhadap penanganan bencana</h2><div class=\"embed-image\" style=\"position: relative; margin-bottom: 12px; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><img src=\"https://cdn.idntimes.com/content-images/post/20181224/antarafoto-bnpbtanggapibencanatsunamibanten-23122018-afa-6-87ddb9b0030ecf4819cef4d10cfe45ea.jpg\" alt=\"BNPB Prediksi Ada 2500 Bencana Alam Sepanjang 2019\" style=\"border: 0px; max-width: 100%; width: 765px; outline: none !important; height: auto !important;\"><span class=\"main-article-source\" style=\"font-size: 12px; display: block; position: absolute; bottom: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.4); text-align: center; color: rgb(255, 255, 255); font-style: italic; padding: 4px 10px; outline: none !important;\">ANTARA FOTO/Andreas Fitri Atmoko</span></div><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Kendati bencana alam tidak dipengaruhi oleh momentum politik, Sutopo memperkirakan Pileg dan Pilpres 2019 akan berdampak terhadap penanganan bencana.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">“Penyelenggaraan Pileg dan Pilpres pada 17 April 2019 akan berpengaruh dalam penyelenggaraan penanggulangan bencana, sehingga perlu diantisipasi sejak dini,” tambah dia.</p><h2 style=\"font-family: \" roboto=\"\" slab\",=\"\" serif;=\"\" color:=\"\" rgb(51,=\"\" 51,=\"\" 51);=\"\" margin:=\"\" 20px=\"\" 0px=\"\" 4px;=\"\" font-size:=\"\" 30px;=\"\" letter-spacing:=\"\" normal;=\"\" outline:=\"\" none=\"\" !important;\"=\"\">3. Berikut prediksi untuk bencana geologi</h2><div class=\"embed-image\" style=\"position: relative; margin-bottom: 12px; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><img src=\"https://cdn.idntimes.com/content-images/post/20181224/whatsapp-image-2018-12-23-at-230138-c6b14c5a7999403f53a81a0102199689.jpeg\" alt=\"BNPB Prediksi Ada 2500 Bencana Alam Sepanjang 2019\" style=\"border: 0px; max-width: 100%; width: 765px; outline: none !important; height: auto !important;\"><span class=\"main-article-source\" style=\"font-size: 12px; display: block; position: absolute; bottom: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.4); text-align: center; color: rgb(255, 255, 255); font-style: italic; padding: 4px 10px; outline: none !important;\">Dok. Susi Air</span></div><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Sementara, untuk bencana geologi selama 2019 diprediksi akan terjadi gempa sebanyak 500 kejadian setiap bulan. Kendati begitu, Sutopo menegaskan bahwa gempa bisa terjadi kapan saja dan di mana saja.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">“Ditemukan 214 sumber gempa baru, maka teridentifikasi 295 sesar aktif. Di Jawa terdapat sekitar 37, di Sulawesi sekitar 48, di Papua 79, Nusa Tenggara dan Laut Banda sekitar 49 aktif,” ungkapnya</p><h2 style=\"font-family: \" roboto=\"\" slab\",=\"\" serif;=\"\" color:=\"\" rgb(51,=\"\" 51,=\"\" 51);=\"\" margin:=\"\" 20px=\"\" 0px=\"\" 4px;=\"\" font-size:=\"\" 30px;=\"\" letter-spacing:=\"\" normal;=\"\" outline:=\"\" none=\"\" !important;\"=\"\">4. Mitigasi bencana perlu ditingkatkan</h2><div class=\"inarticle-ads\" style=\"color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; margin: 10px auto; outline: none !important;\"></div><div class=\"embed-image\" style=\"position: relative; margin-bottom: 12px; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\"><img src=\"https://cdn.idntimes.com/content-images/post/20181019/2a-e4e37018651ed9f3adc4e8fd9fc39057.jpg\" alt=\"BNPB Prediksi Ada 2500 Bencana Alam Sepanjang 2019\" style=\"border: 0px; max-width: 100%; width: 765px; outline: none !important; height: auto !important;\"><span class=\"main-article-source\" style=\"font-size: 12px; display: block; position: absolute; bottom: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.4); text-align: center; color: rgb(255, 255, 255); font-style: italic; padding: 4px 10px; outline: none !important;\">IDN Times/Sukma Shakti</span></div><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">Lebih lanjut, Sutopo melakukan mini survei melalui media sosialnya. Dari 9.619 pemilik akun, sekitar 77 persen menyatakan belum siap menghadapi bencana besar seperti gempa, tsunami, banjir, dan longsor.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; line-height: 1.89; color: rgb(51, 51, 51); font-family: Roboto, sans-serif; font-size: 18px; letter-spacing: normal; outline: none !important;\">“Dari survei saya, sekitar 97 persen juga mendukung untuk memasukkan pendidikan bencana ke dalam kurikulum pendidikan nasional setingkat SD, SMP, dan SMA,” terang Sutopo.</p>', 383883, '2019-01-05 20:13:32', 1, 'bnpb-prediksi-ada-2500-bencana-alam-sepanjang-2019.html'),
+(6, 'PVMBG Catat Ada 15 Kali Kegempaan Letusan Anak Krakatau Hingga Minggu Pagi', 'header_bf912dd5b9aa1224dd739caa64bd7443.jpg', 'thumbnail_bf912dd5b9aa1224dd739caa64bd7443.jpg', '<p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\"><b style=\"text-size-adjust: 100%; background: none 0px 0px repeat scroll transparent; border: 0px none; margin: 0px; outline: none 0px; padding: 0px; font-weight: bold;\">Sumber :&nbsp;<a href=\"https://www.merdeka.com/peristiwa/pvmbg-catat-ada-15-kali-letusan-di-gunung-anak-krakatau-hingga-minggu-pagi.html\" target=\"_blank\">https://www.merdeka.com/peristiwa/pvmbg-catat-ada-15-kali-letusan-di-gunung-anak-krakatau-hingga-minggu-pagi.html</a></b></p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\"><b style=\"text-size-adjust: 100%; background: none 0px 0px repeat scroll transparent; border: 0px none; margin: 0px; outline: none 0px; padding: 0px; font-weight: bold;\">Merdeka.com -&nbsp;</b>Badan Geologi, Pusat Vulkanologi dan Mitigasi Bencana Geologi (PVMBG) mencatat Gunung Anak Krakatau (GAK) mengalami 15 kali kegempaan letusan sepanjang Minggu dini hari hingga pagi ini.</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Menurut laporan aktivitas gunung api disampaikan Deny Mardiono AMd, Staf Kementerian ESDM, Badan Geologi, PVMBG Pos Pengamatan Gunung Anak Krakatau, dalam rilis sepanjang periode pengamatan 6 Januari 2019, pukul 00.00 sampai dengan 06.00, visual gunung jelas hingga kabut 0-III. Asap kawah tidak teramati.</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Tidak terdengar suara dentuman. Ombak laut pun tenang.</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Aktivitas Kegempaan Letusan sebanyak 15 kali, amplitudo 15-30 mm, durasi 37-105 detik. Kegempaan Embusan sevanyak 9 kali, amplitudo 9-19 mm, durasi 30-55 detik. Kegempaan Tremor Menerus (Microtremor) terekam dengan amplitudo 2-12 mm (dominan 7 mm).</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Kondisi cuaca terpantau cerah dengan angin bertiup lemah ke arah timur laut. Suhu udara 25-27 derajat Celsius dan kelembapan udara 79-83 persen.</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Kesimpulan tingkat aktivitas Gunung Anak Krakatau Level III (Siaga), sehingga direkomendasikan masyarakat/wisatawan tidak diperbolehkan mendekati kawah dalam radius 5 km dari kawah.</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Sebelumnya, PVMBG menyampaikan pada periode pengamatan 5 Januari 2019 pukul 18.00 sampai dengan 24.00, secara visual gunung kabut 0-III. Asap kawah tidak teramati. Tidak terdengar suara dentuman.</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Aktivitas Kegempaan Letusan sebanyak 19 kali, amplitudo 20-24 mm, durasi 51-121 detik. Embusan sebanyak 6 kali, amplitudo 12-14 mm, durasi 35-42 detik. Tremor Menerus (Microtremor) terekam dengan amplitudo 2-17 mm (dominan 8 mm).</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Sepanjang pengamatan, cuaca cerah dan mendung. Angin bertiup lemah ke arah timur laut dan timur. Suhu udara 27-29 derajat Celsius dan kelembapan udara 71-79 persen.</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Data tersebut diambil dari Stasiun Sertung di Selat Sunda, dekat Gunung Anak Krakatau.</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">PVMBG Badan Geologi Kementerian ESDM menyampaikan pula sejak pagi hingga Sabtu (5/1) siang, Gunung Anak Krakatau mengalami 24 kali kegempaan letusan, 4 kali kegempaan embusan, dan terjadi tremor menerus.</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">PVMBG menyebutkan pada periode pengamatan 5 Januari 2019, pukul 06.00 sampai dengan 12.00 , Gunung Anak Krakatau tercatat mengalami Kegempaan Letusan sebanyak 24 kali, amplitudo 18-25 mm, durasi 52-114 detik.</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Kegempaan Embusan 4 kali, amplitudo 18-22 mm, durasi 46-110 detik. Kemudian Tremor Menerus (Microtremor) terekam dengan amplitudo 2-17 mm (dominan 7 mm).</p><p style=\"font-family: \" noto=\"\" sans\",=\"\" sans-serif;=\"\" text-size-adjust:=\"\" 100%;=\"\" background-image:=\"\" none;=\"\" background-position:=\"\" 0px=\"\" 0px;=\"\" background-size:=\"\" initial;=\"\" background-repeat:=\"\" repeat;=\"\" background-attachment:=\"\" scroll;=\"\" background-origin:=\"\" background-clip:=\"\" border:=\"\" font-size:=\"\" 16px;=\"\" margin-right:=\"\" margin-bottom:=\"\" 30px;=\"\" margin-left:=\"\" outline:=\"\" none=\"\" padding:=\"\" line-height:=\"\" 1.8em;=\"\" letter-spacing:=\"\" normal;\"=\"\">Gunung api di dalam laut itu, kini ketinggiannya menyusut dari semula 338 meter dari permukaan laut (mdpl) menjadi 110 mdpl atau telah berkurang sebagian tubuhnya longsor ke laut, sehingga diduga memicu tsunami Selat Sunda pada Sabtu (22/12) akhir pekan lalu. Seperti diberitakan Antara.&nbsp;<strong style=\"font-family: arial; text-size-adjust: 100%; background: none 0px 0px repeat scroll transparent; border: 0px none; margin: 0px; outline: none 0px; padding: 0px;\">[rhm]</strong></p>', 383883, '2019-01-06 06:19:44', 1, 'pvmbg-catat-ada-15-kali-kegempaan-letusan-anak-krakatau-hingga-minggu-pagi.html');
 
 -- --------------------------------------------------------
 
@@ -614,7 +653,7 @@ INSERT INTO `districts` (`id`, `regency_id`, `name_disctricts`) VALUES
 ('1214070', '1214', 'LOLOMATUA'),
 ('1214071', '1214', 'ULUNOYO'),
 ('1214072', '1214', 'HURUNA'),
-('1214080', '1214', 'LOLOWA''U'),
+('1214080', '1214', 'LOLOWA\'U'),
 ('1214081', '1214', 'HILIMEGAI'),
 ('1214082', '1214', 'OOU'),
 ('1214083', '1214', 'ONOHAZUMBA'),
@@ -4258,7 +4297,7 @@ INSERT INTO `districts` (`id`, `regency_id`, `name_disctricts`) VALUES
 ('5204132', '5204', 'MARONGE'),
 ('5204140', '5204', 'EMPANG'),
 ('5204141', '5204', 'TARANO'),
-('5205010', '5205', 'HU''U'),
+('5205010', '5205', 'HU\'U'),
 ('5205011', '5205', 'PAJO'),
 ('5205020', '5205', 'DOMPU'),
 ('5205030', '5205', 'WOJA'),
@@ -4383,7 +4422,7 @@ INSERT INTO `districts` (`id`, `regency_id`, `name_disctricts`) VALUES
 ('5304081', '5304', 'FAUTMOLO'),
 ('5304082', '5304', 'FATUKOPA'),
 ('5304090', '5304', 'KIE'),
-('5304091', '5304', 'KOT''OLIN'),
+('5304091', '5304', 'KOT\'OLIN'),
 ('5304100', '5304', 'AMANATUN SELATAN'),
 ('5304101', '5304', 'BOKING'),
 ('5304102', '5304', 'NUNKOLO'),
@@ -4773,7 +4812,7 @@ INSERT INTO `districts` (`id`, `regency_id`, `name_disctricts`) VALUES
 ('6112010', '6112', 'BATU AMPAR'),
 ('6112020', '6112', 'TERENTANG'),
 ('6112030', '6112', 'KUBU'),
-('6112040', '6112', 'TELOK PA''KEDAI'),
+('6112040', '6112', 'TELOK PA\'KEDAI'),
 ('6112050', '6112', 'SUNGAI KAKAP'),
 ('6112060', '6112', 'RASAU JAYA'),
 ('6112070', '6112', 'SUNGAI RAYA'),
@@ -5301,7 +5340,7 @@ INSERT INTO `districts` (`id`, `regency_id`, `name_disctricts`) VALUES
 ('7104041', '7104', 'BEO UTARA'),
 ('7104042', '7104', 'BEO SELATAN'),
 ('7104050', '7104', 'RAINIS'),
-('7104051', '7104', 'TAMPA NA''MMA'),
+('7104051', '7104', 'TAMPA NA\'MMA'),
 ('7104052', '7104', 'PULUTAN'),
 ('7104060', '7104', 'ESSANG'),
 ('7104061', '7104', 'ESSANG SELATAN'),
@@ -5607,7 +5646,7 @@ INSERT INTO `districts` (`id`, `regency_id`, `name_disctricts`) VALUES
 ('7303020', '7303', 'BANTAENG'),
 ('7303021', '7303', 'EREMERASA'),
 ('7303030', '7303', 'TOMPOBULU'),
-('7303031', '7303', 'PA''JUKUKANG'),
+('7303031', '7303', 'PA\'JUKUKANG'),
 ('7303032', '7303', 'GANTARANGKEKE'),
 ('7304010', '7304', 'BANGKALA'),
 ('7304011', '7304', 'BANGKALA BARAT'),
@@ -5680,7 +5719,7 @@ INSERT INTO `districts` (`id`, `regency_id`, `name_disctricts`) VALUES
 ('7309051', '7309', 'TONDONG TALLASA'),
 ('7309060', '7309', 'BUNGORO'),
 ('7309070', '7309', 'LABAKKANG'),
-('7309080', '7309', 'MA''RANG'),
+('7309080', '7309', 'MA\'RANG'),
 ('7309091', '7309', 'SEGERI'),
 ('7309092', '7309', 'MANDALLE'),
 ('7310010', '7310', 'TANETE RIAJA'),
@@ -5850,7 +5889,7 @@ INSERT INTO `districts` (`id`, `regency_id`, `name_disctricts`) VALUES
 ('7326100', '7326', 'TIKALA'),
 ('7326110', '7326', 'SESEAN'),
 ('7326120', '7326', 'BALUSU'),
-('7326130', '7326', 'SA''DAN'),
+('7326130', '7326', 'SA\'DAN'),
 ('7326140', '7326', 'BENGKELEKILA'),
 ('7326150', '7326', 'SESEAN SULOARA'),
 ('7326160', '7326', 'KAPALA PITU'),
@@ -7236,7 +7275,7 @@ INSERT INTO `districts` (`id`, `regency_id`, `name_disctricts`) VALUES
 ('9433033', '9433', 'OMUKIA'),
 ('9433040', '9433', 'SINAK'),
 ('9433041', '9433', 'SINAK BARAT'),
-('9433042', '9433', 'MAGEÁBUME'),
+('9433042', '9433', 'MAGEÃBUME'),
 ('9433043', '9433', 'YUGUMUAK'),
 ('9433050', '9433', 'POGOMA'),
 ('9433051', '9433', 'KEMBRU'),
@@ -7278,6 +7317,19 @@ INSERT INTO `districts` (`id`, `regency_id`, `name_disctricts`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `foto`
+--
+
+CREATE TABLE `foto` (
+  `id_foto` int(11) NOT NULL,
+  `nama_foto` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `id_berita` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `hubungan_pelapor`
 --
 
@@ -7306,6 +7358,17 @@ CREATE TABLE `jenis_bencana_alam` (
   `id` int(11) NOT NULL,
   `nama_jenis_bencana_alam` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jenis_bencana_alam`
+--
+
+INSERT INTO `jenis_bencana_alam` (`id`, `nama_jenis_bencana_alam`) VALUES
+(1, 'Tsunami'),
+(2, 'Banjir'),
+(3, 'Gunung Meletus'),
+(4, 'Tanah Longsor'),
+(5, 'Banjir Bandang');
 
 -- --------------------------------------------------------
 
@@ -7359,7 +7422,7 @@ CREATE TABLE `orang_hilang` (
   `nama_lengkap` varchar(255) NOT NULL,
   `nama_panggilan` varchar(255) DEFAULT NULL,
   `alamat` text,
-  `umur` varchar(2) DEFAULT NULL,
+  `umur` varchar(2) NOT NULL,
   `id_jenis_kelamin` int(11) NOT NULL,
   `marga_suku` varchar(255) DEFAULT NULL,
   `warna_kulit` varchar(255) DEFAULT NULL,
@@ -7378,8 +7441,25 @@ CREATE TABLE `orang_hilang` (
   `id_bencana_alam` int(11) NOT NULL,
   `id_hubungan_pelapor` int(11) NOT NULL,
   `id_status_org_hilang` int(11) NOT NULL,
-  `tgl_laporan` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tgl_laporan` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tkp_korban` varchar(100) NOT NULL,
+  `status_korban` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orang_hilang`
+--
+
+INSERT INTO `orang_hilang` (`id`, `nama_lengkap`, `nama_panggilan`, `alamat`, `umur`, `id_jenis_kelamin`, `marga_suku`, `warna_kulit`, `baju_terakhir`, `celana_terakhir`, `id_kategori_umur`, `foto`, `lokasi_terakhir`, `lat_lokasi`, `lon_lokasi`, `nama_ayah`, `nama_ibu`, `keterangan_lainnya`, `nama_pelapor`, `no_hp_pelapor`, `id_bencana_alam`, `id_hubungan_pelapor`, `id_status_org_hilang`, `tgl_laporan`, `tkp_korban`, `status_korban`) VALUES
+(1, 'Alfian Dimas Sugara', 'Dimas', 'Kepanjen', '16', 1, 'Jaw', 'Sawo Matang', 'Biru', 'Hitam', 3, '', '', 0.000000, 0.000000, 'Sumanto', 'Sarumpet', '', 'Irfan', '082292711815', 1, 4, 1, '2019-01-05 15:28:20', '', ''),
+(2, 'Irfan Hakim', 'Irpan', 'Malang', '17', 1, 'Jawa', 'Sawo Matang', 'Biru', 'Hitam', 3, '', '', 0.000000, 0.000000, 'Sumanto', 'Sarumpet', 'Korban sekarang dirujuk ke RS Panti Waluyo', 'Dimas', '082140307911', 1, 4, 2, '2019-01-05 15:30:20', '', ''),
+(3, 'Rasyad Bisma', 'Bisma', 'Malang', '17', 1, 'Jawa', 'Sawo Matang', 'Biru', 'Hitam', 3, 'Rasyad_Bisma_e00b908e2cb572c1d36896203bfa998b.jpeg', '', 0.000000, 0.000000, 'Sumanto', 'Sarumpet', 'Jenazah berada di RSUD Syaiful Anwar', 'Dito', '081234577272', 1, 4, 3, '2019-01-05 15:31:15', '', ''),
+(4, 'Dito Adji', 'Dito', 'Malang', '17', 1, 'Jawa', 'Sawo Matang', 'Biru', 'Hitam', 3, 'Dito_Adji_8eff3a9ada022926d84958226f575e3d.jpeg', '', 0.000000, 0.000000, 'Sumanto', 'Sarumpet', '', 'Bisma', '085733670648', 1, 4, 4, '2019-01-05 15:31:58', '', ''),
+(5, 'Anjas Prayoga', 'Anjas', 'Malang', '20', 1, 'Jombang', 'Sawo Matang', 'Biru Muda', 'Hitam', 3, 'Anjas_Prayoga_c6bf28cd9ccca64739dcc19e1a08480b.jpeg', 'Malang', 0.000000, 0.000000, '', '', '', 'Dito', '081234577272', 1, 4, 1, '2019-01-05 19:38:19', '', ''),
+(6, 'Rauf Mazzidan', 'Raup', 'Malang', '16', 1, '', 'Sawo Matang', 'Hitam', 'Merah', 3, 'Rauf_Mazzidan_51ece012f3bf8e4857e9eaf14b6ae54f.jpeg', 'Nganjuk', 0.000000, 0.000000, 'Sukirman', 'Sutiyem', '', 'Bisma', '081234577272', 1, 4, 4, '2019-01-05 19:46:47', '', ''),
+(7, 'Yuda Sugara', 'Yuda', 'Kepanjen', '13', 1, 'Jaa', 'Sawo Matang', 'Merah', 'Hitam', 3, 'Yuda_Sugara_bee453242a53b462b9da63ed051810b3.jpg', 'Kepanjen', 0.000000, 0.000000, 'Sutomo', 'Sarumpet', '', 'Dimas', '081234577272', 1, 3, 2, '2019-01-05 19:51:41', '', ''),
+(8, 'Bima Aji Laksono', 'Bima', 'Kepanjen', '16', 1, '', 'Sawo Matang', 'Abu - Abu', 'Hitam', 3, 'Bima_Aji_Laksono_75e1c0d0ffd67704ccb83ffb190cf844.jpeg', 'Malang', 0.000000, 0.000000, '', '', '', 'Dimas', '082140307911', 1, 3, 1, '2019-01-05 19:52:58', '', ''),
+(9, 'DImas Sugara', 'Dimas', 'Kepanjen', '16', 1, 'Jawa', 'Sawo Matang', '', '', 2, 'DImas_Sugara_229f1e0a4d61563473dd23dd33ba7889.jpeg', 'Kepanjen', 0.000000, 0.000000, '', '', 'Korban dirujuk RSUD Syaiful Anwar', 'Yuda', '', 1, 3, 2, '2019-01-05 20:02:06', '', '');
 
 -- --------------------------------------------------------
 
@@ -7975,6 +8055,83 @@ CREATE TABLE `status_org_hilang` (
   `nama_status_org` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `status_org_hilang`
+--
+
+INSERT INTO `status_org_hilang` (`id`, `nama_status_org`) VALUES
+(1, 'Proses Pencarian'),
+(2, 'Ditemukan'),
+(3, 'Ditemukan Meninggal'),
+(4, 'Tidak Ditemukan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tag`
+--
+
+CREATE TABLE `tag` (
+  `id_tag` int(11) NOT NULL,
+  `nama_tag` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tag`
+--
+
+INSERT INTO `tag` (`id_tag`, `nama_tag`) VALUES
+(1, 'Tsunami'),
+(2, 'Gempa'),
+(3, 'Cek'),
+(4, 'Olahraga'),
+(5, 'Senam'),
+(6, 'Skj'),
+(7, 'C'),
+(8, 'Isi'),
+(9, 'M'),
+(10, 'Ce'),
+(11, 'Deras'),
+(12, 'Goyang'),
+(13, 'Ini'),
+(14, 'Mr'),
+(15, 'Berita1'),
+(16, 'Hotnews'),
+(17, 'Idntimes'),
+(18, 'Bnpb'),
+(19, 'Bencana alam'),
+(20, 'Gunung berapi'),
+(21, 'Pvmbg'),
+(22, 'Krakatau');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags_berita`
+--
+
+CREATE TABLE `tags_berita` (
+  `id_tags_berita` int(11) NOT NULL,
+  `id_berita` int(11) NOT NULL,
+  `id_tag` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tags_berita`
+--
+
+INSERT INTO `tags_berita` (`id_tags_berita`, `id_berita`, `id_tag`) VALUES
+(60, 3, 16),
+(61, 3, 1),
+(62, 4, 17),
+(63, 4, 16),
+(64, 4, 1),
+(65, 5, 18),
+(66, 5, 19),
+(67, 6, 20),
+(68, 6, 21),
+(69, 6, 22);
+
 -- --------------------------------------------------------
 
 --
@@ -7997,7 +8154,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `id_user_grup`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(383883, 1, 'admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', '', '2018-12-22 04:58:58', '0000-00-00 00:00:00');
+(1, 1, 'Irfan Hakim', 'hakimirfan90@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '', '2018-12-25 14:08:15', '0000-00-00 00:00:00'),
+(2, 2, 'Petugas', 'petugas@petugas.com', 'afb91ef692fd08c445e8cb1bab2ccf9c', '', '2018-12-23 12:11:19', '0000-00-00 00:00:00'),
+(383883, 1, 'admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', '', '2018-12-22 04:58:58', '0000-00-00 00:00:00'),
+(383885, 3, 'writer', 'writer@writer.com', 'a82feee3cc1af8bcabda979e8775ef0f', '', '2018-12-26 12:32:52', '0000-00-00 00:00:00'),
+(383887, 3, 'cek', 'cek@gmail.com', 'd94b3fc388ef9231425a7c1096fe8596', '', '2018-12-27 00:50:16', '0000-00-00 00:00:00'),
+(383890, 1, '[removed]alert&#40;\'cek\'&#41;[removed]', 'eye@gmail.com', 'bd027796a32ca41413cb154797842aad', '', '2018-12-29 05:06:17', '0000-00-00 00:00:00'),
+(383891, 1, 'Irfan Hakim', 'irfan@gmail.com', 'c0007d32554bc3374379cd80a12198d5', '', '2018-12-29 05:11:39', '0000-00-00 00:00:00'),
+(383892, 1, 'Aome', 'aome@aome.com', '7d49e40f4b3d8f68c19406a58303f826', '', '2019-01-05 16:50:52', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -8006,7 +8170,7 @@ INSERT INTO `user` (`id`, `id_user_grup`, `name`, `email`, `password`, `remember
 --
 
 CREATE TABLE `user_grup` (
-  `id` int(11) NOT NULL,
+  `id_grup` int(11) NOT NULL,
   `nama_grup` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -8014,7 +8178,7 @@ CREATE TABLE `user_grup` (
 -- Dumping data for table `user_grup`
 --
 
-INSERT INTO `user_grup` (`id`, `nama_grup`) VALUES
+INSERT INTO `user_grup` (`id_grup`, `nama_grup`) VALUES
 (1, 'admin'),
 (2, 'petugas'),
 (3, 'writer');
@@ -14172,7 +14336,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('1118060025', '1118060', 'RAYA'),
 ('1118060026', '1118060', 'MEE PEUDUEK'),
 ('1118060027', '1118060', 'SAGOE'),
-('1118070001', '1118070', 'LHOK PU''UK'),
+('1118070001', '1118070', 'LHOK PU\'UK'),
 ('1118070002', '1118070', 'TUNONG'),
 ('1118070003', '1118070', 'TEUNGOH'),
 ('1118070004', '1118070', 'PEURADE'),
@@ -14322,7 +14486,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('1172010004', '1172010', 'JABOI'),
 ('1172010005', '1172010', 'BALOHAN'),
 ('1172010006', '1172010', 'COT ABEUK'),
-('1172010007', '1172010', 'COT BA''U'),
+('1172010007', '1172010', 'COT BA\'U'),
 ('1172010008', '1172010', 'ANOE ITAM'),
 ('1172010009', '1172010', 'UJONG KAREUNG'),
 ('1172010010', '1172010', 'IE MEULEE'),
@@ -18002,7 +18166,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('1214030025', '1214030', 'HILISAOOTONIHA'),
 ('1214030040', '1214030', 'HILIANAA'),
 ('1214030041', '1214030', 'HILIGANOWO SALOO'),
-('1214030042', '1214030', 'HILIGANOWOSA''UA'),
+('1214030042', '1214030', 'HILIGANOWOSA\'UA'),
 ('1214030043', '1214030', 'HILILAZA'),
 ('1214030044', '1214030', 'NANOWA'),
 ('1214031004', '1214031', 'BAWONAHONO'),
@@ -18253,7 +18417,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('1214065008', '1214065', 'SILIMA BANUA'),
 ('1214065009', '1214065', 'SINDROLO'),
 ('1214065010', '1214065', 'SISARAHILI EWO'),
-('1214065011', '1214065', 'HILIALO''OA'),
+('1214065011', '1214065', 'HILIALO\'OA'),
 ('1214066001', '1214066', 'TUHEGAFOA'),
 ('1214066002', '1214066', 'SIHOLI'),
 ('1214066003', '1214066', 'SIFALAGO GOMO'),
@@ -18304,7 +18468,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('1214072013', '1214072', 'FADORO TUHEMBERUA'),
 ('1214072014', '1214072', 'HILIFALAWU'),
 ('1214072015', '1214072', 'LUAHAMOFAKHE'),
-('1214072016', '1214072', 'SIFAORO''ASI HURUNA'),
+('1214072016', '1214072', 'SIFAORO\'ASI HURUNA'),
 ('1214072017', '1214072', 'HILIMANAWA'),
 ('1214072018', '1214072', 'MOMBAWA OLADANO'),
 ('1214080001', '1214080', 'TUHEGAFOA'),
@@ -22238,7 +22402,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('1402061005', '1402061', 'TANJUNG SARI'),
 ('1402061006', '1402061', 'RAWA SEKIP'),
 ('1402061007', '1402061', 'RAWA ASRI'),
-('1402061008', '1402061', 'PULAU JUM''AT'),
+('1402061008', '1402061', 'PULAU JUM\'AT'),
 ('1402061009', '1402061', 'SUKA JADI'),
 ('1402061010', '1402061', 'TELUK SUNGKAI'),
 ('1403010001', '1403010', 'KOTABARU RETEH'),
@@ -54513,7 +54677,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3526020004', '3526020', 'SUKOLILO TIMUR'),
 ('3526020005', '3526020', 'BUNAJIH'),
 ('3526020006', '3526020', 'BRINGIN'),
-('3526020007', '3526020', 'BA''ENGAS'),
+('3526020007', '3526020', 'BA\'ENGAS'),
 ('3526020008', '3526020', 'MORKEPEK'),
 ('3526020009', '3526020', 'LABANG'),
 ('3526020010', '3526020', 'JUKONG'),
@@ -54550,7 +54714,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3526040016', '3526040', 'PAKONG'),
 ('3526040017', '3526040', 'ALASKOKON'),
 ('3526050001', '3526050', 'GIGIR'),
-('3526050002', '3526050', 'KO''OLAN'),
+('3526050002', '3526050', 'KO\'OLAN'),
 ('3526050003', '3526050', 'PANGERAN GEDUNGAN'),
 ('3526050004', '3526050', 'PANJALINAN'),
 ('3526050005', '3526050', 'ROSEP'),
@@ -54584,10 +54748,10 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3526070002', '3526070', 'KAJUANAK'),
 ('3526070003', '3526070', 'PATERONGAN'),
 ('3526070004', '3526070', 'GALIS'),
-('3526070005', '3526070', 'PAKA''AN LAOK'),
+('3526070005', '3526070', 'PAKA\'AN LAOK'),
 ('3526070006', '3526070', 'KRANGGAN TIMUR'),
 ('3526070007', '3526070', 'SEPARAH'),
-('3526070008', '3526070', 'PAKA''AN DAYA'),
+('3526070008', '3526070', 'PAKA\'AN DAYA'),
 ('3526070009', '3526070', 'LONGKEK'),
 ('3526070010', '3526070', 'BANYUBUNIH'),
 ('3526070011', '3526070', 'DALEMAN'),
@@ -54704,7 +54868,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3526150003', '3526150', 'KOKOP'),
 ('3526150004', '3526150', 'TLOKOH'),
 ('3526150005', '3526150', 'DURJAN'),
-('3526150006', '3526150', 'MANO''AN'),
+('3526150006', '3526150', 'MANO\'AN'),
 ('3526150007', '3526150', 'MANDUNG'),
 ('3526150008', '3526150', 'BANDANG LAOK'),
 ('3526150009', '3526150', 'TRAMOK'),
@@ -54739,7 +54903,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3526170014', '3526170', 'LABUHAN'),
 ('3526170015', '3526170', 'LEMBUNG PASESER'),
 ('3526180001', '3526180', 'TOLBUK'),
-('3526180002', '3526180', 'RA''AS'),
+('3526180002', '3526180', 'RA\'AS'),
 ('3526180003', '3526180', 'MUARAH'),
 ('3526180004', '3526180', 'POLONGAN'),
 ('3526180005', '3526180', 'KARANG ASEM'),
@@ -54752,7 +54916,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3526180012', '3526180', 'LARANGAN SORJAN'),
 ('3526180013', '3526180', 'TENGGUN DAYA'),
 ('3526180015', '3526180', 'TROGAN'),
-('3526180016', '3526180', 'KO''OL'),
+('3526180016', '3526180', 'KO\'OL'),
 ('3526180017', '3526180', 'TOBADDUNG'),
 ('3526180018', '3526180', 'MRANDUNG'),
 ('3526180019', '3526180', 'BULUK AGUNG'),
@@ -54950,7 +55114,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3528010011', '3528010', 'LARANGAN TOKOL'),
 ('3528010013', '3528010', 'PANGLEGUR'),
 ('3528010016', '3528010', 'LARANGAN SLAMPAR'),
-('3528010017', '3528010', 'TARO''AN'),
+('3528010017', '3528010', 'TARO\'AN'),
 ('3528020001', '3528020', 'BADDURIH'),
 ('3528020002', '3528020', 'PAGAGAN'),
 ('3528020003', '3528020', 'MAJUNGAN'),
@@ -54958,7 +55122,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3528020005', '3528020', 'TANJUNG'),
 ('3528020006', '3528020', 'PADEMAWU TIMUR'),
 ('3528020007', '3528020', 'JARIN'),
-('3528020009', '3528020', 'SOPA''AH'),
+('3528020009', '3528020', 'SOPA\'AH'),
 ('3528020010', '3528020', 'BUDDIH'),
 ('3528020012', '3528020', 'SUMEDANGAN'),
 ('3528020013', '3528020', 'PADEMAWU BARAT'),
@@ -55009,7 +55173,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3528050016', '3528050', 'KOLPAJUNG'),
 ('3528050017', '3528050', 'KOWEL'),
 ('3528050018', '3528050', 'TORONAN'),
-('3528060001', '3528060', 'GRO''OM'),
+('3528060001', '3528060', 'GRO\'OM'),
 ('3528060002', '3528060', 'BATUKALANGAN'),
 ('3528060003', '3528060', 'CANDIBURUNG'),
 ('3528060004', '3528060', 'TOKET'),
@@ -55026,7 +55190,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3528060015', '3528060', 'PROPPO'),
 ('3528060016', '3528060', 'MAPPER'),
 ('3528060017', '3528060', 'PANGLEMAH'),
-('3528060018', '3528060', 'BILLA''AN'),
+('3528060018', '3528060', 'BILLA\'AN'),
 ('3528060019', '3528060', 'TLANGOH'),
 ('3528060020', '3528060', 'KODIK'),
 ('3528060022', '3528060', 'SAMATAN'),
@@ -55180,7 +55344,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3529060002', '3529060', 'KARANG ANYAR'),
 ('3529060003', '3529060', 'MARENGAN LAOK'),
 ('3529060004', '3529060', 'KERTASADA'),
-('3529060005', '3529060', 'KALIMO''OK'),
+('3529060005', '3529060', 'KALIMO\'OK'),
 ('3529060006', '3529060', 'KALIANGET BARAT'),
 ('3529060007', '3529060', 'KALIANGET TIMUR'),
 ('3529070005', '3529070', 'KOLOR'),
@@ -55304,7 +55468,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('3529150005', '3529150', 'GADDING'),
 ('3529150006', '3529150', 'GIRING'),
 ('3529150007', '3529150', 'GUNUNG KEMBAR'),
-('3529150008', '3529150', 'JABA''AN'),
+('3529150008', '3529150', 'JABA\'AN'),
 ('3529150009', '3529150', 'MANDING LAOK'),
 ('3529150010', '3529150', 'MANDING DAYA'),
 ('3529150011', '3529150', 'MANDING TIMUR'),
@@ -58608,7 +58772,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5204141002', '5204141', 'LABUAN AJI'),
 ('5204141003', '5204141', 'BANTULANTEH'),
 ('5204141004', '5204141', 'LABUAN JAMBU'),
-('5204141005', '5204141', 'TOLO'' OI'),
+('5204141005', '5204141', 'TOLO\' OI'),
 ('5204141006', '5204141', 'MATA'),
 ('5204141007', '5204141', 'BANDA'),
 ('5204141008', '5204141', 'PIDANG'),
@@ -58657,7 +58821,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5205040004', '5205040', 'MALAJU'),
 ('5205040005', '5205040', 'LASI'),
 ('5205040006', '5205040', 'K I W U'),
-('5205050009', '5205050', 'TA''A'),
+('5205050009', '5205050', 'TA\'A'),
 ('5205050010', '5205050', 'KEMPO'),
 ('5205050011', '5205050', 'SORO'),
 ('5205050012', '5205050', 'KONTE'),
@@ -58769,7 +58933,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5206050020', '5206050', 'MARIA UTARA'),
 ('5206050021', '5206050', 'RIAMAU'),
 ('5206051002', '5206051', 'LAJU'),
-('5206051004', '5206051', 'DORO O''O'),
+('5206051004', '5206051', 'DORO O\'O'),
 ('5206051006', '5206051', 'WAWORADA'),
 ('5206051007', '5206051', 'KAWUWU'),
 ('5206051008', '5206051', 'KARUMBU'),
@@ -58839,7 +59003,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5206080001', '5206080', 'RORA'),
 ('5206080002', '5206080', 'PALAMA'),
 ('5206080003', '5206080', 'MBAWA'),
-('5206080004', '5206080', 'O''O'),
+('5206080004', '5206080', 'O\'O'),
 ('5206080005', '5206080', 'DORIDUNGGA'),
 ('5206080008', '5206080', 'KALA'),
 ('5206080012', '5206080', 'BUMI PAJO'),
@@ -59028,7 +59192,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5272020002', '5272020', 'DODU'),
 ('5272020003', '5272020', 'NUNGGA');
 INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
-('5272020014', '5272020', 'OI FO''O'),
+('5272020014', '5272020', 'OI FO\'O'),
 ('5272020015', '5272020', 'KODO'),
 ('5272020016', '5272020', 'LELAMASE'),
 ('5272021001', '5272021', 'NITU'),
@@ -59508,7 +59672,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5304023005', '5304023', 'OELEKAM'),
 ('5304023006', '5304023', 'PIKA'),
 ('5304030001', '5304030', 'CENDANA'),
-('5304030002', '5304030', 'SO''E'),
+('5304030002', '5304030', 'SO\'E'),
 ('5304030003', '5304030', 'OEBESA'),
 ('5304030004', '5304030', 'KOBEKAMUSA'),
 ('5304030006', '5304030', 'OEKEFAN'),
@@ -59633,13 +59797,13 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5304090016', '5304090', 'ENONAPI'),
 ('5304090017', '5304090', 'NAILEU'),
 ('5304090018', '5304090', 'FATUKUSI'),
-('5304091001', '5304091', 'KOT''OLIN'),
+('5304091001', '5304091', 'KOT\'OLIN'),
 ('5304091002', '5304091', 'NUNBENA'),
 ('5304091003', '5304091', 'FATUAT'),
 ('5304091004', '5304091', 'HOIBETI'),
 ('5304091005', '5304091', 'NUALUNAT'),
 ('5304091006', '5304091', 'PANITE'),
-('5304091007', '5304091', 'O''OBIBI'),
+('5304091007', '5304091', 'O\'OBIBI'),
 ('5304091008', '5304091', 'BINENOK'),
 ('5304100001', '5304100', 'OINLASI'),
 ('5304100002', '5304100', 'KOKOI'),
@@ -59769,7 +59933,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5305023008', '5305023', 'OENENU SELATAN'),
 ('5305023009', '5305023', 'SONO'),
 ('5305024001', '5305024', 'NILULAT'),
-('5305024003', '5305024', 'HAUMENI ''ANA'),
+('5305024003', '5305024', 'HAUMENI \'ANA'),
 ('5305024004', '5305024', 'SUNKAEN'),
 ('5305024005', '5305024', 'NAINABAN'),
 ('5305024006', '5305024', 'INBATE'),
@@ -59846,10 +60010,10 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5305050010', '5305050', 'TOKBESI'),
 ('5305050012', '5305050', 'SAINIUP'),
 ('5305050013', '5305050', 'TUNBAEN'),
-('5305051001', '5305051', 'T''EBA'),
+('5305051001', '5305051', 'T\'EBA'),
 ('5305051002', '5305051', 'OERINBESI'),
 ('5305051003', '5305051', 'OEKOPA'),
-('5305051004', '5305051', 'T''EBA TIMUR'),
+('5305051004', '5305051', 'T\'EBA TIMUR'),
 ('5305052002', '5305052', 'LUNIUP'),
 ('5305052003', '5305052', 'MATABESI'),
 ('5305052004', '5305052', 'KAUBELE'),
@@ -59918,7 +60082,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5306062002', '5306062', 'LIDAK'),
 ('5306062003', '5306062', 'MANUAMAN'),
 ('5306062004', '5306062', 'RINBESI'),
-('5306070001', '5306070', 'FATUBA''A'),
+('5306070001', '5306070', 'FATUBA\'A'),
 ('5306070002', '5306070', 'DAFALA'),
 ('5306070003', '5306070', 'TAKIRIN'),
 ('5306070004', '5306070', 'MANLETEN'),
@@ -60095,7 +60259,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5307060016', '5307060', 'TERNATE SELATAN'),
 ('5307060017', '5307060', 'TERNATE'),
 ('5307060018', '5307060', 'PULAU BUAYA'),
-('5307060019', '5307060', 'O''AMATE'),
+('5307060019', '5307060', 'O\'AMATE'),
 ('5307060020', '5307060', 'AIMOLI'),
 ('5307060021', '5307060', 'ALAANG'),
 ('5307060022', '5307060', 'ADANG'),
@@ -61936,7 +62100,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('5319031008', '5319031', 'GISING'),
 ('5319031009', '5319031', 'TENO MESE'),
 ('5319031010', '5319031', 'LEMPANG PAJI'),
-('5319031011', '5319031', 'NANGA PU''UN'),
+('5319031011', '5319031', 'NANGA PU\'UN'),
 ('5319031012', '5319031', 'MOSI NGARAN'),
 ('5319031013', '5319031', 'WAE RASAN'),
 ('5319031014', '5319031', 'BENTENG PAU'),
@@ -62422,8 +62586,8 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('6101070008', '6101070', 'PIANTUS'),
 ('6101070010', '6101070', 'SETALIK'),
 ('6101070011', '6101070', 'PENAKALAN'),
-('6101080001', '6101080', 'SEBUNGA'''),
-('6101080002', '6101080', 'KALIAU'''),
+('6101080001', '6101080', 'SEBUNGA\''),
+('6101080002', '6101080', 'KALIAU\''),
 ('6101080003', '6101080', 'SANATAB'),
 ('6101080004', '6101080', 'SANTABAN'),
 ('6101080005', '6101080', 'SEI BENING'),
@@ -63666,7 +63830,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('6108070010', '6108070', 'KALIS RAYA'),
 ('6108070011', '6108070', 'TEKUDAK'),
 ('6108070012', '6108070', 'SEMERANTAU'),
-('6108070013', '6108070', 'TAPANG DA''AN'),
+('6108070013', '6108070', 'TAPANG DA\'AN'),
 ('6108070014', '6108070', 'SEGIAM'),
 ('6108070015', '6108070', 'PAYUNGAN'),
 ('6108070016', '6108070', 'RIBANG KADENG'),
@@ -63686,7 +63850,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('6108080013', '6108080', 'TANJUNG LOKANG'),
 ('6108080014', '6108080', 'URANG UNSA'),
 ('6108080015', '6108080', 'KEREHO'),
-('6108080016', '6108080', 'INGKO'' TAMBE'),
+('6108080016', '6108080', 'INGKO\' TAMBE'),
 ('6108090001', '6108090', 'NANGA EMBALOH'),
 ('6108090002', '6108090', 'KELILING SEMULUNG'),
 ('6108090006', '6108090', 'LAWIK'),
@@ -65734,7 +65898,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('6213020002', '6213020', 'MALASAN'),
 ('6213020003', '6213020', 'BATU PUTIH'),
 ('6213020004', '6213020', 'MANGKAHUI'),
-('6213020005', '6213020', 'PANU''UT'),
+('6213020005', '6213020', 'PANU\'UT'),
 ('6213020006', '6213020', 'MUARA UNTU'),
 ('6213020007', '6213020', 'MUARA JAAN'),
 ('6213020008', '6213020', 'BAHITOM'),
@@ -66386,7 +66550,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('6303070021', '6303070', 'MALI MALI'),
 ('6303070022', '6303070', 'LOKTANGGA'),
 ('6303070023', '6303070', 'SUNGAI BESAR'),
-('6303070024', '6303070', 'BI''IH'),
+('6303070024', '6303070', 'BI\'IH'),
 ('6303070025', '6303070', 'BALAU'),
 ('6303070026', '6303070', 'ABIRAU'),
 ('6303080001', '6303080', 'BELANGIAN'),
@@ -66743,7 +66907,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('6305040012', '6305040', 'BUNGUR BARU'),
 ('6305050001', '6305050', 'BARAMBAN'),
 ('6305050002', '6305050', 'MIAWA'),
-('6305050003', '6305050', 'BUNI''IN JAYA'),
+('6305050003', '6305050', 'BUNI\'IN JAYA'),
 ('6305050004', '6305050', 'BATU AMPAR'),
 ('6305050005', '6305050', 'PIPITAK JAYA'),
 ('6305050006', '6305050', 'HARAKIT'),
@@ -67381,7 +67545,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('6309040006', '6309040', 'MANTUIL'),
 ('6309040007', '6309040', 'MURUNG KARANGAN'),
 ('6309050001', '6309050', 'WALANGKIR'),
-('6309050002', '6309050', 'PULAU KU''U'),
+('6309050002', '6309050', 'PULAU KU\'U'),
 ('6309050003', '6309050', 'TAMIYANG'),
 ('6309050004', '6309050', 'WARUKIN'),
 ('6309050005', '6309050', 'PADANG PANJANG'),
@@ -67557,7 +67721,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('6310040017', '6310040', 'TAPUS'),
 ('6310040018', '6310040', 'DARASAN BINJAI'),
 ('6310040020', '6310040', 'TELUK KEPAYANG'),
-('6310040021', '6310040', 'HATI''IF'),
+('6310040021', '6310040', 'HATI\'IF'),
 ('6310040022', '6310040', 'MANGKALAPI'),
 ('6310040023', '6310040', 'TAMUNIH'),
 ('6310040024', '6310040', 'BATU BULAN'),
@@ -67755,7 +67919,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('6311060013', '6311060', 'BINJU'),
 ('6311060014', '6311060', 'BANGKAL'),
 ('6311060015', '6311060', 'SURYATAMA'),
-('6311060016', '6311060', 'HA''UWAI'),
+('6311060016', '6311060', 'HA\'UWAI'),
 ('6311060017', '6311060', 'KARYA'),
 ('6311060019', '6311060', 'GUNUNG RIUT'),
 ('6311060020', '6311060', 'LIYU'),
@@ -68726,7 +68890,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('6411050003', '6411050', 'LONG PENANEH DUA'),
 ('6411050004', '6411050', 'TIONG OHANG'),
 ('6411050005', '6411050', 'NAHA BUAN'),
-('6411050006', '6411050', 'TIONG BU''U'),
+('6411050006', '6411050', 'TIONG BU\'U'),
 ('6411050007', '6411050', 'LONG PENANEH SATU'),
 ('6411050008', '6411050', 'LONG PENANEH TIGA'),
 ('6411050009', '6411050', 'LONG KERIOK'),
@@ -70392,7 +70556,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7107020008', '7107020', 'BATULINTIK'),
 ('7107020009', '7107020', 'BINTAUNA'),
 ('7107020010', '7107020', 'TALAGA'),
-('7107020011', '7107020', 'VOA''A'),
+('7107020011', '7107020', 'VOA\'A'),
 ('7107020012', '7107020', 'PADANG'),
 ('7107020013', '7107020', 'KUHANGA'),
 ('7107020014', '7107020', 'BUNONG'),
@@ -71604,7 +71768,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7203020029', '7203020', 'BUNGINTENDE'),
 ('7203020030', '7203020', 'BOELIMAU'),
 ('7203020031', '7203020', 'PANIMBAWANG'),
-('7203020032', '7203020', 'PO''O'),
+('7203020032', '7203020', 'PO\'O'),
 ('7203020033', '7203020', 'UMBELE LAMA'),
 ('7203020034', '7203020', 'PULAU DUA DARAT'),
 ('7203020035', '7203020', 'POARO'),
@@ -71944,7 +72108,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7205101002', '7205101', 'SALOYA'),
 ('7205101003', '7205101', 'KALIBURU'),
 ('7205101004', '7205101', 'BATUSUYA'),
-('7205101005', '7205101', 'BATUSUYA GO''O'),
+('7205101005', '7205101', 'BATUSUYA GO\'O'),
 ('7205101006', '7205101', 'KALIBURU KATA'),
 ('7205102001', '7205102', 'TAMARENJA'),
 ('7205102002', '7205102', 'OTI'),
@@ -72627,7 +72791,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7209070013', '7209070', 'BAULU'),
 ('7209070014', '7209070', 'MATOBIYAI'),
 ('7209070015', '7209070', 'SAMPOBAE'),
-('7209070016', '7209070', 'TITIRIí POPOLION'),
+('7209070016', '7209070', 'TITIRIÃ­ POPOLION'),
 ('7209080006', '7209080', 'TIGA PULAU'),
 ('7209080007', '7209080', 'LUOK'),
 ('7209080008', '7209080', 'POPOLII'),
@@ -72678,7 +72842,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7210020007', '7210020', 'LAWUA'),
 ('7210020008', '7210020', 'WATUKILO'),
 ('7210020009', '7210020', 'SALUTOME'),
-('7210020010', '7210020', 'O''O'),
+('7210020010', '7210020', 'O\'O'),
 ('7210020011', '7210020', 'PALAMAKI'),
 ('7210020012', '7210020', 'WANGKA'),
 ('7210030001', '7210030', 'SIWONGI'),
@@ -72696,7 +72860,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7210030014', '7210030', 'TORO'),
 ('7210030015', '7210030', 'POLEROA MAKUHI'),
 ('7210030016', '7210030', 'MARENA'),
-('7210040001', '7210040', 'PURO''O'),
+('7210040001', '7210040', 'PURO\'O'),
 ('7210040002', '7210040', 'LANGKO'),
 ('7210040003', '7210040', 'TOMADO'),
 ('7210040004', '7210040', 'ANCA'),
@@ -72901,8 +73065,8 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7212010014', '7212010', 'KOLAKA'),
 ('7212020001', '7212020', 'WAWOPADA'),
 ('7212020002', '7212020', 'LEMBOBARU'),
-('7212020003', '7212020', 'WARA''A'),
-('7212020004', '7212020', 'TINGKEA''O'),
+('7212020003', '7212020', 'WARA\'A'),
+('7212020004', '7212020', 'TINGKEA\'O'),
 ('7212020005', '7212020', 'KOROBONDE'),
 ('7212020006', '7212020', 'MORA'),
 ('7212020007', '7212020', 'ULUANSO'),
@@ -72915,13 +73079,13 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7212030001', '7212030', 'DOLUPO KARYA'),
 ('7212030002', '7212030', 'MANDULA'),
 ('7212030003', '7212030', 'LEMBOBELALA'),
-('7212030004', '7212030', 'PO''ONA'),
+('7212030004', '7212030', 'PO\'ONA'),
 ('7212030005', '7212030', 'RONTA'),
 ('7212030006', '7212030', 'BINTANGOR MUKTI'),
 ('7212030007', '7212030', 'PETUMBEA'),
-('7212030008', '7212030', 'PONTANGO''A'),
+('7212030008', '7212030', 'PONTANGO\'A'),
 ('7212030009', '7212030', 'JAMOR JAYA'),
-('7212030010', '7212030', 'PA''AWARU'),
+('7212030010', '7212030', 'PA\'AWARU'),
 ('7212040001', '7212040', 'MOLORES'),
 ('7212040002', '7212040', 'KEUNO'),
 ('7212040003', '7212040', 'MOHONI'),
@@ -73006,7 +73170,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7212100011', '7212100', 'UEPAKATU'),
 ('7212100012', '7212100', 'PARANGISI'),
 ('7212100013', '7212100', 'LIJO'),
-('7212100014', '7212100', 'MENYO''E'),
+('7212100014', '7212100', 'MENYO\'E'),
 ('7271010004', '7271010', 'UJUNA'),
 ('7271010005', '7271010', 'BARU'),
 ('7271010006', '7271010', 'SIRANINDI'),
@@ -73309,9 +73473,9 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7303021004', '7303021', 'LONRONG'),
 ('7303021005', '7303021', 'BARUA'),
 ('7303021006', '7303021', 'KAMPALA'),
-('7303021007', '7303021', 'PA''BENTENGAN'),
+('7303021007', '7303021', 'PA\'BENTENGAN'),
 ('7303021008', '7303021', 'PARANGLOE'),
-('7303021009', '7303021', 'PA''BUMBUNGAN'),
+('7303021009', '7303021', 'PA\'BUMBUNGAN'),
 ('7303030016', '7303030', 'LEMBANG GANTARANGKEKE'),
 ('7303030017', '7303030', 'PATTALLASSANG'),
 ('7303030018', '7303030', 'BONTO-BONTOA'),
@@ -73326,7 +73490,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7303031003', '7303031', 'LUMPANGAN'),
 ('7303031004', '7303031', 'BIANGKEKE'),
 ('7303031005', '7303031', 'NIPA-NIPA'),
-('7303031006', '7303031', 'PA''JUKUKANG'),
+('7303031006', '7303031', 'PA\'JUKUKANG'),
 ('7303031007', '7303031', 'BORONGLOE'),
 ('7303031008', '7303031', 'PAPANLOE'),
 ('7303031009', '7303031', 'BARUGA'),
@@ -73471,14 +73635,14 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7305021004', '7305021', 'PADDINGING'),
 ('7305021005', '7305021', 'UJUNG BAJI'),
 ('7305021006', '7305021', 'TONASA'),
-('7305030003', '7305030', 'PA''BUNDUKANG'),
+('7305030003', '7305030', 'PA\'BUNDUKANG'),
 ('7305030005', '7305030', 'CANREGO'),
 ('7305030006', '7305030', 'BONTOKADATTO'),
 ('7305030007', '7305030', 'BULUKUNYI'),
 ('7305030008', '7305030', 'CAKURA'),
 ('7305030009', '7305030', 'LANTANG'),
 ('7305030010', '7305030', 'MONCONGKOMBA'),
-('7305030011', '7305030', 'PATTE''NE'),
+('7305030011', '7305030', 'PATTE\'NE'),
 ('7305030012', '7305030', 'RAJAYA'),
 ('7305030013', '7305030', 'SU RULANGI'),
 ('7305031001', '7305031', 'PATTALLASSANG'),
@@ -73496,10 +73660,10 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7305040006', '7305040', 'PALLEKO'),
 ('7305040007', '7305040', 'MATTOMPODALLE'),
 ('7305040008', '7305040', 'PARANG LUARA'),
-('7305040009', '7305040', 'PA''RAPPUNGANTA'),
+('7305040009', '7305040', 'PA\'RAPPUNGANTA'),
 ('7305040010', '7305040', 'MASSAMATURU'),
 ('7305040011', '7305040', 'TIMBUSENG'),
-('7305040012', '7305040', 'KO''MARA'),
+('7305040012', '7305040', 'KO\'MARA'),
 ('7305040013', '7305040', 'BARUGAYA'),
 ('7305040014', '7305040', 'TOWATA'),
 ('7305040015', '7305040', 'KAMPUNG BERU'),
@@ -73507,7 +73671,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7305040017', '7305040', 'PARANGBADO'),
 ('7305040018', '7305040', 'LASSANG BARAT'),
 ('7305040019', '7305040', 'BALANGTANAYA'),
-('7305040020', '7305040', 'KALE KO''MARA'),
+('7305040020', '7305040', 'KALE KO\'MARA'),
 ('7305050001', '7305050', 'MANGINDARA'),
 ('7305050002', '7305050', 'BONTO MARANNU'),
 ('7305050003', '7305050', 'BARAMAMASE'),
@@ -73639,7 +73803,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7306051009', '7306051', 'PATTALASSANG'),
 ('7306051010', '7306051', 'PALLANTIKANG'),
 ('7306051011', '7306051', 'PACELLEKANG'),
-('7306051013', '7306051', 'BORONG PA''LALA'),
+('7306051013', '7306051', 'BORONG PA\'LALA'),
 ('7306051014', '7306051', 'PANAIKANG'),
 ('7306051015', '7306051', 'JENEMADINGING'),
 ('7306060005', '7306060', 'LONJOBOKO'),
@@ -73813,7 +73977,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7308021003', '7308021', 'MARUMPA'),
 ('7308021004', '7308021', 'TELLUMPOCCOE'),
 ('7308021005', '7308021', 'BONTO MATENE'),
-('7308021006', '7308021', 'A''BULOSIBATANG'),
+('7308021006', '7308021', 'A\'BULOSIBATANG'),
 ('7308021007', '7308021', 'NISOMBALIA'),
 ('7308022001', '7308022', 'TAROADA'),
 ('7308022002', '7308022', 'ADATONGENG'),
@@ -74323,7 +74487,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7311200007', '7311200', 'BILA'),
 ('7311200008', '7311200', 'ULAWENG RIAJA'),
 ('7311200009', '7311200', 'MAMPOTU'),
-('7311200010', '7311200', 'TA''CIPONG'),
+('7311200010', '7311200', 'TA\'CIPONG'),
 ('7311200011', '7311200', 'WELLULANG'),
 ('7311200012', '7311200', 'AJANG LALENG'),
 ('7311200013', '7311200', 'TASSIPI'),
@@ -74992,10 +75156,10 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7317010020', '7317010', 'RIWANG SELATAN'),
 ('7317010021', '7317010', 'BUNTU PASIK'),
 ('7317010022', '7317010', 'KOMBA SELATAN'),
-('7317011001', '7317011', 'LA''LOA'),
+('7317011001', '7317011', 'LA\'LOA'),
 ('7317011002', '7317011', 'BATU LAPPA'),
 ('7317011003', '7317011', 'BONEPUTE'),
-('7317011004', '7317011', 'TEMBO''E'),
+('7317011004', '7317011', 'TEMBO\'E'),
 ('7317011005', '7317011', 'SALUSANA'),
 ('7317011006', '7317011', 'DADEKO'),
 ('7317011007', '7317011', 'SAMPANO'),
@@ -75076,7 +75240,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7317050015', '7317050', 'KANNA'),
 ('7317050016', '7317050', 'LEDAN'),
 ('7317050017', '7317050', 'LISSAGA'),
-('7317050018', '7317050', 'TO''LONG'),
+('7317050018', '7317050', 'TO\'LONG'),
 ('7317050019', '7317050', 'TABI'),
 ('7317050020', '7317050', 'KANNA UTARA'),
 ('7317050021', '7317050', 'BUNTU BATU'),
@@ -75103,14 +75267,14 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7317052009', '7317052', 'KARATUAN'),
 ('7317052010', '7317052', 'BONGLO'),
 ('7317052011', '7317052', 'BARANA'),
-('7317052012', '7317052', 'TA''BA'),
+('7317052012', '7317052', 'TA\'BA'),
 ('7317060001', '7317060', 'BALUTAN'),
 ('7317060002', '7317060', 'PADANG TUJU'),
 ('7317060003', '7317060', 'NOLING'),
 ('7317060004', '7317060', 'PADANG KAMBURI'),
 ('7317060013', '7317060', 'BUNTU BATU'),
 ('7317060021', '7317060', 'TANJONG'),
-('7317060022', '7317060', 'PADANG MA''BUD'),
+('7317060022', '7317060', 'PADANG MA\'BUD'),
 ('7317060023', '7317060', 'MALENGGANG'),
 ('7317060024', '7317060', 'TAMPUMIA'),
 ('7317060025', '7317060', 'SALU INDUK'),
@@ -75126,7 +75290,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7317061019', '7317061', 'PAREKAJU'),
 ('7317062001', '7317062', 'PACCERAKANG'),
 ('7317062002', '7317062', 'PATTEDONG'),
-('7317062003', '7317062', 'TO''BALO'),
+('7317062003', '7317062', 'TO\'BALO'),
 ('7317062004', '7317062', 'JENNE MAEJA'),
 ('7317062005', '7317062', 'LAMPUARA'),
 ('7317062006', '7317062', 'BAKTI'),
@@ -75135,7 +75299,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7317062012', '7317062', 'BASSIANG'),
 ('7317062013', '7317062', 'TARRAMATEKKENG'),
 ('7317062014', '7317062', 'PATTEDONG SELATAN'),
-('7317062015', '7317062', 'TO''BIA'),
+('7317062015', '7317062', 'TO\'BIA'),
 ('7317062016', '7317062', 'BASSIANG TIMUR'),
 ('7317070001', '7317070', 'LARE-LARE'),
 ('7317070002', '7317070', 'KARANG-KARANGAN'),
@@ -75174,9 +75338,9 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7317090013', '7317090', 'SALU JAMBU'),
 ('7317090014', '7317090', 'AWO GADING'),
 ('7317090015', '7317090', 'SETIAREJO'),
-('7317090016', '7317090', 'SE''PON'),
+('7317090016', '7317090', 'SE\'PON'),
 ('7317090017', '7317090', 'PONGSAMELUNG'),
-('7317090018', '7317090', 'TO''PONGO'),
+('7317090018', '7317090', 'TO\'PONGO'),
 ('7317090019', '7317090', 'WIWITAN TIMUR'),
 ('7317091001', '7317091', 'SANGTANDUNG'),
 ('7317091002', '7317091', 'BOLONG'),
@@ -75198,7 +75362,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7317093002', '7317093', 'POMPENGAN'),
 ('7317093003', '7317093', 'BULOLONDONG'),
 ('7317093004', '7317093', 'PELALAN'),
-('7317093005', '7317093', 'TO''LEMO'),
+('7317093005', '7317093', 'TO\'LEMO'),
 ('7317093006', '7317093', 'SALU PAO'),
 ('7317093007', '7317093', 'SERITI'),
 ('7317093008', '7317093', 'POMPENGAN TENGAH'),
@@ -75230,14 +75394,14 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7318020011', '7318020', 'ULUWAY BARAT'),
 ('7318020019', '7318020', 'LEMBANG GASING'),
 ('7318020023', '7318020', 'LEMBANG MARINDING'),
-('7318020024', '7318020', 'LEMBANG KE''PE TINORING'),
+('7318020024', '7318020', 'LEMBANG KE\'PE TINORING'),
 ('7318020025', '7318020', 'LEMBANG RANDANAN'),
 ('7318020030', '7318020', 'KELURAHAN TAMPO'),
 ('7318020032', '7318020', 'LEMBANG SIMBUANG'),
 ('7318020034', '7318020', 'KELURAHAN LEMO'),
 ('7318020035', '7318020', 'KELURAHAN TENGAN'),
 ('7318020037', '7318020', 'LEMBANG RANTEDADA'),
-('7318020038', '7318020', 'LEMBANG PA''TENGKO'),
+('7318020038', '7318020', 'LEMBANG PA\'TENGKO'),
 ('7318020040', '7318020', 'KELURAHAN  RANTE KALUA'),
 ('7318020041', '7318020', 'LEMBANG BUNTU TANGTI'),
 ('7318020042', '7318020', 'LEMBANG BUNTU DATU'),
@@ -75265,7 +75429,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7318031003', '7318031', 'KELURAHAN RANTE ALANG'),
 ('7318031004', '7318031', 'LEMBANG TOKESAN'),
 ('7318031005', '7318031', 'LEMBANG RARU SIBUNUAN'),
-('7318032001', '7318032', 'LEMBANG RANTE LA''BI KAMBISA'),
+('7318032001', '7318032', 'LEMBANG RANTE LA\'BI KAMBISA'),
 ('7318032002', '7318032', 'LEMBANG LEATUNG MATALLO'),
 ('7318032003', '7318032', 'KELURAHAN  LEATUNG'),
 ('7318032004', '7318032', 'LEMBANG SALU ALLO'),
@@ -75286,11 +75450,11 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7318040037', '7318040', 'KELURAHAN TAMPO MAKALE'),
 ('7318040038', '7318040', 'LEMBANG LEA'),
 ('7318040039', '7318040', 'KELURAHAN LAPANDAN'),
-('7318041001', '7318041', 'LEMBANG  PA''BUARAN'),
+('7318041001', '7318041', 'LEMBANG  PA\'BUARAN'),
 ('7318041002', '7318041', 'LEMBANG RANDAN BATU'),
 ('7318041003', '7318041', 'KELURAHAN TIROMANDA'),
 ('7318041004', '7318041', 'KELURAHAN TOSAPAN'),
-('7318041005', '7318041', 'LEMBANG BO''NE BUNTU SISONG'),
+('7318041005', '7318041', 'LEMBANG BO\'NE BUNTU SISONG'),
 ('7318041006', '7318041', 'LEMBANG PATEKKE'),
 ('7318041007', '7318041', 'KELURAHAN SANDABALIK'),
 ('7318041008', '7318041', 'KELURAHAN PASANG'),
@@ -75302,14 +75466,14 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7318050019', '7318050', 'KELURAHAN PATTAN ULUSALU'),
 ('7318050030', '7318050', 'LEMBANG SALUTANDUNG'),
 ('7318050046', '7318050', 'LEMBANG RATTE TALONGE'),
-('7318050047', '7318050', 'LEMBANG SA''TANDUNG'),
+('7318050047', '7318050', 'LEMBANG SA\'TANDUNG'),
 ('7318050049', '7318050', 'LEMBANG SALU'),
 ('7318050050', '7318050', 'LEMBANG BATU TIAKA'),
 ('7318050051', '7318050', 'LEMBANG REA TULAKLANGI'),
-('7318050052', '7318050', 'LEMBANG RA''BUNG'),
+('7318050052', '7318050', 'LEMBANG RA\'BUNG'),
 ('7318050053', '7318050', 'LEMBANG SALU BORONAN'),
 ('7318051001', '7318051', 'LEMBANG PALI'),
-('7318051002', '7318051', 'LEMBANG SE''SENG'),
+('7318051002', '7318051', 'LEMBANG SE\'SENG'),
 ('7318051003', '7318051', 'KELURAHAN BITTUANG'),
 ('7318051004', '7318051', 'LEMBANG  TIROAN'),
 ('7318051005', '7318051', 'LEMBANG BAU'),
@@ -75320,9 +75484,9 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7318051010', '7318051', 'LEMBANG BALLA'),
 ('7318051011', '7318051', 'LEMBANG PATONGLOAN'),
 ('7318051012', '7318051', 'LEMBANG SASAK'),
-('7318051013', '7318051', 'LEMBANG LE''TEK'),
+('7318051013', '7318051', 'LEMBANG LE\'TEK'),
 ('7318051014', '7318051', 'LEMBANG SANDANA'),
-('7318051015', '7318051', 'LEMBANG KANDUA'''),
+('7318051015', '7318051', 'LEMBANG KANDUA\''),
 ('7318052001', '7318052', 'KELURAHAN TALION'),
 ('7318052002', '7318052', 'LEMBANG LIMBONG'),
 ('7318052003', '7318052', 'LEMBANG SARAPEANG'),
@@ -75674,20 +75838,20 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7326020003', '7326020', 'LEMBANG ANGIN-ANGIN'),
 ('7326020004', '7326020', 'LEMBANG TALLU LOLO'),
 ('7326020005', '7326020', 'LEMBANG RINDINGBATU'),
-('7326020006', '7326020', 'KELURAHAN BA''TAN'),
-('7326020007', '7326020', 'KELURAHAN PANTA''NAKAN LOLO'),
+('7326020006', '7326020', 'KELURAHAN BA\'TAN'),
+('7326020007', '7326020', 'KELURAHAN PANTA\'NAKAN LOLO'),
 ('7326030001', '7326030', 'LEMBANG TALLUNG PENANIAN'),
-('7326030002', '7326030', 'LEMBANG PATA''  PADANG'),
-('7326030003', '7326030', 'KELURAHAN PA''PAELEAN'),
-('7326030004', '7326030', 'LEMBANG BUNTU LA''BO'),
-('7326030005', '7326030', 'LEMBANG TANDUNG LA''BO'),
-('7326030006', '7326030', 'LEMBANG LA''BO'),
+('7326030002', '7326030', 'LEMBANG PATA\'  PADANG'),
+('7326030003', '7326030', 'KELURAHAN PA\'PAELEAN'),
+('7326030004', '7326030', 'LEMBANG BUNTU LA\'BO'),
+('7326030005', '7326030', 'LEMBANG TANDUNG LA\'BO'),
+('7326030006', '7326030', 'LEMBANG LA\'BO'),
 ('7326040001', '7326040', 'LEMBANG SAPAN KUA-KUA'),
-('7326040002', '7326040', 'LEMBANG  MISA BA''BANA'),
+('7326040002', '7326040', 'LEMBANG  MISA BA\'BANA'),
 ('7326040003', '7326040', 'LEMBANG RINDING KILA BALABATU'),
 ('7326040004', '7326040', 'KELURAHAN TONGKONAN BASSE'),
 ('7326040005', '7326040', 'LEMBANG ISSONG KALUA'),
-('7326040006', '7326040', 'KELURAHAN TALLANG SURA'''),
+('7326040006', '7326040', 'KELURAHAN TALLANG SURA\''),
 ('7326050001', '7326050', 'LEMBANG RANTE BUA SANGGALANGI'),
 ('7326050002', '7326050', 'LEMBANG RANTE BUA SAMALU'),
 ('7326050003', '7326050', 'LEMBANG RANTE BUA'),
@@ -75707,7 +75871,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7326070001', '7326070', 'LEMBANG TONDON'),
 ('7326070002', '7326070', 'LEMBANG TONDON MATALLO'),
 ('7326070003', '7326070', 'LEMBANG TONDON LANGI'),
-('7326070004', '7326070', 'LEMBANG TONDON SIBA''TA'),
+('7326070004', '7326070', 'LEMBANG TONDON SIBA\'TA'),
 ('7326080001', '7326080', 'KELURAHAN TAMPO TALLUNGLIPU'),
 ('7326080002', '7326080', 'KELURAHAN TAGARI TALLUNG LIPU'),
 ('7326080003', '7326080', 'KELURAHAN RANTE PAKU TALLUNGLIPU'),
@@ -75731,32 +75895,32 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7326100003', '7326100', 'LEMBANG SEREALE'),
 ('7326100004', '7326100', 'LEMBANG BUNTU BATU'),
 ('7326100005', '7326100', 'LEMBANG EMBATAU'),
-('7326100006', '7326100', 'LEMBANG BENTENG KA''DO TO''RIA'),
+('7326100006', '7326100', 'LEMBANG BENTENG KA\'DO TO\'RIA'),
 ('7326100007', '7326100', 'LEMBANG PANGDEN'),
 ('7326110001', '7326110', 'LEMBANG BUNTU LOBO'),
-('7326110002', '7326110', 'LEMBANG PARINDING'''),
+('7326110002', '7326110', 'LEMBANG PARINDING\''),
 ('7326110003', '7326110', 'KELURAHAN DERI'),
 ('7326110004', '7326110', 'LEMBANG BORI RANTATELOK'),
 ('7326110005', '7326110', 'KELURAHAN BORI'),
 ('7326110006', '7326110', 'LEMBANG BORI LOMBONGAN'),
 ('7326110007', '7326110', 'KELURAHAN PANGLI SELATAN'),
 ('7326110008', '7326110', 'KELURAHAN PANGLI'),
-('7326110009', '7326110', 'KELURAHAN PALAWA'''),
+('7326110009', '7326110', 'KELURAHAN PALAWA\''),
 ('7326120001', '7326120', 'LEMBANG PALANGI'),
 ('7326120002', '7326120', 'LEMBANG KARUA'),
-('7326120003', '7326120', 'LEMBANG LILIKIRA AO''GADING'),
+('7326120003', '7326120', 'LEMBANG LILIKIRA AO\'GADING'),
 ('7326120004', '7326120', 'LEMBANG AWAK KAWASIK'),
 ('7326120005', '7326120', 'KELURAHAN TAGARI'),
 ('7326120006', '7326120', 'KELURAHAN  BALUSU'),
 ('7326120007', '7326120', 'LEMBANG BALUSU BANGUN LIPU'),
-('7326130001', '7326130', 'LEMBANG SA''DAN ANDULAN'),
-('7326130002', '7326130', 'LEMBANG SA''DAN TIRO ALLO'),
-('7326130003', '7326130', 'KELURAHAN SA''DAN MATALO'),
+('7326130001', '7326130', 'LEMBANG SA\'DAN ANDULAN'),
+('7326130002', '7326130', 'LEMBANG SA\'DAN TIRO ALLO'),
+('7326130003', '7326130', 'KELURAHAN SA\'DAN MATALO'),
 ('7326130004', '7326130', 'LEMBANG SANGKAROPI'),
 ('7326130005', '7326130', 'KELURAHAN SA DAN MALIMBONG'),
 ('7326130006', '7326130', 'LEMBANG SADAN PABULIAN'),
 ('7326130007', '7326130', 'LEMBANG SADAN BALLO PASANGE'),
-('7326130008', '7326130', 'LEMBANG SA''DAN LIKU LAMBE'),
+('7326130008', '7326130', 'LEMBANG SA\'DAN LIKU LAMBE'),
 ('7326130009', '7326130', 'LEMBANG SADAN PESONDONGAN'),
 ('7326130010', '7326130', 'LEMBANG SADAN ULUSALU'),
 ('7326140001', '7326140', 'LEMBANG TOYASA AKUNG'),
@@ -75771,15 +75935,15 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7326160001', '7326160', 'LEMBANG BENTENG MAMULLU'),
 ('7326160002', '7326160', 'LEMBANG KAPALA PITU'),
 ('7326160003', '7326160', 'LEMBANG KANTUN POYA'),
-('7326160004', '7326160', 'LEMBANG BENTENG KA''DO'),
-('7326160005', '7326160', 'LEMBANG SIKUKU'''),
+('7326160004', '7326160', 'LEMBANG BENTENG KA\'DO'),
+('7326160005', '7326160', 'LEMBANG SIKUKU\''),
 ('7326160006', '7326160', 'LEMBANG POLO PADANG'),
 ('7326170001', '7326170', 'LEMBANG KAPOLOANG'),
 ('7326170002', '7326170', 'LEMBANG PIONGAN'),
 ('7326170003', '7326170', 'KELURAHAN PASANG'),
 ('7326170004', '7326170', 'LEMBANG DENDE'),
 ('7326170005', '7326170', 'LEMBANG PAKU'),
-('7326170006', '7326170', 'LEMBANG MA''DONG'),
+('7326170006', '7326170', 'LEMBANG MA\'DONG'),
 ('7326170007', '7326170', 'LEMBANG BUNTU TAGARI'),
 ('7326170008', '7326170', 'LEMBANG PARINDINGAN'),
 ('7326180001', '7326180', 'LEMBANG BATU LOTONG'),
@@ -75790,8 +75954,8 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7326190002', '7326190', 'KELURAHAN PANGALA'),
 ('7326190003', '7326190', 'LEMBANG AMPANG BATU'),
 ('7326190004', '7326190', 'KELURAHAN PANGALA UTARA'),
-('7326190005', '7326190', 'LEMBANG MAI''TING'),
-('7326190006', '7326190', 'LEMBANG LO''KO'' URU TANETE BATU'),
+('7326190005', '7326190', 'LEMBANG MAI\'TING'),
+('7326190006', '7326190', 'LEMBANG LO\'KO\' URU TANETE BATU'),
 ('7326190007', '7326190', 'LEMBANG RINDING ALLO'),
 ('7326190009', '7326190', 'LEMBANG BULU LANGKAN'),
 ('7326190010', '7326190', 'LEMBANG LEMPO POTON'),
@@ -75803,7 +75967,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7326200006', '7326200', 'LEMBANG PULU-PULU'),
 ('7326200007', '7326200', 'LEMBANG PENGKAROAN MANUK'),
 ('7326200008', '7326200', 'LEMBANG BATU BUSA'),
-('7326200009', '7326200', 'LEMBANG ROROAN BARRA''-BARRA'''),
+('7326200009', '7326200', 'LEMBANG ROROAN BARRA\'-BARRA\''),
 ('7326200010', '7326200', 'LEMBANG PANGKUNG BATU'),
 ('7326200011', '7326200', 'LEMBANG PONGLU'),
 ('7326200012', '7326200', 'LEMBANG PAONGANAN'),
@@ -75825,7 +75989,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7371020002', '7371020', 'SAMBUNG JAWA'),
 ('7371020003', '7371020', 'KARANG ANYAR'),
 ('7371020004', '7371020', 'BAJI MAPPAKASUNGGU'),
-('7371020005', '7371020', 'PA''BATANG'),
+('7371020005', '7371020', 'PA\'BATANG'),
 ('7371020006', '7371020', 'PARANG'),
 ('7371020007', '7371020', 'BONTO LEBANG'),
 ('7371020008', '7371020', 'MAMAJANG DALAM'),
@@ -75840,7 +76004,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7371030004', '7371030', 'BALANG BARU'),
 ('7371030005', '7371030', 'JONGAYA'),
 ('7371030006', '7371030', 'BONGAYA'),
-('7371030007', '7371030', 'PA''BAENG-BAENG'),
+('7371030007', '7371030', 'PA\'BAENG-BAENG'),
 ('7371030008', '7371030', 'MANNURUKI'),
 ('7371030009', '7371030', 'PARANG TAMBUNG'),
 ('7371030010', '7371030', 'MANGASA'),
@@ -75912,7 +76076,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7371090001', '7371090', 'BUNGA EJA BERU'),
 ('7371090002', '7371090', 'LEMBO'),
 ('7371090003', '7371090', 'KALUKUANG'),
-('7371090004', '7371090', 'LA''LATANG'),
+('7371090004', '7371090', 'LA\'LATANG'),
 ('7371090005', '7371090', 'RAPPOJAWA'),
 ('7371090006', '7371090', 'TAMMUA'),
 ('7371090007', '7371090', 'RAPPOKALLING'),
@@ -76014,7 +76178,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7373031006', '7373031', 'RAMPOANG'),
 ('7373031007', '7373031', 'TEMMALEBBA'),
 ('7373031008', '7373031', 'BALANDAI'),
-('7373031009', '7373031', 'TO''BULUNG'),
+('7373031009', '7373031', 'TO\'BULUNG'),
 ('7373031010', '7373031', 'BUNTU DATU'),
 ('7373040002', '7373040', 'MANCANI'),
 ('7373040003', '7373040', 'SALUBATTANG'),
@@ -77488,7 +77652,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7408052005', '7408052', 'LATALI'),
 ('7408052006', '7408052', 'TERENGGA'),
 ('7408052007', '7408052', 'POWALAA'),
-('7408052008', '7408052', 'TO''LEMO'),
+('7408052008', '7408052', 'TO\'LEMO'),
 ('7408052009', '7408052', 'SALULOTONG'),
 ('7408052010', '7408052', 'KALAHUNDE'),
 ('7408060001', '7408060', 'LATOWU'),
@@ -78418,7 +78582,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7502010009', '7502010', 'KAYUBULAN'),
 ('7502010010', '7502010', 'LOPO'),
 ('7502010011', '7502010', 'BONGO'),
-('7502010013', '7502010', 'OLIMOO''O'),
+('7502010013', '7502010', 'OLIMOO\'O'),
 ('7502010014', '7502010', 'LANGGULA'),
 ('7502010015', '7502010', 'BUHUDAA'),
 ('7502011001', '7502011', 'HUWONGO'),
@@ -78428,7 +78592,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7502011005', '7502011', 'BILUHU TENGAH'),
 ('7502011006', '7502011', 'LOBUTO TIMUR'),
 ('7502011007', '7502011', 'OLIMEYALA'),
-('7502011008', '7502011', 'BOTUBOLU''O'),
+('7502011008', '7502011', 'BOTUBOLU\'O'),
 ('7502020019', '7502020', 'PAYUNGA'),
 ('7502020021', '7502020', 'BUA'),
 ('7502020022', '7502020', 'ILUTA'),
@@ -79294,7 +79458,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7602061002', '7602061', 'TAPUA'),
 ('7602061003', '7602061', 'MATANGNGA'),
 ('7602061004', '7602061', 'RANGOAN'),
-('7602061005', '7602061', 'BA''PA TAPUA'),
+('7602061005', '7602061', 'BA\'PA TAPUA'),
 ('7602061006', '7602061', 'MAMBU TAPUA'),
 ('7602061007', '7602061', 'KATIMBANG'),
 ('7603010001', '7603010', 'SIBANAWA'),
@@ -79314,7 +79478,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7603020005', '7603020', 'MALIMBONG'),
 ('7603020006', '7603020', 'MATANDE'),
 ('7603020007', '7603020', 'SIPAI'),
-('7603020008', '7603020', 'PASAPA'' MAMBU'),
+('7603020008', '7603020', 'PASAPA\' MAMBU'),
 ('7603020009', '7603020', 'TANETE BATU'),
 ('7603030001', '7603030', 'PANA'),
 ('7603030002', '7603030', 'MANIPI'),
@@ -79338,10 +79502,10 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7603031007', '7603031', 'PARINDING'),
 ('7603040001', '7603040', 'TABANG'),
 ('7603040002', '7603040', 'TABANG BARAT'),
-('7603040003', '7603040', 'TADO'' KALUA'),
+('7603040003', '7603040', 'TADO\' KALUA'),
 ('7603040004', '7603040', 'MASUPPU'),
 ('7603040005', '7603040', 'BAKADISURA'),
-('7603040006', '7603040', 'KALAMA'''),
+('7603040006', '7603040', 'KALAMA\''),
 ('7603040007', '7603040', 'SALUKONA'),
 ('7603050001', '7603050', 'MAMASA'),
 ('7603050002', '7603050', 'OSANGO'),
@@ -79371,7 +79535,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7603061002', '7603061', 'BALLA SATANETEAN'),
 ('7603061003', '7603061', 'BALLA BARAT'),
 ('7603061004', '7603061', 'PIDARA'),
-('7603061005', '7603061', 'BALLA TUMUKA'''),
+('7603061005', '7603061', 'BALLA TUMUKA\''),
 ('7603061006', '7603061', 'BAMBAPUANG'),
 ('7603061007', '7603061', 'SEPAKUAN'),
 ('7603061008', '7603061', 'BALLA TIMUR'),
@@ -79382,7 +79546,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7603070005', '7603070', 'OROBUA SELATAN'),
 ('7603070006', '7603070', 'OROBUA'),
 ('7603070007', '7603070', 'OROBUA TIMUR'),
-('7603070008', '7603070', 'LISUAN ADA'''),
+('7603070008', '7603070', 'LISUAN ADA\''),
 ('7603070013', '7603070', 'MALIMBONG'),
 ('7603070014', '7603070', 'MARAMPAN OROBUA'),
 ('7603071001', '7603071', 'TAWALIAN TIMUR'),
@@ -79400,7 +79564,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7603080014', '7603080', 'BUJUNGMANURUNG'),
 ('7603080016', '7603080', 'SENDANA'),
 ('7603080027', '7603080', 'INDO BANUA'),
-('7603080028', '7603080', 'SALUALO'''),
+('7603080028', '7603080', 'SALUALO\''),
 ('7603080029', '7603080', 'SALUDURIAN'),
 ('7603081001', '7603081', 'BAMBANG'),
 ('7603081002', '7603081', 'BAMBANG TIMUR'),
@@ -79487,7 +79651,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7604010008', '7604010', 'RANTEDODA'),
 ('7604010009', '7604010', 'TAMPALANG'),
 ('7604010010', '7604010', 'DAYANGINNA'),
-('7604011001', '7604011', 'PASA''BU'),
+('7604011001', '7604011', 'PASA\'BU'),
 ('7604011002', '7604011', 'DUNGKAIT'),
 ('7604011003', '7604011', 'LABUANG RANO'),
 ('7604011004', '7604011', 'LEBANI'),
@@ -79565,7 +79729,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('7604040010', '7604040', 'SANDAPANG'),
 ('7604040011', '7604040', 'KONDO BULO'),
 ('7604040012', '7604040', 'MAKKALIKI'),
-('7604040013', '7604040', 'LASA'''),
+('7604040013', '7604040', 'LASA\''),
 ('7604040014', '7604040', 'BATU MAKKADA'),
 ('7604041001', '7604041', 'BUTTU ADA'),
 ('7604041002', '7604041', 'BONEHAU'),
@@ -83423,7 +83587,7 @@ INSERT INTO `villages` (`id`, `district_id`, `name_villages`) VALUES
 ('9110050002', '9110050', 'MIRAFAN'),
 ('9110050003', '9110050', 'FATEGOMI'),
 ('9110050004', '9110050', 'GOHSAMES'),
-('9110050005', '9110050', 'ASMURUF ''U'''),
+('9110050005', '9110050', 'ASMURUF \'U\''),
 ('9110050006', '9110050', 'FAAN'),
 ('9110051001', '9110051', 'JITMAU TIMUR'),
 ('9110051002', '9110051', 'JITMAU'),
@@ -88646,7 +88810,15 @@ ALTER TABLE `bencana_alam`
   ADD KEY `id_provinces` (`id_provinces`),
   ADD KEY `id_regencies` (`id_regencies`),
   ADD KEY `id_districts` (`id_districts`),
-  ADD KEY `id_villages` (`id_villages`);
+  ADD KEY `id_villages` (`id_villages`),
+  ADD KEY `id_provinces_2` (`id_provinces`);
+
+--
+-- Indexes for table `berita`
+--
+ALTER TABLE `berita`
+  ADD PRIMARY KEY (`id_berita`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `districts`
@@ -88654,6 +88826,13 @@ ALTER TABLE `bencana_alam`
 ALTER TABLE `districts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `districts_id_index` (`regency_id`);
+
+--
+-- Indexes for table `foto`
+--
+ALTER TABLE `foto`
+  ADD PRIMARY KEY (`id_foto`),
+  ADD KEY `id_berita` (`id_berita`);
 
 --
 -- Indexes for table `hubungan_pelapor`
@@ -88710,6 +88889,20 @@ ALTER TABLE `status_org_hilang`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tag`
+--
+ALTER TABLE `tag`
+  ADD PRIMARY KEY (`id_tag`);
+
+--
+-- Indexes for table `tags_berita`
+--
+ALTER TABLE `tags_berita`
+  ADD PRIMARY KEY (`id_tags_berita`),
+  ADD KEY `id_tag` (`id_tag`),
+  ADD KEY `id_berita` (`id_berita`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -88720,7 +88913,7 @@ ALTER TABLE `user`
 -- Indexes for table `user_grup`
 --
 ALTER TABLE `user_grup`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_grup`);
 
 --
 -- Indexes for table `villages`
@@ -88737,17 +88930,50 @@ ALTER TABLE `villages`
 -- AUTO_INCREMENT for table `bencana_alam`
 --
 ALTER TABLE `bencana_alam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `berita`
+--
+ALTER TABLE `berita`
+  MODIFY `id_berita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `foto`
+--
+ALTER TABLE `foto`
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `jenis_bencana_alam`
 --
 ALTER TABLE `jenis_bencana_alam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `orang_hilang`
 --
 ALTER TABLE `orang_hilang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tag`
+--
+ALTER TABLE `tag`
+  MODIFY `id_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `tags_berita`
+--
+ALTER TABLE `tags_berita`
+  MODIFY `id_tags_berita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=383893;
+
 --
 -- Constraints for dumped tables
 --
@@ -88756,7 +88982,17 @@ ALTER TABLE `orang_hilang`
 -- Constraints for table `bencana_alam`
 --
 ALTER TABLE `bencana_alam`
-  ADD CONSTRAINT `bencana_alam_ibfk_1` FOREIGN KEY (`id_jenis_bencana_alam`) REFERENCES `jenis_bencana_alam` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `bencana_alam_ibfk_1` FOREIGN KEY (`id_jenis_bencana_alam`) REFERENCES `jenis_bencana_alam` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `bencana_alam_ibfk_2` FOREIGN KEY (`id_districts`) REFERENCES `districts` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `bencana_alam_ibfk_3` FOREIGN KEY (`id_provinces`) REFERENCES `provinces` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `bencana_alam_ibfk_4` FOREIGN KEY (`id_regencies`) REFERENCES `regencies` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `bencana_alam_ibfk_5` FOREIGN KEY (`id_villages`) REFERENCES `villages` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `berita`
+--
+ALTER TABLE `berita`
+  ADD CONSTRAINT `berita_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `districts`
@@ -88781,16 +89017,24 @@ ALTER TABLE `regencies`
   ADD CONSTRAINT `regencies_province_id_foreign` FOREIGN KEY (`province_id`) REFERENCES `provinces` (`id`);
 
 --
+-- Constraints for table `tags_berita`
+--
+ALTER TABLE `tags_berita`
+  ADD CONSTRAINT `tags_berita_ibfk_1` FOREIGN KEY (`id_berita`) REFERENCES `berita` (`id_berita`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `tags_berita_ibfk_2` FOREIGN KEY (`id_tag`) REFERENCES `tag` (`id_tag`) ON UPDATE CASCADE;
+
+--
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_user_grup`) REFERENCES `user_grup` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_user_grup`) REFERENCES `user_grup` (`id_grup`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `villages`
 --
 ALTER TABLE `villages`
   ADD CONSTRAINT `villages_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
