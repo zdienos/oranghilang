@@ -9,9 +9,14 @@
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.css">
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?=base_url()?>assets/fonts/font-awesome-4.3.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="<?=base_url()?>assets/css/all.css"
-	
+	<link rel="stylesheet" href="<?=base_url()?>assets/css/all.css">
+
+	<link rel="stylesheet" href="<?=base_url()?>/assets/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?=base_url()?>/assets/owlcarousel/assets/owl.theme.default.min.css">
+
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+
 </head>
 <body>
 	
@@ -94,6 +99,7 @@
 	</section>
 <script src="<?=base_url()?>assets/js/jquery-1.11.2.min.js"></script>
 <script src="<?=base_url()?>assets/js/bootstrap.js"></script>
+<script src="<?=base_url()?>/assets/owlcarousel/owl.carousel.js"></script>
 <script src="<?=base_url()?>assets/js/jquery.main.js"></script>
 </body>
 </html>
@@ -103,3 +109,15 @@
 	}
 </style>
 </script>
+<script>
+            jQuery(document).ready(function($) {
+              $('.fadeOut').owlCarousel({
+                items: 1,
+                animateOut: 'fadeOut',
+                autoplay:true,
+                autoplayTimeout:5000,
+                loop: true,
+                margin: 10,
+              });              
+            });
+          </script>
