@@ -205,6 +205,11 @@ class M_bencana extends CI_Model {
   {
     return $this->db->select('id')->where('id_bencana_alam',$id)->get('orang_hilang')->num_rows();
   }
+
+  public function getBencanaAlam()
+  {
+    return $this->db->query("SELECT DISTINCT bencana_alam.id as id,nama_bencana_alam from bencana_alam RIGHT JOIN orang_hilang on orang_hilang.id_bencana_alam = bencana_alam.id")->result();
+  }
 }
 
 /* End of file M_user.php */
