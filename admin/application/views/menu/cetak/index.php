@@ -1,7 +1,7 @@
 <div class="container-fluid" style="background-color: white;padding: 2%;white-space: wrap;">  
   <?= form_open('cetak/validate', array('id' => 'form-add', 'role' => 'form','enctype'=>'multipart/from-data'));?>  
    <div class="col-md-12">
-            <h4>Export Data oranghilang</h4><br>
+            <h4>Cetak Data oranghilang</h4><br>
             <div class="form-group row">
               <label class="col-sm-4 col-form-label">Status Oranghilang</label>
               <div class="col-sm-8">
