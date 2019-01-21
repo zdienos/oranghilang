@@ -197,7 +197,7 @@ class Pendataan extends CI_Controller {
         'Laki-Laki' => 'L',
         'Perempuan' => 'P'
       );
-      $data['title'] = 'oranghilang. | Tidak Ditemukan';
+      $data['title'] = 'oranghilang. | Daftar Orang Hilang Tidak Ditemukan';
       $this->load->view('layout/home',$data);
       }else{
         redirect('error/error_403','refresh');
