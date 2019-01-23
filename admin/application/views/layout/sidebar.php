@@ -55,15 +55,14 @@
          </li>
          <?php endif ?>
          <?php if ($this->session->userdata('user_grup') == 'petugas' || $this->session->userdata('user_grup') == 'admin'): ?>
-         <li class="nav-item">            
+		<li class="nav-item">            
             <a class="sidebar-link" href="<?=base_url('bencana')?>">
                <span class="icon-holder">               
                      <i class="c-<?=($hal=='bencana')?'blue':'brown'?>-500 ti-flag"></i>
                </span>
                <span class="title">Bencana</span>
             </a>
-         </li>
-         <li class="nav-item dropdown">
+         </li>         <li class="nav-item dropdown">
             <a class="dropdown-toggle" href="javascript:void(0);">
               <span class="icon-holder">
                 <i class="c-<?=($hal=='pendataan')?'blue':'brown'?>-500 ti-search"></i>

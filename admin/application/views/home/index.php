@@ -3,7 +3,7 @@
     <div class="col-md-3">
       <div class="layers bd bgc-white p-20">
         <div class="layer w-100 mB-10">
-          <h6 class="lh-1">Orang Hilang Proses Pencarian</h6>
+          <h6 class="lh-1"><a href="<?= base_url('pendataan')?>">Orang Hilang Proses Pencarian</a></h6>
         </div>
         <div class="layer w-100">
           <div class="peers ai-sb fxw-nw">
@@ -20,7 +20,7 @@
     <div class="col-md-3">
       <div class="layers bd bgc-white p-20">
         <div class="layer w-100 mB-10">
-          <h6 class="lh-1">Orang Hilang Ditemukan</h6>
+          <h6 class="lh-1"><a href="<?= base_url('pendataan/ditemukanhidup')?>">Orang Hilang Ditemukan Hidup</a></h6>
         </div>
         <div class="layer w-100">
           <div class="peers ai-sb fxw-nw">
@@ -37,7 +37,7 @@
     <div class="col-md-3">
       <div class="layers bd bgc-white p-20">
         <div class="layer w-100 mB-10">
-          <h6 class="lh-1">Orang Hilang Tidak Ditemukan</h6>
+          <h6 class="lh-1"><a href="<?= base_url('pendataan/ditemukanmeninggal')?>">Orang Hilang Ditemukan Meninggal</a></h6>
         </div>
         <div class="layer w-100">
           <div class="peers ai-sb fxw-nw">
@@ -45,7 +45,7 @@
               <span id="sparklinedash3"></span>
             </div>
             <div class="peer">
-              <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500"><?= $row_orang_hilang_tidak_ditemukan ?></span>
+              <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500"><?= $row_orang_hilang_ditemukan_meninggal ?></span>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
     <div class="col-md-3">
       <div class="layers bd bgc-white p-20">
         <div class="layer w-100 mB-10">
-          <h6 class="lh-1">Orang Hilang Ditemukan Meninggal</h6>
+          <h6 class="lh-1"><a href="<?= base_url('pendataan/tidakditemukan')?>">Orang Hilang Tidak Ditemukan</a></h6>
         </div>
         <div class="layer w-100">
           <div class="peers ai-sb fxw-nw">
@@ -62,7 +62,7 @@
               <span id="sparklinedash4"></span>
             </div>
           <div class="peer">
-            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500"><?= $row_orang_hilang_ditemukan_meninggal ?></span>
+            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500"><?= $row_orang_hilang_tidak_ditemukan ?></span>
           </div>
         </div>
       </div>
@@ -74,8 +74,7 @@
     <div class="col-md-4">
       <div class="layers bd bgc-white p-20">
         <div class="layer w-100 mB-10">
-          <h6 class="lh-1">Jumlah Petugas</h6>
-        </div>
+		  <h6 class="lh-1">Jumlah Petugas</h6>        </div>
         <div class="layer w-100">
           <div class="peers ai-sb fxw-nw">
             <div class="peer peer-greed">
@@ -91,7 +90,7 @@
     <div class="col-md-4">
       <div class="layers bd bgc-white p-20">
         <div class="layer w-100 mB-10">
-          <h6 class="lh-1">Berita Diterbitkan</h6>
+          <h6 class="lh-1"><a href="<?= base_url('berita')?>">Berita Diterbitkan</a></h6>
         </div>
         <div class="layer w-100">
           <div class="peers ai-sb fxw-nw">
@@ -108,7 +107,7 @@
     <div class="col-md-4">
       <div class="layers bd bgc-white p-20">
         <div class="layer w-100 mB-10">
-          <h6 class="lh-1">Berita Belum Diterbitkan</h6>
+          <h6 class="lh-1"><a href="<?= base_url('berita')?>">Berita Belum Diterbitkan</a></h6>
         </div>
         <div class="layer w-100">
           <div class="peers ai-sb fxw-nw">
