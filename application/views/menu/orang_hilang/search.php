@@ -14,16 +14,16 @@
 						</div>				
 						<div class="col-md-8" style="margin-top: 30px;">
 							<?php if ($key->nama_panggilan): ?>
-								<h2><a href=""><?=$key->nama_lengkap?>/<?=$key->nama_panggilan?$key->nama_panggilan:'-'?></a></h2>
+								<h2><a href="<?=base_url('oranghilang/detail_orang/'.$key->id_orang)?>"><?=$key->nama_lengkap?>/<?=$key->nama_panggilan?$key->nama_panggilan:'-'?></a></h2>
 							<?php else: ?>
 								<h2><a href=""><?=$key->nama_lengkap?></a></h2>
 							<?php endif ?>							
 							<p>
 								<p>Umur: <?=$key->umur?><br/>
-								   Tanggal Laporan: <span></span><?=$key->tgl_laporan?></span><br />
-								   Last Seen: <span><?=$key->lokasi_terakhir?$key->lokasi_terakhir:'Tidak Diketahui'?></span></p>
+								   Tanggal Laporan: <span></span><?=$key->tgl_laporan?></span><br />								   
 								   Bencana Alam : <span><?=$key->nama_bencana_alam?></span><br>
 								   Status : <span><?=$key->nama_status_org?></span><br>
+								   Keterangan : <span><?=$key->keterangan_lainnya ? $key->keterangan_lainnya :'Tidak Diketahui'?></span><br>
 								   <a href="<?=base_url('oranghilang/detail_orang/'.$key->id_orang)?>" class="btn" type="button" style="background: gray;color: white;" >Details</a>
 							</p>
 						</div>

@@ -1,7 +1,7 @@
 		<section>
 		  <div class="container">
 
-			<div class="col-md-8 " style="margin-top: 90px;  border-right:  3px dashed #ddd; ">
+			<div class="col-md-8 " style="margin-top: 50px;  border-right:  3px dashed #ddd; ">
 				<div class="world-latest-articles">
 	                <div class="row">
 	                    <div class="col-12 col-lg-11">
@@ -18,7 +18,12 @@
 	                            </div>
 	                            <!-- Post Content -->
 	                            <div class="post-content">	                                
-									<br><h2><?=$data->judul_berita?></h2>
+									<br>
+									<a href="<?=base_url('berita/detail_berita/'.$data->slug)?>">
+										<h2>
+											<?=$data->judul_berita?>
+										</h2>
+									</a>
 	                                <?php
 	                                $string = strip_tags($data->isi);
 									if (strlen($string) > 500) {
@@ -54,7 +59,7 @@
             	</div>
 			</div>
 				
-			<div class="col-md-3 " style="margin-top: 90px; margin-left: 50px; " >
+			<div class="col-md-3 " style="margin-top: 50px; margin-left: 50px; " >
 				<div class="world-latest-articles">
 					<div class="row">
 						<div class="title">

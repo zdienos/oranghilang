@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="<?=base_url()?>/assets/owlcarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="<?=base_url()?>/assets/owlcarousel/assets/owl.theme.default.min.css">
 
-	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
 
 </head>

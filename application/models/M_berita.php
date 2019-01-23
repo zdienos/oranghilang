@@ -24,7 +24,7 @@ class M_berita extends CI_Model {
     
     $config['base_url'] = base_url('berita/index');
     $config['total_rows'] = $this->db->query($query)->num_rows();
-    $config['per_page'] = 5;
+    $config['per_page'] = 2;
     $config['uri_segment'] = 3;
     $config['num_links'] = 3;
     

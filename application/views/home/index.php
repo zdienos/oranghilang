@@ -20,7 +20,7 @@
 		<u><h1 style="font-size: 2.8em;" class="font">Temukan Keluarga Anda Disini !</h1><br></u>
 		<div class="row">
 			<div class="col-md-9">
-				<form action="<?= base_url('oranghilang/name')?>" method="post" id="form-search">
+				<form style="height: 100%" action="<?= base_url('oranghilang/name')?>" method="post" id="form-search">
 					<input style="height: 100%;letter-spacing: 1px;width: 100%;font-size: 20px;font-family: coolvetica" type="text" name="oranghilang" class="form-control" placeholder="Ketikkan nama orang yang hilang"><br>
 				</form>
 			</div>
@@ -92,11 +92,13 @@
 						</div>
 						<div class="row">
 							<div class="col-12">
-								<h4><br><b>Nama Lengkap:</b><?=$key->nama_lengkap?></h4>
-								<h4><b>Nama Panggilan:</b><?=$key->nama_panggilan?></h4>
+								<h4><br><b>Nama Lengkap:</b><?=$key->nama_lengkap?> <?php if ($key->nama_panggilan): ?>
+									/ <?=$key->nama_panggilan?>
+								<?php endif ?></h4>
 								<h4><b>Jenis Kelamin / Umur :</b> <?=$key->nama_jenis_kelamin?>/<?=$key->umur?></h4>
 								<h4><b>Musibah :</b> <?=$key->nama_bencana_alam?></h4>
 								<h4><b>Status :</b> <?=$key->nama_status_org?></h4>
+								<h4><b>Keterangan :</b> <?=$key->keterangan_lainnya ? $key->keterangan_lainnya:"Tidak Diketahui"?></h4>
 								<h3 class="text-right" style="padding-top: 5px"><b><a href="<?=base_url('oranghilang/'.$key->id)?>">Detail</a></b></h3>	
 							</div>
 						</div>

@@ -99,19 +99,9 @@
               <div class="col-sm-9">
                 <?=form_input('lokasi_terakhir', '', array('id'=>'input-lokasi_terakhir','class' => 'form-control', 'placeholder' => $label['lokasi_terakhir']));?>
               </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label"><?=$label['lat_lokasi']?></label>
-              <div class="col-sm-9">
-                <?=form_input('lat_lokasi', '', array('id'=>'input-lat_lokasi','class' => 'form-control', 'placeholder' => $label['lat_lokasi']));?>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label"><?=$label['lon_lokasi']?></label>
-              <div class="col-sm-9">
-                <?=form_input('lon_lokasi', '', array('id'=>'input-lon_lokasi','class' => 'form-control', 'placeholder' =>$label['lon_lokasi']));?>
-              </div>
-            </div>
+            </div>          
+            <?=form_input('lat_lokasi', '', array('hidden'=>true, 'value'=> 1,'id'=>'input-lat_lokasi','class' => 'form-control', 'placeholder' => $label['lat_lokasi']));?>              
+            <?=form_input('lon_lokasi', '', array('hidden'=>true, 'value'=> 1,'id'=>'input-lon_lokasi','class' => 'form-control', 'placeholder' =>$label['lon_lokasi']));?>              
             <div class="form-group row">
               <label class="col-sm-3 col-form-label"><?=$label['nama_ayah']?></label>
               <div class="col-sm-9">

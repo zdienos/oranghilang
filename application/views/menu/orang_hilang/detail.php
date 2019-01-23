@@ -150,6 +150,10 @@ p {
                 <div class="clearfix"></div>
                 <hr/>
                 <div class="clearfix"></div>
+                <div class="col-sm-12"><h4>Keterangan</h4></div>
+                <div class="col-sm-12 col-xs-6"><p>Keterangan Lainnya: <span><?=$data_orang->keterangan_lainnya ? $data_orang->keterangan_lainnya : 'Tidak Diketahui'?></span></p></div>
+                <hr/>
+                <div class="clearfix"></div>
                 </div>
             </div>
         </div>

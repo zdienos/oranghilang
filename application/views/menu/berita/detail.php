@@ -29,7 +29,7 @@
 	                            </div>
 	                            <!-- Post Content -->
 	                            <div class="post-content" style="margin-left:10px;">
-	                                <a href="<?=base_url('detail_berita/'.$beritaL->slug)?>" class="headline" >
+	                                <a href="<?=base_url('berita/detail_berita/'.$beritaL->slug)?>" class="headline" >
 	                                    <h5 class="mb-0"><?=$beritaL->judul_berita?></h5>
 	                                </a>
 	                            </div>

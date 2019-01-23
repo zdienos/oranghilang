@@ -11,8 +11,8 @@ class Oranghilang extends CI_Controller {
 
 	public function index()
 	{
-		$data['tittle'] = 'oranhilang. | Data Orang Hilang';
-		$data['model'] = $this->orang_hilang->view(); 
+		$data['tittle'] = 'oranghilang. | Data Orang Hilang';
+		$data['model'] = $this->orang_hilang->view();     
 		$data['view'] = 'menu/orang_hilang/index';
 		$this->load->view('layout/home', $data);
 	}
