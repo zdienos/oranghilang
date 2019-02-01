@@ -14,13 +14,13 @@ Backend
 	User : 
 		1. Admin : 
 			Email : admin@admin.com
-			Password : 123
+			Password : admin
 		2. Petugas :
 			Email : petugas@petugas.com
-			Password : 123
+			Password : petugas
 		3. Writer : 
 			Email : writer@writer.com
-			Password : 123
+			Password : writer
 
 
 *******************
