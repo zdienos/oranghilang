@@ -22,16 +22,53 @@ Backend
 			Email : writer@writer.com
 			Password : 123
 
+
 *******************
 Specific Installation
 *******************
 For fast use just visit the website https://www.oranghilang.site
+
 For spesific follow this instruction :
+
 1. Install XAMPP for windows or other apache server for linux
+
 2. Clone or download this project paste to /htdocs on windows or /``YOURSERVER`` for linux rename to oranghilang
+
 3. Create database in phpmyadmin called "db_oranghilang"
+
 4. Import ``db_oranghilang.sql``
+
 5. Enjoy it
+
+
+***************
+Acknowledgement
+***************
+
+The CodeIgniter team would like to thank EllisLab, all the
+contributors to the CodeIgniter project and you, the CodeIgniter user.
+
+This project is build for competition on STIKI University Malang. We got 1st winner on web design competition.
+
+Team : 
+	Irfan Hakim (me) as Web Analyst, Full Stack Developer.
+
+	Alfian Dimas Sugara (fiandimas at github) as Backend Engineer.
+
+	M.Rasyad Bisma Wiratara as UI/UX Designer, Problem Analyst, Presentator.
+
+	Dito Rahman Adji as UI/UX Designer, Problem Analyst, Presentator.
+
+***************
+Appreciation
+***************
+
+Thank you for my team for the struggle for this project. To Allah SWT, the one and only one god.
+
+Mr. Agus Windartoe(Principal of SMK Telkom Malang). Mr. Arifin (Team Mentor and Teacher).
+
+All our parent <3
+
 
 *******************
 What is CodeIgniter
@@ -74,27 +111,3 @@ Resources
 
 Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
 or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
-
-This project is build for competition on STIKI University Malang. We got 1st winner on web design competition.
-
-Team : 
-	Irfan Hakim (me) as Web Analyst, Full Stack Developer.
-	Alfian Dimas Sugara (fiandimas at github) as Backend Engineer.
-	M.Rasyad Bisma Wiratara as UI/UX Designer, Problem Analyst, Presentator.
-	Dito Rahman Adji as UI/UX Designer, Problem Analyst, Presentator.
-
-***************
-Appreciation
-***************
-
-Thank you for my team for the struggle for this project. To Allah SWT, the one and only one god. 
-Mr. Agus Windartoe(Principal of SMK Telkom Malang). Mr. Arifin (Team Mentor and Teacher).
-All our parent <3
-
